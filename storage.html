@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guide to computer storage devices: hard drives (HDD), solid-state drives (SSD, NVMe), USB flash drives, SD cards, external drives, optical discs, and cloud storage, plus capacity units and backup habits.">
+  <title>Storage Devices | Mekhi Childs</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Scoped Enhancements for Input and Output Devices */
+    .device-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .device-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+      position: relative;
+    }
+
+    .device-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    .device-media-wrap {
+      position: relative;
+      width: 100%;
+      height: 230px;
+      overflow: hidden;
+      background: #0f172a;
+    }
+
+    .device-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .device-card:hover .device-img {
+      transform: scale(1.05);
+    }
+
+    .category-floating-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      z-index: 2;
+    }
+
+    .badge-input {
+      background: rgba(30, 58, 138, 0.85);
+      color: #93c5fd;
+      border: 1px solid rgba(147, 197, 253, 0.3);
+    }
+
+    .badge-output {
+      background: rgba(88, 28, 135, 0.85);
+      color: #e9d5ff;
+      border: 1px solid rgba(233, 213, 255, 0.3);
+    }
+
+    .device-body {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .device-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .device-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .device-icon-bubble {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      background: var(--primary-light);
+      font-size: 1.15rem;
+    }
+
+    .device-summary {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .device-specs-box {
+      background: rgba(11, 15, 25, 0.6);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.15rem;
+      margin-top: auto;
+    }
+
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .spec-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .spec-label {
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+    }
+
+    .spec-value {
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* Filter Controls */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.65rem 1.5rem;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.9rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .filter-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--text-primary);
+      border-color: var(--primary);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    /* Architecture Flowchart Diagram */
+    .workflow-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+      gap: 1.25rem;
+      position: relative;
+      margin-top: 2rem;
+    }
+
+    .workflow-step {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      transition: transform var(--transition-fast);
+    }
+
+    .workflow-step:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+    }
+
+    .workflow-step-num {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .workflow-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .workflow-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .workflow-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    /* Comparison Table */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      margin-top: 2rem;
+    }
+
+    .io-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .io-table th {
+      background: rgba(17, 24, 39, 0.9);
+      color: var(--text-primary);
+      padding: 1rem 1.25rem;
+      font-weight: 700;
+      border-bottom: 2px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    .io-table td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      vertical-align: middle;
+    }
+
+    .io-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .io-table tr:hover td {
+      background: rgba(59, 130, 246, 0.05);
+    }
+
+    .device-table-name {
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .table-pill {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .pill-input {
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+
+    .pill-output {
+      background: rgba(168, 85, 247, 0.2);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+  </style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🎓%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0b0e14">
+<style id="site-polish">
+/* Site polish: smoother, more accessible, tidier */
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-wrap:break-word}
+img,svg,video,iframe{max-width:100%;height:auto}
+pre,code{white-space:pre-wrap;word-break:break-word}
+table{max-width:100%}
+::selection{background:rgba(168,85,247,.45);color:#fff}
+:focus-visible{outline:2px solid #a78bfa;outline-offset:3px;border-radius:4px}
+a,button{-webkit-tap-highlight-color:transparent}
+button:not(:disabled),[role="button"]{cursor:pointer}
+.skip-link{position:absolute;left:-9999px;top:8px;z-index:100001;padding:10px 16px;background:#a855f7;color:#fff;border-radius:8px;font-weight:700;text-decoration:none}
+.skip-link:focus{left:8px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media print{.skip-link{display:none}}
+</style>
+<link rel="stylesheet" href="site-enhance.css">
+<script src="site-enhance.js" defer></script>
+
+  <style>
+    /* Storage page extras */
+    .badge-internal { background: rgba(30, 64, 175, 0.85); color: #bfdbfe; border: 1px solid rgba(191, 219, 254, 0.3); }
+    .badge-portable { background: rgba(113, 63, 18, 0.85); color: #fde68a; border: 1px solid rgba(253, 230, 138, 0.3); }
+    .badge-cloud { background: rgba(8, 80, 100, 0.85); color: #a5f3fc; border: 1px solid rgba(165, 243, 252, 0.3); }
+    .pill-internal { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
+    .pill-portable { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
+    .pill-cloud { background: rgba(6, 182, 212, 0.2); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.4); }
+    .media-emoji { width: 100%; height: 100%; display: grid; place-items: center; font-size: 5rem; background: radial-gradient(circle at 50% 40%, #1e293b, #0b1220 75%); }
+    .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .info-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.75rem; }
+    .info-card h3 { margin-bottom: 0.5rem; }
+    .info-card ul { padding-left: 1.2rem; color: var(--text-secondary); }
+    .info-card li { margin-bottom: 0.4rem; }
+    .info-tag { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.65rem; border-radius: 999px; margin-bottom: 0.75rem; }
+    .tag-fast { background: rgba(16,185,129,.18); color: #34d399; border: 1px solid rgba(16,185,129,.4); }
+    .tag-keep { background: rgba(59,130,246,.18); color: #60a5fa; border: 1px solid rgba(59,130,246,.4); }
+    .note-box { margin-top: 1.5rem; padding: 1rem 1.25rem; border-left: 4px solid #06b6d4; background: rgba(6,182,212,.08); border-radius: 8px; color: var(--text-secondary); }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#hero">Skip to main content</a>
+  <!-- Global Navigation Header -->
+  <header class="site-header" id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" title="Return to Main Portfolio">
+        <span class="logo-symbol">&lt;/&gt;</span>
+        <span class="logo-text">Mekhi Digital Portfolio<span class="accent-dot">.</span></span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Storage guide navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="back-nav-link">← Portfolio Home</a></li>
+          <li><a href="digital-citizenship.html" class="nav-link tab-highlight-dc">🌐 Digital Citizenship</a></li>
+          <li><a href="internet.html" class="nav-link tab-highlight-internet">⚡ The Internet</a></li>
+          <li><a href="software.html" class="nav-link">💻 Software</a></li>
+          <li><a href="hardware.html" class="nav-link tab-highlight-hardware">🔧 Hardware</a></li>
+          <li><a href="storage.html" class="nav-link is-current">💾 Storage</a></li>
+          <li><a href="security.html" class="nav-link tab-highlight-security">🛡️ Security</a></li>
+          <li><a href="io.html" class="nav-link">⌨️ I/O Devices</a></li>
+          <li><a href="#types" class="nav-link">Storage Types</a></li>
+          <li><a href="#primary-secondary" class="nav-link">RAM vs Storage</a></li>
+          <li><a href="#capacity" class="nav-link">Capacity</a></li>
+          <li><a href="#backup" class="nav-link">Backup & Care</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="index.html#projects" class="btn btn-secondary nav-cta">All Coursework</a>
+        <button type="button" id="menu-toggle" class="icon-btn mobile-only" aria-label="Open navigation menu">
+          <svg class="hamburger-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="mobile-drawer">
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="mobile-nav-link font-bold text-primary">← Return to Main Portfolio</a></li>
+        <li><a href="digital-citizenship.html" class="mobile-nav-link text-primary font-bold">🌐 Digital Citizenship Webpage</a></li>
+        <li><a href="internet.html" class="mobile-nav-link font-bold" style="color: #06b6d4;">⚡ The Internet &amp; Protocols</a></li>
+        <li><a href="software.html" class="mobile-nav-link">💻 Software Guide</a></li>
+        <li><a href="hardware.html" class="mobile-nav-link font-bold" style="color: #fb7185;">🔧 Computer Hardware</a></li>
+        <li><a href="storage.html" class="mobile-nav-link font-bold" style="color: #fbbf24;">💾 Storage Devices</a></li>
+        <li><a href="security.html" class="mobile-nav-link font-bold" style="color: #10b981;">🛡️ Security Guide</a></li>
+        <li><a href="io.html" class="mobile-nav-link">⌨️ Input &amp; Output Devices</a></li>
+        <li><a href="#types" class="mobile-nav-link">🗄️ Storage Types</a></li>
+        <li><a href="#primary-secondary" class="mobile-nav-link">⚖️ RAM vs Storage</a></li>
+        <li><a href="#how-storage-works" class="mobile-nav-link">🔄 How Saving Works</a></li>
+        <li><a href="#capacity" class="mobile-nav-link">📏 Capacity Units</a></li>
+        <li><a href="#comparison" class="mobile-nav-link">📋 Comparison Table</a></li>
+        <li><a href="#backup" class="mobile-nav-link">🛟 Backup &amp; Care</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="index.html#contact" class="btn btn-primary w-full">Connect with Mekhi</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="section hero-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Computer Hardware • Introduction to Technology</p>
+          <h1 class="section-title">Storage Devices</h1>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Storage is where a computer keeps your files, apps, and operating system, even when the power is off. From spinning hard drives to lightning-fast NVMe SSDs and the cloud, each type trades off speed, capacity, cost, and portability. This guide covers the main storage devices, how saving a file actually works, how capacity is measured, and how to keep your data safe.
+          </p>
+        </div>
+        <div class="hero-cta-group" style="justify-content: center;">
+          <a href="#types" class="btn btn-primary">Storage Types ↓</a>
+          <a href="#primary-secondary" class="btn btn-secondary">RAM vs Storage</a>
+          <a href="#capacity" class="btn btn-secondary">Capacity Units</a>
+          <a href="#backup" class="btn btn-secondary">Backup &amp; Care</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 1rem; padding-bottom: 2rem;">
+      <div class="container">
+        <div class="filter-bar" role="tablist" aria-label="Storage category filter">
+          <button type="button" class="filter-btn active" data-filter="all" role="tab" aria-selected="true"><span>✨</span> All 8 Types</button>
+          <button type="button" class="filter-btn" data-filter="internal" role="tab" aria-selected="false"><span>🖥️</span> Internal (3)</button>
+          <button type="button" class="filter-btn" data-filter="portable" role="tab" aria-selected="false"><span>🎒</span> Portable (4)</button>
+          <button type="button" class="filter-btn" data-filter="cloud" role="tab" aria-selected="false"><span>☁️</span> Cloud (1)</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="types" class="section" style="padding-top: 1rem;">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Where Your Data Lives</p>
+          <h2 class="section-title">Types of Storage</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            <strong>Storage</strong> (also called secondary storage) is <strong>non-volatile</strong>, which means it keeps data without power. Use the buttons above to filter by where the storage sits: inside the computer, carried around, or in the cloud. Speeds and sizes shown are typical ranges and change as technology improves.
+          </p>
+        </div>
+        <div class="device-grid">
+          <article class="device-card" data-category="internal">
+            <div class="device-media-wrap">
+              <span class="category-floating-badge badge-internal">Internal</span>
+              <div class="media-emoji" role="img" aria-label="Illustration of a hard disk drive">💽</div>
+            </div>
+            <div class="device-body">
+              <div class="device-header"><h3 class="device-title"><span class="device-icon-bubble">💽</span> Hard Disk Drive (HDD)</h3></div>
+              <p class="device-summary">An HDD stores data magnetically on fast-spinning platters. A tiny read/write head floats just above the surface to read and write bits. It is cheap for the amount of space, but it has moving parts, so it is slower and more sensitive to drops.</p>
+              <div class="device-specs-box"><div class="spec-item"><span class="spec-label">How it stores</span><span class="spec-value">Magnetized spots on spinning metal platters</span></div><div class="spec-item"><span class="spec-label">Typical capacity</span><span class="spec-value">500 GB to 20+ TB</span></div><div class="spec-item"><span class="spec-label">Typical speed</span><span class="spec-value">About 80–200 MB/s</span></div><div class="spec-item"><span class="spec-label">Best for</span><span class="spec-value">Cheap bulk storage and backups</span></div></div>
+            </div>
+          </article>
+
+          <article class="device-card" data-category="internal">
+            <div class="device-media-wrap">
+              <span class="category-floating-badge badge-internal">Internal</span>
+              <div class="media-emoji" role="img" aria-label="Illustration of a 2.5-inch SATA solid-state drive">🗄️</div>
+            </div>
+            <div class="device-body">
+              <div class="device-header"><h3 class="device-title"><span class="device-icon-bubble">🗄️</span> SATA Solid-State Drive (SSD)</h3></div>
+              <p class="device-summary">A SATA SSD has no moving parts. It keeps data in flash memory chips, so it starts fast, runs quietly, and survives bumps better than an HDD. It uses the same SATA connection older hard drives use, which limits its speed.</p>
+              <div class="device-specs-box"><div class="spec-item"><span class="spec-label">How it stores</span><span class="spec-value">Electrical charge trapped in flash memory cells</span></div><div class="spec-item"><span class="spec-label">Typical capacity</span><span class="spec-value">250 GB to 4 TB</span></div><div class="spec-item"><span class="spec-label">Typical speed</span><span class="spec-value">About 500–550 MB/s</span></div><div class="spec-item"><span class="spec-label">Best for</span><span class="spec-value">Speeding up an older laptop or desktop</span></div></div>
+            </div>
+          </article>
+
+          <article class="device-card" data-category="internal">
+            <div class="device-media-wrap">
+              <span class="category-floating-badge badge-internal">Internal</span>
+              <img src="images/storage.jpg" alt="Photograph of an M.2 NVMe solid-state drive (SSD) storage device" class="device-img" loading="lazy">
+            </div>
+            <div class="device-body">
+              <div class="device-header"><h3 class="device-title"><span class="device-icon-bubble">⚡</span> NVMe M.2 SSD</h3></div>
+              <p class="device-summary">An NVMe SSD is a small stick that plugs straight into the motherboard and talks to the system over PCIe lanes, which are much faster than SATA. Most new laptops and gaming PCs use one for the operating system and apps.</p>
+              <div class="device-specs-box"><div class="spec-item"><span class="spec-label">How it stores</span><span class="spec-value">Flash memory chips on a small M.2 stick</span></div><div class="spec-item"><span class="spec-label">Typical capacity</span><span class="spec-value">250 GB to 4+ TB</span></div><div class="spec-item"><span class="spec-label">Typical speed</span><span class="spec-value">Roughly 3,000–7,000+ MB/s</span></div><div class="spec-item"><span class="spec-label">Best for</span><span class="spec-value">Operating system, games, and video editing</span></div></div>
+            </div>
+          </article>
+
+          <article class="device-card" data-category="portable">
+            <div class="device-media-wrap">
+              <span class="category-floating-badge badge-portable">Portable</span>
+              <div class="media-emoji" role="img" aria-label="Illustration of a USB flash drive">🔌</div>
+            </div>
+            <div class="device-body">
+              <div class="device-header"><h3 class="device-title"><span class="device-icon-bubble">🔌</span> USB Flash Drive</h3></div>
+              <p class="device-summary">A flash drive is a thumb-sized stick of flash memory with a USB plug. It needs no battery or power supply and works on almost any computer, which makes it great for carrying school files.</p>
+              <div class="device-specs-box"><div class="spec-item"><span class="spec-label">How it stores</span><span class="spec-value">Flash memory chips inside a plastic or metal case</span></div><div class="spec-item"><span class="spec-label">Typical capacity</span><span class="spec-value">16 GB to 1 TB</span></div><div class="spec-item"><span class="spec-label">Typical speed</span><span class="spec-value">About 30 to 400+ MB/s, depending on USB version</span></div><div class="spec-item"><span class="spec-label">Best for</span><span class="spec-value">Moving files between computers</span></div></div>
+            </div>
+          </article>
+
+          <article class="device-card" data-category="portable">
+            <div class="device-media-wrap">
+              <span class="category-floating-badge badge-portable">Portable</span>
+              <div class="media-emoji" role="img" aria-label="Illustration of an SD memory card">📷</div>
+            </div>
+            <div class="device-body">
+              <div class="device-header"><h3 class="device-title"><span class="device-icon-bubble">📷</span> SD and microSD Cards</h3></div>
+              <p class="device-summary">SD cards use flash memory in a stamp-sized card. Cameras, drones, handheld game consoles and phones use them to add storage. Speed ratings printed on the card show how fast it can write video.</p>
+              <div class="device-specs-box"><div class="spec-item"><span class="spec-label">How it stores</span><span class="spec-value">Flash memory in a thin removable card</span></div><div class="spec-item"><span class="spec-label">Typical capacity</span><span class="spec-value">16 GB to about 1 TB</span></div><div class="spec-item"><span class="spec-label">Typical speed</span><span class="spec-value">About 10 to 300 MB/s, depending on class</span></div><div class="spec-item"><span class="spec-label">Best for</span><span class="spec-value">Cameras, phones, and game consoles</span></div></div>
+            </div>
+          </article>
+
+          <article class="device-card" data-category="portable">
+            <div class="device-media-wrap">
+              <span class="category-floating-badge badge-portable">Portable</span>
+              <div class="media-emoji" role="img" aria-label="Illustration of an external portable hard drive">🧳</div>
+            </div>
+            <div class="device-body">
+              <div class="device-header"><h3 class="device-title"><span class="device-icon-bubble">🧳</span> External Drive</h3></div>
+              <p class="device-summary">An external drive is an HDD or SSD in its own case that connects by USB. It gives you a big, portable place for backups and large files like photos and videos without opening the computer.</p>
+              <div class="device-specs-box"><div class="spec-item"><span class="spec-label">How it stores</span><span class="spec-value">An HDD or SSD inside a USB-connected case</span></div><div class="spec-item"><span class="spec-label">Typical capacity</span><span class="spec-value">500 GB to 20+ TB</span></div><div class="spec-item"><span class="spec-label">Typical speed</span><span class="spec-value">About 100 MB/s (HDD) to 1,000+ MB/s (SSD)</span></div><div class="spec-item"><span class="spec-label">Best for</span><span class="spec-value">Backups and large media libraries</span></div></div>
+            </div>
+          </article>
+
+          <article class="device-card" data-category="portable">
+            <div class="device-media-wrap">
+              <span class="category-floating-badge badge-portable">Portable</span>
+              <div class="media-emoji" role="img" aria-label="Illustration of an optical disc">📀</div>
+            </div>
+            <div class="device-body">
+              <div class="device-header"><h3 class="device-title"><span class="device-icon-bubble">📀</span> Optical Disc (CD / DVD / Blu-ray)</h3></div>
+              <p class="device-summary">Optical discs store data as tiny pits and flat areas on a shiny surface that a laser reads. They are cheap and last a long time if kept safe, but they hold little, work slowly, and many new computers no longer include a disc drive.</p>
+              <div class="device-specs-box"><div class="spec-item"><span class="spec-label">How it stores</span><span class="spec-value">Pits and lands read by a laser</span></div><div class="spec-item"><span class="spec-label">Typical capacity</span><span class="spec-value">CD about 700 MB, DVD 4.7 GB, Blu-ray 25 GB per layer</span></div><div class="spec-item"><span class="spec-label">Typical speed</span><span class="spec-value">Slow compared with drives</span></div><div class="spec-item"><span class="spec-label">Best for</span><span class="spec-value">Movies, music, and long-term archives</span></div></div>
+            </div>
+          </article>
+
+          <article class="device-card" data-category="cloud">
+            <div class="device-media-wrap">
+              <span class="category-floating-badge badge-cloud">Cloud</span>
+              <div class="media-emoji" role="img" aria-label="Illustration of cloud storage">☁️</div>
+            </div>
+            <div class="device-body">
+              <div class="device-header"><h3 class="device-title"><span class="device-icon-bubble">☁️</span> Cloud Storage</h3></div>
+              <p class="device-summary">Cloud storage keeps your files on a company’s servers and lets you reach them from any device with an internet connection. Services like Google Drive, OneDrive, iCloud and Dropbox also back up your files and make sharing easy.</p>
+              <div class="device-specs-box"><div class="spec-item"><span class="spec-label">How it stores</span><span class="spec-value">Data on remote servers in data centers</span></div><div class="spec-item"><span class="spec-label">Typical capacity</span><span class="spec-value">Free tiers of several GB; paid plans from about 100 GB to several TB</span></div><div class="spec-item"><span class="spec-label">Typical speed</span><span class="spec-value">Depends on your internet connection</span></div><div class="spec-item"><span class="spec-label">Best for</span><span class="spec-value">Access anywhere, sharing, and automatic backup</span></div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="primary-secondary" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Two Kinds of Computer Memory</p>
+          <h2 class="section-title">RAM vs Storage</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            People often mix up memory and storage. A good picture: <strong>RAM is your desk</strong> (the workspace for what you are using right now) and <strong>storage is your filing cabinet</strong> (where everything is kept for later).
+          </p>
+        </div>
+        <div class="two-col">
+          <div class="info-card">
+            <span class="info-tag tag-fast">Primary · Volatile</span>
+            <h3>RAM (Memory)</h3>
+            <ul>
+              <li>Very fast working space for open apps and files</li>
+              <li>Erased when the computer shuts off</li>
+              <li>Smaller: usually 8–32 GB on everyday computers</li>
+              <li>More RAM lets you run more things at once</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <span class="info-tag tag-keep">Secondary · Non-volatile</span>
+            <h3>Storage (Drives)</h3>
+            <ul>
+              <li>Keeps the operating system, apps, and files long-term</li>
+              <li>Data stays when the power is off</li>
+              <li>Larger: hundreds of GB to several TB</li>
+              <li>Slower than RAM, but much cheaper per gigabyte</li>
+            </ul>
+          </div>
+        </div>
+        <div class="section-header" style="margin-top: 3rem;">
+          <h3 class="section-title" style="font-size: 1.5rem;">The Memory Hierarchy</h3>
+          <p class="section-desc">Faster memory costs more and is smaller, so computers layer different kinds, from fastest to slowest.</p>
+        </div>
+        <div class="workflow-container">
+          <div class="workflow-step">
+            <div class="workflow-step-num">1</div>
+            <div class="workflow-icon">⚡</div>
+            <h3 class="workflow-title">CPU Cache</h3>
+            <p class="workflow-desc">Tiny and the fastest. Holds the data the CPU needs right now.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">2</div>
+            <div class="workflow-icon">🧠</div>
+            <h3 class="workflow-title">RAM</h3>
+            <p class="workflow-desc">Fast working memory. Holds open apps and files while you use them. Erased at shutdown.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">3</div>
+            <div class="workflow-icon">💽</div>
+            <h3 class="workflow-title">SSD / HDD</h3>
+            <p class="workflow-desc">Your main storage. Holds the OS, apps and files permanently.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">4</div>
+            <div class="workflow-icon">☁️</div>
+            <h3 class="workflow-title">Cloud / Archive</h3>
+            <p class="workflow-desc">Biggest and slowest. Holds backups and files you rarely open.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-storage-works" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Behind the Save Button</p>
+          <h2 class="section-title">How Saving a File Works</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Every time you save a document or photo, the same five steps happen in a split second.
+          </p>
+        </div>
+        <div class="workflow-container">
+          <div class="workflow-step">
+            <div class="workflow-step-num">1</div>
+            <div class="workflow-icon">🖱️</div>
+            <h3 class="workflow-title">You Click Save</h3>
+            <p class="workflow-desc">An app hands your file to the operating system and asks for it to be stored.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">2</div>
+            <div class="workflow-icon">📂</div>
+            <h3 class="workflow-title">File System Organizes</h3>
+            <p class="workflow-desc">The OS picks free space on the drive and records the file name and location in an index.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">3</div>
+            <div class="workflow-icon">🎛️</div>
+            <h3 class="workflow-title">Controller Writes</h3>
+            <p class="workflow-desc">The drive’s controller turns the data into magnetic patterns (HDD) or electrical charges in flash cells (SSD).</p>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">4</div>
+            <div class="workflow-icon">💾</div>
+            <h3 class="workflow-title">Data Stays Saved</h3>
+            <p class="workflow-desc">Because storage is non-volatile, the bits stay put even when the power is off.</p>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">5</div>
+            <div class="workflow-icon">📥</div>
+            <h3 class="workflow-title">Opened Later</h3>
+            <p class="workflow-desc">When you open the file, the drive copies it into RAM so the CPU can work on it quickly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="capacity" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Measuring Data</p>
+          <h2 class="section-title">Capacity Units</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Computers store everything as bits, which are 1s and 0s. Bigger units group bits together so large amounts of data are easier to talk about.
+          </p>
+        </div>
+        <div class="table-responsive">
+          <table class="io-table" aria-label="Data size units">
+            <thead><tr><th>Unit</th><th>Size</th><th>Everyday Example</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Bit</strong></td><td>One 0 or 1</td><td>The smallest piece of data</td></tr>
+              <tr><td><strong>Byte (B)</strong></td><td>8 bits</td><td>One text character, like the letter “A”</td></tr>
+              <tr><td><strong>Kilobyte (KB)</strong></td><td>1,000 bytes</td><td>A short text message or note</td></tr>
+              <tr><td><strong>Megabyte (MB)</strong></td><td>1,000 KB</td><td>A photo or a song is a few MB</td></tr>
+              <tr><td><strong>Gigabyte (GB)</strong></td><td>1,000 MB</td><td>An HD movie is roughly 1–5 GB</td></tr>
+              <tr><td><strong>Terabyte (TB)</strong></td><td>1,000 GB</td><td>Hundreds of movies or tens of thousands of photos</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note-box">
+          <strong>Why does my 500 GB drive show less space?</strong> Drive makers count 1 GB as 1,000,000,000 bytes, but many operating systems count in 1,024-based units. A drive sold as 500 GB shows up as about 465 GB, and some space is also used by the file system and system files.
+        </div>
+      </div>
+    </section>
+
+    <section id="comparison" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Quick Reference</p>
+          <h2 class="section-title">Side-by-Side Comparison</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            A summary of the eight storage types covered above. Numbers are typical ranges, not guarantees.
+          </p>
+        </div>
+        <div class="table-responsive">
+          <table class="io-table" aria-label="Storage devices comparison table">
+            <thead>
+              <tr><th>Storage Type</th><th>Category</th><th>How It Stores Data</th><th>Typical Capacity</th><th>Typical Speed</th><th>Durability</th><th>Best Use</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="device-table-name">💽 HDD</span></td>
+                <td><span class="table-pill pill-internal">Internal</span></td>
+                <td>Magnetic platters</td><td>500 GB–20+ TB</td><td>~80–200 MB/s</td><td>Moderate (moving parts)</td><td>Bulk storage, backups</td>
+              </tr>
+              <tr>
+                <td><span class="device-table-name">🗄️ SATA SSD</span></td>
+                <td><span class="table-pill pill-internal">Internal</span></td>
+                <td>Flash memory</td><td>250 GB–4 TB</td><td>~500–550 MB/s</td><td>High</td><td>Upgrading older computers</td>
+              </tr>
+              <tr>
+                <td><span class="device-table-name">⚡ NVMe SSD</span></td>
+                <td><span class="table-pill pill-internal">Internal</span></td>
+                <td>Flash memory (PCIe)</td><td>250 GB–4+ TB</td><td>~3,000–7,000+ MB/s</td><td>High</td><td>OS, games, editing</td>
+              </tr>
+              <tr>
+                <td><span class="device-table-name">🔌 USB Flash Drive</span></td>
+                <td><span class="table-pill pill-portable">Portable</span></td>
+                <td>Flash memory</td><td>16 GB–1 TB</td><td>~30–400+ MB/s</td><td>Moderate</td><td>Carrying files</td>
+              </tr>
+              <tr>
+                <td><span class="device-table-name">📷 SD / microSD</span></td>
+                <td><span class="table-pill pill-portable">Portable</span></td>
+                <td>Flash memory</td><td>16 GB–~1 TB</td><td>~10–300 MB/s</td><td>Moderate</td><td>Cameras, phones, consoles</td>
+              </tr>
+              <tr>
+                <td><span class="device-table-name">🧳 External Drive</span></td>
+                <td><span class="table-pill pill-portable">Portable</span></td>
+                <td>HDD or SSD in a case</td><td>500 GB–20+ TB</td><td>~100–1,000+ MB/s</td><td>Varies</td><td>Backups, media</td>
+              </tr>
+              <tr>
+                <td><span class="device-table-name">📀 Optical Disc</span></td>
+                <td><span class="table-pill pill-portable">Portable</span></td>
+                <td>Laser-read pits</td><td>0.7–25 GB per disc</td><td>Slow</td><td>Good if kept clean</td><td>Archives, movies</td>
+              </tr>
+              <tr>
+                <td><span class="device-table-name">☁️ Cloud Storage</span></td>
+                <td><span class="table-pill pill-cloud">Cloud</span></td>
+                <td>Remote servers</td><td>Free tier up to multiple TB</td><td>Depends on internet</td><td>Very high (replicated)</td><td>Access anywhere, sharing</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="backup" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Protect Your Work</p>
+          <h2 class="section-title">Backup &amp; Care</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Every storage device can fail, get lost, or get stolen. A backup is a second copy of your files, and it is the best protection against losing a school project.
+          </p>
+        </div>
+        <div class="two-col">
+          <div class="info-card">
+            <span class="info-tag tag-keep">The 3-2-1 Rule</span>
+            <h3>Keep Three Copies</h3>
+            <ul>
+              <li><strong>3</strong> total copies of important files</li>
+              <li><strong>2</strong> different types of storage (for example, your laptop and an external drive)</li>
+              <li><strong>1</strong> copy somewhere else, such as cloud storage</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <span class="info-tag tag-fast">Good Habits</span>
+            <h3>Take Care of Your Drives</h3>
+            <ul>
+              <li>Use <strong>Eject</strong> before unplugging a flash or external drive</li>
+              <li>Keep drives away from water, heat, and strong drops</li>
+              <li>Use a strong password and turn on device encryption</li>
+              <li>Replace old drives before they fail</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <span class="info-tag tag-keep">Warning Signs</span>
+            <h3>A Drive May Be Failing If…</h3>
+            <ul>
+              <li>It makes clicking or grinding sounds</li>
+              <li>Files go missing or won’t open</li>
+              <li>The computer freezes when saving or opening files</li>
+              <li>Copying files becomes very slow</li>
+            </ul>
+            <p style="margin-top:.75rem;color:var(--text-secondary)">If you see these signs, copy your files off the drive right away.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <span class="logo-symbol">&lt;/&gt;</span>
+        <span class="logo-text">Mekhi Digital Portfolio<span class="accent-dot">.</span></span>
+      </div>
+      <div class="footer-sitemap-links">
+        <a href="index.html">Portfolio Home</a> •
+        <a href="digital-citizenship.html">Digital Citizenship</a> •
+        <a href="internet.html">The Internet</a> •
+        <a href="software.html">Software Guide</a> •
+        <a href="hardware.html">Computer Hardware</a> •
+        <a href="storage.html">Storage Devices</a> •
+        <a href="security.html">Security Guide</a> •
+        <a href="io.html">Input &amp; Output Devices</a>
+      </div>
+      <p class="copyright">© 2026 Mekhi Childs. Introduction to Technology, Caldwell University.</p>
+      <div class="footer-actions"><a href="#hero" class="back-to-top" title="Back to top">Back to top ↑</a></div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const deviceCards = document.querySelectorAll('.device-card');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          const f = btn.getAttribute('data-filter');
+          deviceCards.forEach(card => {
+            card.style.display = (f === 'all' || card.getAttribute('data-category') === f) ? 'flex' : 'none';
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

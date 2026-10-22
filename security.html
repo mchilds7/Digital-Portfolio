@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A comprehensive student guide to Strong Passwords, Phishing Attacks, Malware Defense, Online Privacy, and AI Ethics, featuring interactive security labs and checklists.">
+  <title>Cybersecurity, Online Privacy &amp; AI Ethics | Mekhi Childs</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🎓%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0b0e14">
+<style id="site-polish">
+/* Site polish: smoother, more accessible, tidier */
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-wrap:break-word}
+img,svg,video,iframe{max-width:100%;height:auto}
+pre,code{white-space:pre-wrap;word-break:break-word}
+table{max-width:100%}
+::selection{background:rgba(168,85,247,.45);color:#fff}
+:focus-visible{outline:2px solid #a78bfa;outline-offset:3px;border-radius:4px}
+a,button{-webkit-tap-highlight-color:transparent}
+button:not(:disabled),[role="button"]{cursor:pointer}
+.skip-link{position:absolute;left:-9999px;top:8px;z-index:100001;padding:10px 16px;background:#a855f7;color:#fff;border-radius:8px;font-weight:700;text-decoration:none}
+.skip-link:focus{left:8px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media print{.skip-link{display:none}}
+</style>
+<link rel="stylesheet" href="site-enhance.css">
+<script src="site-enhance.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#hero">Skip to main content</a>
+  <!-- Site Header & Navigation -->
+  <header class="site-header" id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" title="Return to Main Portfolio">
+        <span class="logo-symbol">&lt;/&gt;</span>
+        <span class="logo-text">Mekhi Digital Portfolio<span class="accent-dot">.</span></span>
+      </a>
+
+      <!-- Desktop Tab Bar Navigation -->
+      <nav class="desktop-nav" aria-label="Cybersecurity guide navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="back-nav-link">← Portfolio Home</a></li>
+          <li><a href="hardware.html" class="nav-link tab-highlight-hardware">🔧 Hardware</a></li>
+          <li><a href="storage.html" class="nav-link">💾 Storage</a></li>
+          <li><a href="io.html" class="nav-link tab-highlight-io">⌨️ I/O Devices</a></li>
+          <li><a href="#passwords" class="nav-link">Strong Passwords</a></li>
+          <li><a href="#phishing" class="nav-link">Phishing Attacks</a></li>
+          <li><a href="#malware" class="nav-link">Malware</a></li>
+          <li><a href="#privacy" class="nav-link">Online Privacy</a></li>
+          <li><a href="#ai-ethics" class="nav-link">AI Ethics</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="index.html#projects" class="btn btn-secondary nav-cta">All Coursework</a>
+        <button type="button" id="menu-toggle" class="icon-btn mobile-only" aria-label="Open navigation menu">
+          <svg class="hamburger-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-menu" class="mobile-drawer">
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="mobile-nav-link font-bold text-primary">← Return to Main Portfolio</a></li>
+        <li><a href="hardware.html" class="mobile-nav-link font-bold" style="color: #fb7185;">🔧 Computer Hardware</a></li>
+        <li><a href="storage.html" class="mobile-nav-link font-bold" style="color: #fbbf24;">💾 Storage Devices</a></li>
+        <li><a href="io.html" class="mobile-nav-link font-bold" style="color: #f59e0b;">⌨️ Input &amp; Output Devices</a></li>
+        <li><a href="#passwords" class="mobile-nav-link font-bold" style="color: #10b981;">🔑 Strong Passwords &amp; MFA</a></li>
+        <li><a href="#phishing" class="mobile-nav-link font-bold" style="color: #ef4444;">🎣 Phishing Attacks &amp; Defense</a></li>
+        <li><a href="#malware" class="mobile-nav-link font-bold" style="color: #3b82f6;">🦠 Malware Types &amp; Prevention</a></li>
+        <li><a href="#privacy" class="mobile-nav-link font-bold" style="color: #a855f7;">🛡️ Online Privacy &amp; Safe Browsing</a></li>
+        <li><a href="#ai-ethics" class="mobile-nav-link font-bold" style="color: #f59e0b;">🤖 AI Ethics &amp; Verification</a></li>
+        <li><a href="digital-citizenship.html" class="mobile-nav-link">🌐 Digital Citizenship Guide</a></li>
+        <li><a href="internet.html" class="mobile-nav-link">⚡ The Internet &amp; Protocols</a></li>
+        <li><a href="software.html" class="mobile-nav-link">💻 Software Applications</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="index.html#contact" class="btn btn-primary w-full">Connect with Mekhi</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="section hero-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Introduction to Technology • Coursework &amp; Cybersecurity Guide</p>
+          <h1 class="section-title">Cybersecurity, Online Privacy &amp; <span class="sec-gradient-text">AI Ethics</span></h1>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Technical literacy requires vigilance in safeguarding digital identities. Explore five core pillars of modern technology safety: crafting strong passwords, recognizing phishing schemes, defending against malware, protecting online privacy, and upholding ethical standards when interacting with artificial intelligence.
+          </p>
+        </div>
+
+        <!-- Hero Stats Cards -->
+        <div class="dc-hero-stats">
+          <div class="dc-stat-card">
+            <span class="dc-stat-icon">🔑</span>
+            <div>
+              <div class="dc-stat-number" style="color: #34d399;">16+ Chars</div>
+              <div class="dc-stat-label">Optimal Length for Passphrase Entropy</div>
+            </div>
+          </div>
+          <div class="dc-stat-card">
+            <span class="dc-stat-icon">🎣</span>
+            <div>
+              <div class="dc-stat-number" style="color: #ef4444;">3.4B+</div>
+              <div class="dc-stat-label">Daily Phishing Emails Blocked Globally</div>
+            </div>
+          </div>
+          <div class="dc-stat-card">
+            <span class="dc-stat-icon">🦠</span>
+            <div>
+              <div class="dc-stat-number" style="color: #60a5fa;">560K+</div>
+              <div class="dc-stat-label">New Malware Variants Detected Every Day</div>
+            </div>
+          </div>
+          <div class="dc-stat-card">
+            <span class="dc-stat-icon">🛡️</span>
+            <div>
+              <div class="dc-stat-number" style="color: #c084fc;">99.9%</div>
+              <div class="dc-stat-label">Breach Reduction via MFA &amp; Unique Passwords</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-cta-group" style="justify-content: center; margin-top: 2.5rem;">
+          <a href="#passwords" class="btn btn-primary" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-color: #10b981;">1. Strong Passwords ↓</a>
+          <a href="#phishing" class="btn btn-secondary">2. Phishing Attacks</a>
+          <a href="#malware" class="btn btn-secondary">3. Malware</a>
+          <a href="#privacy" class="btn btn-secondary">4. Online Privacy</a>
+          <a href="#ai-ethics" class="btn btn-secondary">5. AI Ethics</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TOPIC 1: STRONG PASSWORDS
+         ========================================================================= -->
+    <section id="passwords" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Topic 1 • Credential Protection</p>
+          <h2 class="section-title">Strong Passwords &amp; Authentication Security</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Passwords remain the primary perimeter shielding personal, academic, and financial records. Understanding password strength, avoiding credential reuse, and leveraging password managers and multi-factor authentication (MFA) are essential to prevent unauthorized access.
+          </p>
+        </div>
+
+        <!-- Topic Cards Grid -->
+        <div class="core-questions-grid">
+          <!-- Subtopic 1: Characteristics of a Strong Password -->
+          <article class="qa-card qa-theme-emerald">
+            <div class="qa-header">
+              <span class="qa-badge">Password Construction</span>
+              <span class="qa-icon">📏</span>
+            </div>
+            <h3 class="qa-question">Characteristics of a Strong Password</h3>
+            <div class="qa-takeaway">
+              A strong password possesses high information entropy, meaning it is mathematically unpredictable and computationally infeasible for automated tools to crack.
+            </div>
+            <div class="qa-answer-text">
+              <p>Key characteristics defining strong passwords include:</p>
+              <ul style="list-style: disc; margin-left: 1.25rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <li><strong>Sufficient Length (14–16+ Characters):</strong> Length is the single most influential factor in password strength. Each additional character exponentially increases the computational combinations required for brute-force cracking.</li>
+                <li><strong>Character Set Diversity:</strong> Combining uppercase letters (<code>A-Z</code>), lowercase letters (<code>a-z</code>), numbers (<code>0-9</code>), and special punctuation symbols (<code>!@#$%^&amp;*</code>) expands the pool of possible characters.</li>
+                <li><strong>Unpredictability &amp; No Personal Data:</strong> Strong credentials never include dictionary words, names of family members or pets, birthdates, student ID numbers, graduation years, or predictable keyboard patterns (like <code>qwerty</code> or <code>123456</code>).</li>
+                <li><strong>The Multi-Word Passphrase Strategy:</strong> Rather than short, hard-to-remember strings with simple substitutions (e.g. <code>P@ssw0rd1!</code>), security experts recommend passphrases consisting of four or more randomly chosen words separated by hyphens (e.g. <code>falcon-orbit-beacon-glacier</code>). This provides superior entropy while remaining easy for humans to remember.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Subtopic 2: Importance of Unique Passwords -->
+          <article class="qa-card qa-theme-blue">
+            <div class="qa-header">
+              <span class="qa-badge">Credential Compartmentalization</span>
+              <span class="qa-icon">🔄</span>
+            </div>
+            <h3 class="qa-question">The Importance of Using Unique Passwords</h3>
+            <div class="qa-takeaway">
+              Reusing the same password across multiple websites creates a single point of failure that enables devastating credential stuffing attacks.
+            </div>
+            <div class="qa-answer-text">
+              <p>Why unique credentials are vital across every account:</p>
+              <ul style="list-style: disc; margin-left: 1.25rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <li><strong>Credential Stuffing Mechanics:</strong> When a low-security website (like an old discussion forum or gaming site) is breached, hackers dump millions of username and password pairs onto the dark web. Automated botnets instantly "stuff" these leaked credentials into high-value targets like university portals, banking apps, and email providers.</li>
+                <li><strong>The Domino Effect:</strong> If you use the same password for campus email and an e-commerce shop, an intrusion at the shop exposes your university records, student financial aid, and personal correspondence.</li>
+                <li><strong>Blast Radius Containment:</strong> Assigning a unique password to every service isolates potential damage. If one service is compromised, all your other accounts remain completely untouched and secure.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Subtopic 3: Password Managers & MFA -->
+          <article class="qa-card qa-theme-purple" style="grid-column: 1 / -1;">
+            <div class="qa-header">
+              <span class="qa-badge">Defensive Technologies</span>
+              <span class="qa-icon">🔐</span>
+            </div>
+            <h3 class="qa-question">How Password Managers &amp; Multi-Factor Authentication (MFA) Improve Security</h3>
+            <div class="qa-takeaway">
+              Humans cannot memorize dozens of 16-character random passwords, and single passwords can be stolen. Password managers and multi-factor authentication solve both problems through technological automation and defense-in-depth.
+            </div>
+            <div class="qa-answer-text" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: #c084fc; font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span>🗄️</span> Password Managers
+                </h4>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary);">
+                  Password managers (such as Bitwarden, 1Password, or built-in browser vaults) store all your credentials inside an encrypted digital vault protected by zero-knowledge encryption.
+                </p>
+                <ul style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.35rem;">
+                  <li>Generates cryptographically random 20+ character passwords for every account.</li>
+                  <li>You only have to memorize one single strong master passphrase.</li>
+                  <li><strong>Anti-Phishing Shield:</strong> Automatically matches website domain URLs before autofilling. If you land on a fake lookalike website, the manager will not autofill your credentials.</li>
+                </ul>
+              </div>
+
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: #34d399; font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span>🛡️</span> Multi-Factor Authentication (MFA)
+                </h4>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary);">
+                  MFA requires two or more distinct types of evidence before granting access, neutralizing up to 99.9% of automated credential theft attempts.
+                </p>
+                <ul style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.35rem;">
+                  <li><strong>Something You Know:</strong> Your password or master passphrase.</li>
+                  <li><strong>Something You Have:</strong> A local authenticator app generating time-based one-time codes (TOTP) or a physical hardware security key (FIDO2 / YubiKey).</li>
+                  <li><strong>Something You Are:</strong> Biometrics such as fingerprint Touch ID or facial recognition Face ID.</li>
+                  <li>Even if an attacker steals your password, they cannot breach your account without physical access to your second authentication factor.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- Subtopic 4: Why Users Should NEVER Share Passwords or Reuse Weak Passwords -->
+          <article class="qa-card qa-theme-amber" style="grid-column: 1 / -1;">
+            <div class="qa-header">
+              <span class="qa-badge" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3);">Essential Security Rule</span>
+              <span class="qa-icon">🚫</span>
+            </div>
+            <h3 class="qa-question">Why Users Should NEVER Share Passwords or Reuse Weak Passwords</h3>
+            <div class="qa-takeaway" style="border-left: 3px solid #ef4444; background: rgba(239, 68, 68, 0.08);">
+              Credentials establish legal identity, accountability, and system boundaries. Sharing passwords destroys personal accountability, while reusing weak passwords creates systemic vulnerabilities that automated dark-web bots exploit in seconds.
+            </div>
+            <div class="qa-answer-text" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: #f87171; font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span>👥</span> The Dangers of Sharing Passwords
+                </h4>
+                <ul style="font-size: 0.88rem; color: var(--text-secondary); padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                  <li><strong>Destruction of Non-Repudiation &amp; Legal Accountability:</strong> Every action taken under your account (submitting assignments, dropping courses, altering direct deposit routing, or sending emails) is legally attributed to <em>your</em> identity. You cannot prove a classmate or roommate performed an unauthorized action if your password was used.</li>
+                  <li><strong>Accidental &amp; Secondary Exposure:</strong> Even trustworthy recipients may store your password in unencrypted notes, write it down, use it on malware-infected personal computers, or accidentally reveal it in casual conversation.</li>
+                  <li><strong>Social Engineering Exploitation:</strong> Cybercriminals target associates, classmates, and roommates through pretexting phone calls or chat lures, knowing that shared passwords can be extracted without your direct knowledge.</li>
+                  <li><strong>Institutional Policy Violations:</strong> Sharing campus credentials directly violates university Acceptable Use Policies (AUP) and can lead to immediate account suspension, academic integrity hearings, and disciplinary penalties.</li>
+                </ul>
+              </div>
+
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: #fbbf24; font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span>🔁</span> The Dangers of Reusing Weak Passwords
+                </h4>
+                <ul style="font-size: 0.88rem; color: var(--text-secondary); padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                  <li><strong>The Credential Stuffing Pipeline:</strong> Hundreds of data breaches occur annually, releasing billions of stolen username and password pairs onto dark-web marketplaces. Automated attack scripts test these leaked passwords across thousands of major portals—including student accounts and banking apps—within minutes.</li>
+                  <li><strong>Single Point of Complete Failure:</strong> Reusing a password tethers your entire digital existence to the security posture of the weakest, least-protected service you have ever registered for (such as an obscure forum or gaming site). One breach opens all your digital doors.</li>
+                  <li><strong>Sub-Second Cracking Times:</strong> Weak passwords (under 12 characters, dictionary words, predictable numbers like <code>123456</code>, or simple substitutions like <code>P@ssword</code>) are cracked by modern GPU rigs using rainbow tables in less than one second.</li>
+                  <li><strong>Loss of Digital Autonomy:</strong> Once a compromised password grants attackers access to your primary email account, they can trigger "Forgot Password" resets across every other account you own, completely locking you out of your digital life.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Interactive Password Entropy & Brute-Force Lab -->
+        <div id="password-lab" style="margin-top: 3.5rem;">
+          <div class="section-header" style="margin-bottom: 1.75rem;">
+            <p class="section-eyebrow">Interactive Security Demonstration</p>
+            <h3 class="section-title" style="font-size: 1.6rem;">Live Password Strength &amp; Entropy Checker</h3>
+            <p class="section-desc">Test passwords locally in your browser to evaluate length, complexity, and information entropy (<span style="font-family: monospace;">E = L × log₂R</span>), estimate brute-force cracking resistance against GPU clusters, and receive real-time suggestions for improvement.</p>
+          </div>
+
+          <div class="password-lab-container">
+            <div class="password-input-group">
+              <input type="password" id="sec-password-input" class="password-input-box" placeholder="Type or generate a password to test..." autocomplete="off">
+              <button type="button" id="sec-pwd-toggle" class="password-toggle-btn" title="Show password">👁️</button>
+            </div>
+
+            <div class="meter-wrapper">
+              <div class="meter-header">
+                <span>Entropy Strength Score</span>
+                <span id="sec-meter-label" style="color: var(--text-muted);">Awaiting Input</span>
+              </div>
+              <div class="meter-track">
+                <div id="sec-meter-fill" class="meter-fill"></div>
+              </div>
+            </div>
+
+            <div class="entropy-metrics-grid">
+              <div class="metric-box">
+                <div id="sec-entropy-bits" class="metric-val">0 bits</div>
+                <div class="metric-lbl">Information Entropy</div>
+              </div>
+              <div class="metric-box">
+                <div id="sec-crack-time" class="metric-val">0 seconds</div>
+                <div class="metric-lbl">Est. GPU Crack Time</div>
+              </div>
+              <div class="metric-box">
+                <div id="sec-pool-size" class="metric-val">0 symbols</div>
+                <div class="metric-lbl">Character Pool (R)</div>
+              </div>
+            </div>
+
+            <div class="criteria-list">
+              <div id="crit-len" class="crit-item"><span>📏</span><span>12+ Characters in Length</span></div>
+              <div id="crit-upper" class="crit-item"><span>🔠</span><span>Uppercase Letters (A-Z)</span></div>
+              <div id="crit-lower" class="crit-item"><span>🔡</span><span>Lowercase Letters (a-z)</span></div>
+              <div id="crit-num" class="crit-item"><span>🔢</span><span>Numerical Digits (0-9)</span></div>
+              <div id="crit-sym" class="crit-item" style="grid-column: span 2;"><span>🔣</span><span>Special Symbols &amp; Punctuation (!@#$%^&amp;*)</span></div>
+            </div>
+
+            <!-- Dynamic Suggestions for Improvement Box -->
+            <div id="sec-suggestions-card" class="password-suggestions-card">
+              <div class="password-suggestions-header">
+                <span>💡</span>
+                <span>Real-Time Suggestions for Improvement:</span>
+              </div>
+              <ul id="sec-suggestions-list" class="password-suggestions-list">
+                <li class="suggestion-item warning">
+                  <span>💡</span>
+                  <span>Type a password above to evaluate length and complexity, or click 'Generate Strong Passphrase' for an instant recommendation.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Passphrase Generator Strip -->
+            <div class="passphrase-generator-strip">
+              <div class="passphrase-info">
+                <strong>💡 Recommendation: The Passphrase Method</strong>
+                <p>Four random dictionary words combined with hyphens generate over 75 bits of entropy, resisting dictionary and GPU attacks while remaining easy for humans to remember.</p>
+              </div>
+              <button type="button" id="generate-passphrase-btn" class="btn btn-primary" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-color: #10b981;">
+                🎲 Generate Strong Passphrase
+              </button>
+            </div>
+
+            <!-- Important Privacy Notice: Zero Server Transmission -->
+            <div class="privacy-guarantee-strip">
+              <span class="privacy-guarantee-icon">🔒</span>
+              <div>
+                <strong style="color: #34d399;">100% Client-Side Privacy Guarantee:</strong>
+                <p style="margin: 0.2rem 0 0 0; font-size: 0.825rem; color: var(--text-secondary);">
+                  This interactive password checker evaluates length and complexity entirely within your local browser using client-side JavaScript. <em>Your test inputs are never collected, logged, displayed, or transmitted to any server.</em>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TOPIC 2: PHISHING ATTACKS
+         ========================================================================= -->
+    <section id="phishing" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Topic 2 • Social Engineering Defense</p>
+          <h2 class="section-title">Phishing Attacks &amp; Deception Spotting</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Phishing is the most widespread cyber attack technique worldwide. Rather than hacking hardware or encryption, cybercriminals exploit human psychology, trust, and urgency to trick users into surrendering credentials, confidential documents, and financial assets.
+          </p>
+        </div>
+
+        <!-- Topic Cards Grid -->
+        <div class="core-questions-grid">
+          <!-- Subtopic 1: What Phishing Is & Manipulation Tactics -->
+          <article class="qa-card qa-theme-emerald">
+            <div class="qa-header">
+              <span class="qa-badge">Deception Mechanics</span>
+              <span class="qa-icon">🎣</span>
+            </div>
+            <h3 class="qa-question">What Phishing Is &amp; How Attackers Trick Users</h3>
+            <div class="qa-takeaway">
+              Phishing is a form of social engineering where attackers impersonate reputable individuals or organizations to manipulate victims into taking harmful actions.
+            </div>
+            <div class="qa-answer-text">
+              <p>Attackers weaponize predictable psychological triggers:</p>
+              <ul style="list-style: disc; margin-left: 1.25rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <li><strong>Impersonation of Authority:</strong> Attackers forge messages pretending to come from university administration, IT helpdesks, college professors, banks, or the IRS, banking on institutional respect and compliance.</li>
+                <li><strong>Manufactured Urgency &amp; Fear:</strong> Phishing lures create false deadlines (e.g., <em>"Account deactivation within 12 hours!"</em> or <em>"Final grade submission canceled!"</em>). Anxiety impairs critical reasoning, prodding victims to act impulsively before analyzing the message.</li>
+                <li><strong>Baiting Financial Desires:</strong> Messages promising financial aid disbursements, tax refunds, unexpected scholarships, or gift cards tempt users into inputting banking and personal identity data.</li>
+                <li><strong>Multiple Delivery Channels:</strong> Phishing extends beyond standard email:
+                  <ul style="margin-left: 1rem; margin-top: 0.25rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                    <li><strong>Spear Phishing:</strong> Tailored attacks targeting specific students or staff using publicly scraped directory data.</li>
+                    <li><strong>Smishing:</strong> Fraudulent SMS text messages claiming delivery failures or account locks.</li>
+                    <li><strong>Vishing:</strong> Voice phone calls using caller ID spoofing to impersonate campus security or law enforcement.</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Subtopic 2: Examples of Suspicious Messages & Links -->
+          <article class="qa-card qa-theme-amber">
+            <div class="qa-header">
+              <span class="qa-badge">Real-World Samples</span>
+              <span class="qa-icon">⚠️</span>
+            </div>
+            <h3 class="qa-question">Examples of Suspicious Emails, Messages &amp; Links</h3>
+            <div class="qa-takeaway">
+              Phishing attempts often leave telltale technical fingerprints in sender domains, URL structures, and uncharacteristic demands for private information.
+            </div>
+            <div class="qa-answer-text">
+              <p>Common real-world examples encountered by students:</p>
+              <ul style="list-style: disc; margin-left: 1.25rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <li><strong>The IT Password Expiry Lure:</strong> <em>"URGENT: Your university Microsoft 365 / Moodle portal session has expired. Click here immediately to retain coursework access."</em> (Links to <code>http://caldwell-portal-auth.net</code> instead of <code>caldwell.edu</code>).</li>
+                <li><strong>The Bursar / Financial Aid Refund:</strong> <em>"Tuition overpayment refund of $1,480.00 ready for deposit. Open the attached form to input your bank routing and SSN."</em> (Attachment named <code>Refund_Form.pdf.exe</code>).</li>
+                <li><strong>The Fake Document Sharing Request:</strong> <em>"Professor Smith has shared 'Exam_Study_Guide.docx' via cloud drive. Re-enter your campus password to view."</em> (Directs to a clone login page harvesting credentials).</li>
+                <li><strong>Deceptive URL Tactics:</strong> Attackers use lookalike typosquatting domains (e.g. <code>cldwell.edu</code> instead of <code>caldwell.edu</code>), misleading subdomains (e.g. <code>caldwell.edu.login-portal.cc</code>), or URL shorteners to mask the malicious landing page.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Subtopic 3: How to Recognize and Avoid Phishing -->
+          <article class="qa-card qa-theme-blue" style="grid-column: 1 / -1;">
+            <div class="qa-header">
+              <span class="qa-badge">Actionable Defense</span>
+              <span class="qa-icon">🛡️</span>
+            </div>
+            <h3 class="qa-question">How to Recognize &amp; Avoid Phishing Attacks</h3>
+            <div class="qa-takeaway">
+              Adopting a zero-trust mindset and following a structured verification protocol eliminates virtually all social engineering risks.
+            </div>
+            <div class="qa-answer-text" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 1rem;">
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: #60a5fa; font-size: 1rem; margin-bottom: 0.5rem;">🔍 1. Inspect Header Domains</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Never rely on the sender's display name. Look at the exact email address after the <code>@</code> symbol. Legitimate Caldwell communications only come from <code>@caldwell.edu</code>, never <code>@caldwell-support.org</code> or <code>@gmail.com</code>.</p>
+              </div>
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: #34d399; font-size: 1rem; margin-bottom: 0.5rem;">🖱️ 2. Hover Before Clicking</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Hover your cursor over buttons and links (or long-press on mobile) to view the actual URL preview at the bottom of the screen. If the text says "Caldwell Portal" but points to an unknown external server, do not click.</p>
+              </div>
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: #fbbf24; font-size: 1rem; margin-bottom: 0.5rem;">📞 3. Out-of-Band Verification</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">When in doubt, bypass the email entirely. Open a new browser window and type in the official campus website URL directly, or call the IT helpdesk or professor using a verified phone number from the campus directory.</p>
+              </div>
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: #f87171; font-size: 1rem; margin-bottom: 0.5rem;">🚩 4. Never Send Sensitive Data</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Official organizations will never ask you to send passwords, full Social Security numbers, banking PINs, or 2FA verification codes via email, text message, or unencrypted web forms.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Visual Examples of Suspicious Emails, Messages & Links -->
+        <div style="margin-top: 3rem;">
+          <div class="section-header" style="margin-bottom: 1.75rem;">
+            <p class="section-eyebrow">Visual Analysis</p>
+            <h3 class="section-title" style="font-size: 1.6rem;">Real-World Examples of Suspicious Emails, Messages &amp; Links</h3>
+            <p class="section-desc">Examine three common phishing lures below to see how cybercriminals structure deceptive communications, and identify the red flags that expose them.</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+            <!-- Example 1: Suspicious IT Account Expiration Email -->
+            <div class="card" style="padding: 1.5rem; border-color: rgba(239, 68, 68, 0.35); background: #0c1322;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                <span class="badge" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); font-weight: 700; font-size: 0.75rem;">
+                  Example 1: Deceptive Email
+                </span>
+                <span style="font-size: 1.25rem;">🚨</span>
+              </div>
+              <h4 style="color: #f8fafc; font-size: 1.1rem; margin-bottom: 0.75rem;">Campus IT Urgent Account Deactivation</h4>
+              <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 6px; padding: 0.85rem; font-size: 0.825rem; font-family: monospace; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5;">
+                <div><strong style="color: #f8fafc;">From:</strong> IT-Helpdesk &lt;<span style="color: #f87171; text-decoration: underline;">helpdesk@caldwell-portal-verify.com</span>&gt;</div>
+                <div><strong style="color: #f8fafc;">Subject:</strong> [ACTION REQUIRED] Account Deactivated in 12 Hours!</div>
+                <div style="margin-top: 0.5rem; color: var(--text-muted); font-family: inherit;">
+                  "Your campus student portal access is expiring. Click below to verify credentials: <span style="color: #60a5fa; text-decoration: underline;">http://login.caldwell-support-auth.com/verify</span>"
+                </div>
+              </div>
+              <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                <strong style="color: #f87171; display: block; margin-bottom: 0.35rem;">🚩 Critical Red Flags:</strong>
+                <ul style="padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.35rem; margin: 0; font-size: 0.825rem;">
+                  <li><strong>Spoofed Domain:</strong> Sent from <code>@caldwell-portal-verify.com</code> instead of official <code>@caldwell.edu</code>.</li>
+                  <li><strong>Artificial Urgency:</strong> Demands action in "12 Hours" to panic the student into bypassing critical checks.</li>
+                  <li><strong>Insecure Target Link:</strong> Points to an unencrypted external HTTP phishing site.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Example 2: Suspicious Bursar Refund with Malicious Attachment -->
+            <div class="card" style="padding: 1.5rem; border-color: rgba(245, 158, 11, 0.35); background: #0c1322;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); font-weight: 700; font-size: 0.75rem;">
+                  Example 2: Malicious Attachment
+                </span>
+                <span style="font-size: 1.25rem;">📎</span>
+              </div>
+              <h4 style="color: #f8fafc; font-size: 1.1rem; margin-bottom: 0.75rem;">Bursar Tuition Refund Notification</h4>
+              <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 6px; padding: 0.85rem; font-size: 0.825rem; font-family: monospace; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5;">
+                <div><strong style="color: #f8fafc;">From:</strong> Student Accounts &lt;<span style="color: #fbbf24; text-decoration: underline;">refunds@university-aid-deposit.org</span>&gt;</div>
+                <div><strong style="color: #f8fafc;">Subject:</strong> Electronic Student Refund Credit of $1,480.00 Ready</div>
+                <div style="margin-top: 0.5rem; color: var(--text-muted); font-family: inherit;">
+                  "Direct deposit routing info missing. Open the attached form: <span style="color: #f87171; font-weight: bold;">Direct_Deposit_Refund_Form.pdf.exe</span>"
+                </div>
+              </div>
+              <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                <strong style="color: #fbbf24; display: block; margin-bottom: 0.35rem;">🚩 Critical Red Flags:</strong>
+                <ul style="padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.35rem; margin: 0; font-size: 0.825rem;">
+                  <li><strong>Executable Disguised as PDF:</strong> Double extension <code>.pdf.exe</code> installs trojan or ransomware.</li>
+                  <li><strong>Financial Bait:</strong> Uses a large dollar amount ($1,480.00) to incentivize careless opening.</li>
+                  <li><strong>Sensitive Info Request:</strong> Demands banking details via email rather than the student portal.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Example 3: Suspicious Cloud Document Sharing Link -->
+            <div class="card" style="padding: 1.5rem; border-color: rgba(59, 130, 246, 0.35); background: #0c1322;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                <span class="badge" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); font-weight: 700; font-size: 0.75rem;">
+                  Example 3: Deceptive Link
+                </span>
+                <span style="font-size: 1.25rem;">📄</span>
+              </div>
+              <h4 style="color: #f8fafc; font-size: 1.1rem; margin-bottom: 0.75rem;">Fake Faculty Document Sharing Lure</h4>
+              <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 6px; padding: 0.85rem; font-size: 0.825rem; font-family: monospace; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5;">
+                <div><strong style="color: #f8fafc;">From:</strong> Cloud Notification &lt;<span style="color: #60a5fa; text-decoration: underline;">no-reply@sharepoint-docs-notify.net</span>&gt;</div>
+                <div><strong style="color: #f8fafc;">Subject:</strong> Professor shared "Final_Exam_Review_Guide.docx"</div>
+                <div style="margin-top: 0.5rem; color: var(--text-muted); font-family: inherit;">
+                  "View document on OneDrive. Re-enter password at: <span style="color: #f87171; text-decoration: underline;">https://onedrive-login-auth.cc/docs</span>"
+                </div>
+              </div>
+              <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                <strong style="color: #60a5fa; display: block; margin-bottom: 0.35rem;">🚩 Critical Red Flags:</strong>
+                <ul style="padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.35rem; margin: 0; font-size: 0.825rem;">
+                  <li><strong>Phishing Landing Domain:</strong> Hosted on <code>.cc</code> top-level domain pretending to be Microsoft.</li>
+                  <li><strong>Credential Harvesting Form:</strong> Prompts for campus password before viewing a standard study guide.</li>
+                  <li><strong>Generic Notification:</strong> Doesn't name your professor or specific course code.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TOPIC 3: MALWARE
+         ========================================================================= -->
+    <section id="malware" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Topic 3 • Malicious Software Defense</p>
+          <h2 class="section-title">Malware Types, Infection Vectors &amp; Prevention</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Malware (short for malicious software) encompasses any program or code designed to infiltrate, damage, or compromise computer systems, smartphones, and digital records. Learn about common malware strains, infection pathways, and defensive counter-measures.
+          </p>
+        </div>
+
+        <div class="core-questions-grid">
+          <!-- Subtopic 1: Common Types of Malware -->
+          <article class="qa-card qa-theme-emerald">
+            <div class="qa-header">
+              <span class="qa-badge">Malware Strains</span>
+              <span class="qa-icon">🦠</span>
+            </div>
+            <h3 class="qa-question">Common Types of Malware</h3>
+            <div class="qa-takeaway">
+              Malware variants differ in their replication methods, payloads, and objectives—ranging from system corruption to financial extortion and stealthy espionage.
+            </div>
+            <div class="qa-answer-text">
+              <p>Primary categories of malicious software:</p>
+              <ul style="list-style: disc; margin-left: 1.25rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <li><strong>Viruses:</strong> Malicious code that attaches itself to clean host files or executable programs. When the host program runs, the virus executes, corrupts system data, and replicates by infecting other files on the device.</li>
+                <li><strong>Worms:</strong> Standalone malicious programs that self-replicate and spread across local and global computer networks automatically. Unlike viruses, worms do not require a host file or human activation—they exploit unpatched network vulnerabilities to infect thousands of connected machines.</li>
+                <li><strong>Ransomware:</strong> A devastating form of extortion malware that silently encrypts the victim's files, research papers, and system drives using strong cryptographic ciphers (e.g. AES-256). It displays an extortion notice demanding payment in cryptocurrency to provide the decryption key.</li>
+                <li><strong>Spyware &amp; Keyloggers:</strong> Stealth surveillance software that secretly monitors user behavior. Keyloggers record every keystroke typed (capturing logins and credit cards), while spyware tracks browsing history, monitors webcams, and extracts saved browser tokens.</li>
+                <li><strong>Trojan Horses:</strong> Malicious programs disguised as legitimate, harmless, or useful files (such as cracked games, free utilities, or PDF study guides). Once opened, the Trojan activates hidden backdoors allowing attackers remote access.</li>
+                <li><strong>Adware &amp; Rootkits:</strong> Adware floods screens with aggressive, unwanted pop-up advertisements. Rootkits burrow deep into the operating system kernel, granting administrative control to attackers while actively hiding their presence from antivirus scanners.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Subtopic 2: How Malware Infects Devices -->
+          <article class="qa-card qa-theme-purple">
+            <div class="qa-header">
+              <span class="qa-badge">Infection Pathways</span>
+              <span class="qa-icon">📲</span>
+            </div>
+            <h3 class="qa-question">How Malware Infects Computers &amp; Mobile Devices</h3>
+            <div class="qa-takeaway">
+              Malware requires an entry vector—typically exploiting unpatched software vulnerabilities, deceptive downloads, or untrusted hardware connections.
+            </div>
+            <div class="qa-answer-text">
+              <p>Key infection vectors targeting computers and mobile devices:</p>
+              <ul style="list-style: disc; margin-left: 1.25rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <li><strong>Phishing Attachments &amp; Malicious Macros:</strong> Email attachments disguised as invoices or assignments (e.g., Word documents prompting users to "Enable Macros" or double-extension files like <code>.pdf.exe</code>) execute code immediately upon opening.</li>
+                <li><strong>Drive-by Downloads &amp; Malvertising:</strong> Visiting compromised or malicious websites that exploit unpatched vulnerabilities in web browsers to silently install malware in the background without user consent. Poisoned ads on legitimate sites (malvertising) can also trigger these exploits.</li>
+                <li><strong>Pirated Media &amp; Cracked Software:</strong> Downloading cracked software, illegal game torrents, or unofficial license activators is one of the highest-risk activities; hackers frequently bundle hidden crypto-miners, keyloggers, and trojans inside cracked installers.</li>
+                <li><strong>Mobile Sideloading &amp; Rogue Apps:</strong> On mobile devices (particularly Android APK sideloading or jailbroken iOS devices), installing apps from third-party websites bypasses official security screening, allowing malicious apps to abuse permissions (SMS reading, microphone recording).</li>
+                <li><strong>Infected USB Drives (Drop Attacks):</strong> Plugging an unknown USB flash drive found in a public lab or hallway into a computer can trigger automatic execution scripts that infect the machine.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Subtopic 3: Methods for Preventing Malware Infections -->
+          <article class="qa-card qa-theme-emerald" style="grid-column: 1 / -1;">
+            <div class="qa-header">
+              <span class="qa-badge">Proactive Prevention</span>
+              <span class="qa-icon">🛡️</span>
+            </div>
+            <h3 class="qa-question">Methods for Preventing Malware Infections</h3>
+            <div class="qa-takeaway">
+              Layered technical controls and disciplined computer habits prevent malware from finding an entry point onto personal and academic devices.
+            </div>
+            <div class="qa-answer-text" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 1rem;">
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: #34d399; font-size: 1rem; margin-bottom: 0.5rem;">🔄 Automatic Security Updates</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Enable automatic updates on macOS, Windows, iOS, Android, and web browsers. Over 80% of successful malware infections exploit known vulnerabilities for which security patches have already been released.</p>
+              </div>
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: #60a5fa; font-size: 1rem; margin-bottom: 0.5rem;">🛡️ Antivirus &amp; Endpoint Protection</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Keep modern endpoint defense tools (like Windows Defender, Malwarebytes, or macOS XProtect) active with real-time behavioral scanning enabled to detect and quarantine zero-day threats.</p>
+              </div>
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: #c084fc; font-size: 1rem; margin-bottom: 0.5rem;">🏪 Stick to Official App Stores</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Download programs only from verified repositories (Apple App Store, Google Play, verified software publisher sites). Never download pirated software, cracked license keys, or unvetted browser extensions.</p>
+              </div>
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: #fbbf24; font-size: 1rem; margin-bottom: 0.5rem;">💾 The 3-2-1 Backup Strategy</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Maintain 3 copies of important coursework on 2 different storage media, with 1 copy stored securely offsite or in cloud backup. Backups render ransomware completely powerless by ensuring you can restore files without paying extortion.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TOPIC 4: ONLINE PRIVACY
+         ========================================================================= -->
+    <section id="privacy" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Topic 4 • Data Sovereignty &amp; Digital Identity</p>
+          <h2 class="section-title">Online Privacy, Data Protection &amp; Safe Browsing</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Privacy is not about having something to hide—it is about having rights and autonomy to protect. Explore why safeguarding personal records is essential, how data collection operates, and actionable practices to protect sensitive information on websites and social media.
+          </p>
+        </div>
+
+        <div class="core-questions-grid">
+          <!-- Subtopic 1: Importance of Protecting Personal Info -->
+          <article class="qa-card qa-theme-blue">
+            <div class="qa-header">
+              <span class="qa-badge">Privacy Foundations</span>
+              <span class="qa-icon">🔒</span>
+            </div>
+            <h3 class="qa-question">The Importance of Protecting Personal Information Online</h3>
+            <div class="qa-takeaway">
+              Personal information is digital currency for cybercriminals and data brokers. Safeguarding personal data prevents identity theft, financial fraud, reputational damage, and loss of personal autonomy.
+            </div>
+            <div class="qa-answer-text">
+              <p>Why online privacy is a fundamental necessity:</p>
+              <ul style="list-style: disc; margin-left: 1.25rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <li><strong>Identity Theft &amp; Financial Fraud:</strong> Stolen personal records (full names, dates of birth, Social Security Numbers, addresses) allow criminals to open fraudulent lines of credit, file false tax refund claims, and compromise academic financial aid.</li>
+                <li><strong>Physical Safety &amp; Preventing Doxxing:</strong> Revealing real-time locations, home addresses, or daily commute schedules enables stalking, physical threats, and doxxing (the malicious publishing of private details online to incite harassment).</li>
+                <li><strong>Digital Permanence &amp; Future Opportunities:</strong> Everything shared online is cached, screenshotted, and archived. Employers, graduate school admissions officers, and athletic recruiters routinely audit prospective candidates' digital footprints.</li>
+                <li><strong>Guarding Personal Autonomy:</strong> Mass corporate surveillance profiles your browsing habits, political beliefs, and vulnerabilities to feed hyper-targeted algorithmic ads designed to manipulate your purchasing and voting decisions.</li>
+                <li><strong>Legal Protections (FERPA &amp; Privacy Laws):</strong> Federal statutes like the Family Educational Rights and Privacy Act (FERPA) legally protect student educational and disciplinary records from unauthorized third-party disclosure.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Subtopic 2: Privacy Settings, Data Collection & Safe Browsing -->
+          <article class="qa-card qa-theme-purple">
+            <div class="qa-header">
+              <span class="qa-badge">Surveillance &amp; Browsing</span>
+              <span class="qa-icon">🌐</span>
+            </div>
+            <h3 class="qa-question">Privacy Settings, Data Collection &amp; Safe Browsing</h3>
+            <div class="qa-takeaway">
+              Understanding how commercial tracking mechanisms harvest your data empowers you to configure privacy settings and adopt protective browsing habits.
+            </div>
+            <div class="qa-answer-text">
+              <p>Navigating data collection and safe browsing:</p>
+              <ul style="list-style: disc; margin-left: 1.25rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <li><strong>How Data Collection Works:</strong> Websites use first-party cookies (to remember logins) and third-party tracking cookies (placed by advertisers to track your movements across unrelated sites). In addition, **browser fingerprinting** identifies you based on your unique combination of screen resolution, installed fonts, and OS version. Data brokers purchase and assemble these fragments into comprehensive consumer profiles.</li>
+                <li><strong>Configuring Account Privacy Settings:</strong> Audit privacy dashboards on Google, Apple, Microsoft, and Meta. Disable location history tracking, opt out of personalized ad targeting, and revoke permissions granted to inactive third-party apps connected via social logins.</li>
+                <li><strong>Safe Browsing Practices:</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.25rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                    <li><strong>Enforce HTTPS Everywhere:</strong> Ensure websites display the padlock icon indicating TLS 1.3 encryption, preventing eavesdroppers from reading data in transit.</li>
+                    <li><strong>Use Privacy-Oriented Browsers:</strong> Utilize browsers with native tracking protection (such as Brave or Firefox) and install trusted tracker blockers like uBlock Origin.</li>
+                    <li><strong>Use a Virtual Private Network (VPN):</strong> When connecting to public, unencrypted Wi-Fi in coffee shops or airports, a VPN encrypts your connection to prevent packet interception.</li>
+                    <li><strong>Clear Cache &amp; Cookies:</strong> Regularly flush temporary browsing files and session cookies, or browse in private/incognito mode on shared computers.</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Subtopic 3: Protecting Info on Websites & Social Media -->
+          <article class="qa-card qa-theme-emerald" style="grid-column: 1 / -1;">
+            <div class="qa-header">
+              <span class="qa-badge">Social Media Defense</span>
+              <span class="qa-icon">📱</span>
+            </div>
+            <h3 class="qa-question">Ways to Protect Sensitive Information on Websites &amp; Social Media</h3>
+            <div class="qa-takeaway">
+              Social networks are designed to encourage oversharing. Implementing strict profile controls and conscious sharing habits prevents personal information leakage.
+            </div>
+            <div class="qa-answer-text" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 1rem;">
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: #34d399; font-size: 1rem; margin-bottom: 0.5rem;">🔒 1. Set Accounts to Private</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Default social media profiles are public to the entire internet. Change profile settings to private/friends-only so only people you explicitly approve can view your posts, photos, and followers list.</p>
+              </div>
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: #60a5fa; font-size: 1rem; margin-bottom: 0.5rem;">🚫 2. Stop Real-Time Oversharing</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Never post photos showing your class schedule, boarding passes (barcodes contain full identity data), driver's licenses, or home keys. Avoid tagging locations in real-time—post vacation photos only after returning home.</p>
+              </div>
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: #c084fc; font-size: 1rem; margin-bottom: 0.5rem;">⚙️ 3. Audit Mobile Permissions</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Review smartphone application settings. Restrict camera, microphone, contact list, and location access to "Only While Using App" or "Never." Social apps do not need continuous 24/7 background location tracking.</p>
+              </div>
+              <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: #fbbf24; font-size: 1rem; margin-bottom: 0.5rem;">🛡️ 4. Guard Security Questions</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Avoid viral social media quiz challenges asking for your first pet's name, mother's maiden name, childhood street, or birth year. These are social engineering lures designed to answer common account security recovery prompts.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TOPIC 5: AI ETHICS
+         ========================================================================= -->
+    <section id="ai-ethics" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Topic 5 • Emerging Technology &amp; Responsible Use</p>
+          <h2 class="section-title">AI Ethics, Critical Verification &amp; Intellectual Property</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Artificial Intelligence and generative models are transforming academic study, creative work, and industry. However, rapid adoption creates critical ethical challenges: algorithmic bias, privacy erosion, mass misinformation, and intellectual property disputes.
+          </p>
+        </div>
+
+        <div class="core-questions-grid">
+          <!-- Subtopic 1: Ethical Concerns in AI -->
+          <article class="qa-card qa-theme-emerald">
+            <div class="qa-header">
+              <span class="qa-badge">Ethical Challenges</span>
+              <span class="qa-icon">🤖</span>
+            </div>
+            <h3 class="qa-question">Ethical Concerns in Artificial Intelligence</h3>
+            <div class="qa-takeaway">
+              AI systems reflect the data used to train them. Uncritical reliance on automated models risks amplifying historical injustices, exposing confidential data, and proliferating automated deception.
+            </div>
+            <div class="qa-answer-text">
+              <p>Primary ethical concerns surrounding AI deployment:</p>
+              <ul style="list-style: disc; margin-left: 1.25rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <li><strong>Algorithmic Bias &amp; Discrimination:</strong> AI models learn by ingesting historical human data, which often contains systemic societal prejudices. When algorithms screen job resumes, determine loan eligibility, evaluate criminal recidivism, or perform facial recognition, they frequently perpetuate and amplify racial, gender, and economic biases against marginalized groups.</li>
+                <li><strong>Privacy &amp; Unauthorized Data Scraping:</strong> Commercial Large Language Models (LLMs) were trained by scraping billions of copyrighted web pages, personal blogs, creative artwork, and discussion forums without creator consent. Furthermore, entering confidential student records, proprietary code, or medical data into public AI prompts exposes that information to external model training and data leaks.</li>
+                <li><strong>Misinformation &amp; Deepfakes:</strong> Generative AI can generate millions of convincing falsehoods in seconds. Photorealistic video deepfakes and synthesized voice clones can impersonate university officials, business executives, or family members to execute financial scams, conduct political manipulation, and erode civic trust.</li>
+                <li><strong>Responsible AI Frameworks:</strong> Ethical technology requires transparency (understanding how models make decisions), accountability (clear human responsibility for algorithmic errors), robust safety guardrails, and human-in-the-loop oversight to ensure automated systems serve human dignity and the public good.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Subtopic 2: Verifying Information & Respecting IP -->
+          <article class="qa-card qa-theme-amber">
+            <div class="qa-header">
+              <span class="qa-badge">Integrity &amp; IP</span>
+              <span class="qa-icon">⚖️</span>
+            </div>
+            <h3 class="qa-question">Why Users Must Verify AI Information &amp; Respect Intellectual Property</h3>
+            <div class="qa-takeaway">
+              Generative AI models are predictive pattern-matchers, not factual truth engines. Students and professionals have an ethical obligation to verify AI outputs and respect intellectual property rights.
+            </div>
+            <div class="qa-answer-text">
+              <p>Key responsibilities when utilizing AI tools:</p>
+              <ul style="list-style: disc; margin-left: 1.25rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <li><strong>Combating AI "Hallucinations":</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.25rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                    <li>Large Language Models generate text based on statistical probabilities of word sequences—they do not have real-world understanding or awareness of factual truth.</li>
+                    <li>AI models routinely "hallucinate"—confidently fabricating non-existent scientific citations, inventing false legal cases, misrepresenting historical facts, or generating buggy code.</li>
+                    <li><strong>The Verification Imperative:</strong> Users must apply lateral reading and the <strong>SIFT Method</strong> (Stop, Investigate the source, Find trusted coverage, Trace claims back to original primary evidence) before accepting or sharing AI-generated claims.</li>
+                  </ul>
+                </li>
+                <li><strong>Preserving Academic &amp; Scholarly Integrity:</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.25rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                    <li>Passing off AI-generated prose, essays, or research as your own authentic human work constitutes academic dishonesty and violates Caldwell University honor codes.</li>
+                    <li>Responsible academic use involves using AI as a tutor or brainstorming partner, while ensuring all submitted writing and critical analysis represents your own genuine intellectual effort.</li>
+                  </ul>
+                </li>
+                <li><strong>Respecting Intellectual Property (IP) &amp; Creative Rights:</strong>
+                  <ul style="margin-left: 1rem; margin-top: 0.25rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                    <li>Authors, journalists, and visual artists spend years developing intellectual and creative works. AI tools that reproduce their output without proper attribution or compensation undermine creator livelihoods and fair use boundaries.</li>
+                    <li>Whenever using AI assistance for research or synthesis, ethical practice requires transparently citing the tool used and properly attributing human primary sources.</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <span class="logo-symbol">&lt;/&gt;</span>
+        <span class="logo-text">Mekhi Digital Portfolio<span class="accent-dot">.</span></span>
+      </div>
+      <div class="footer-sitemap-links">
+        <a href="index.html">Portfolio Home</a> •
+        <a href="digital-citizenship.html">Digital Citizenship</a> •
+        <a href="internet.html">The Internet</a> •
+        <a href="software.html">Software</a> •
+        <a href="hardware.html">Hardware</a> •
+        <a href="storage.html">Storage Devices</a> •
+        <a href="io.html">Input &amp; Output Devices</a> •
+        <a href="security.html">Security Guide</a> •
+        <a href="#passwords">Strong Passwords</a> •
+        <a href="#phishing">Phishing Attacks</a> •
+        <a href="#malware">Malware</a> •
+        <a href="#privacy">Online Privacy</a> •
+        <a href="#ai-ethics">AI Ethics</a>
+      </div>
+      <p class="copyright">© 2026 Mekhi Childs. Introduction to Technology, Caldwell University.</p>
+      <div class="footer-actions">
+        <a href="#hero" class="back-to-top" title="Back to top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="security.js"></script>
+</body>
+</html>

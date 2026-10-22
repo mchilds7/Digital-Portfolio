@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A student-friendly guide to system and application software, five frequently used apps, cloud collaboration, and safe software habits.">
+  <title>Software & Computer Applications | Mekhi Childs</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🎓%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0b0e14">
+<style id="site-polish">
+/* Site polish: smoother, more accessible, tidier */
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-wrap:break-word}
+img,svg,video,iframe{max-width:100%;height:auto}
+pre,code{white-space:pre-wrap;word-break:break-word}
+table{max-width:100%}
+::selection{background:rgba(168,85,247,.45);color:#fff}
+:focus-visible{outline:2px solid #a78bfa;outline-offset:3px;border-radius:4px}
+a,button{-webkit-tap-highlight-color:transparent}
+button:not(:disabled),[role="button"]{cursor:pointer}
+.skip-link{position:absolute;left:-9999px;top:8px;z-index:100001;padding:10px 16px;background:#a855f7;color:#fff;border-radius:8px;font-weight:700;text-decoration:none}
+.skip-link:focus{left:8px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media print{.skip-link{display:none}}
+</style>
+<link rel="stylesheet" href="site-enhance.css">
+<script src="site-enhance.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#hero">Skip to main content</a>
+  <header class="site-header" id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" title="Return to Main Portfolio">
+        <span class="logo-symbol">&lt;/&gt;</span>
+        <span class="logo-text">Mekhi Digital Portfolio<span class="accent-dot">.</span></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Software guide navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="back-nav-link">← Portfolio Home</a></li>
+          <li><a href="hardware.html" class="nav-link tab-highlight-hardware">🔧 Hardware</a></li>
+          <li><a href="storage.html" class="nav-link">💾 Storage</a></li>
+          <li><a href="security.html" class="nav-link tab-highlight-security">🛡️ Security</a></li>
+          <li><a href="io.html" class="nav-link tab-highlight-io">⌨️ I/O Devices</a></li>
+          <li><a href="#software-types" class="nav-link">Software Types</a></li>
+          <li><a href="#productivity" class="nav-link">My Apps</a></li>
+          <li><a href="#cloud" class="nav-link">Cloud Collaboration</a></li>
+          <li><a href="#safety" class="nav-link">Safe Software Habits</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a href="index.html#projects" class="btn btn-secondary nav-cta">All Coursework</a>
+        <button type="button" id="menu-toggle" class="icon-btn mobile-only" aria-label="Open navigation menu">
+          <svg class="hamburger-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="mobile-drawer">
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="mobile-nav-link font-bold text-primary">← Return to Main Portfolio</a></li>
+        <li><a href="hardware.html" class="mobile-nav-link font-bold" style="color: #fb7185;">🔧 Computer Hardware</a></li>
+        <li><a href="storage.html" class="mobile-nav-link font-bold" style="color: #fbbf24;">💾 Storage Devices</a></li>
+        <li><a href="security.html" class="mobile-nav-link font-bold" style="color: #10b981;">🛡️ Security Guide</a></li>
+        <li><a href="io.html" class="mobile-nav-link font-bold" style="color: #f59e0b;">⌨️ Input &amp; Output Devices</a></li>
+        <li><a href="#software-types" class="mobile-nav-link">Software Types</a></li>
+        <li><a href="#productivity" class="mobile-nav-link">My Apps</a></li>
+        <li><a href="#cloud" class="mobile-nav-link">Cloud Collaboration</a></li>
+        <li><a href="#safety" class="mobile-nav-link">Safe Software Habits</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="index.html#contact" class="btn btn-primary w-full">Connect with Mekhi</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="section hero-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Introduction to Technology • Course Guide</p>
+          <h1 class="section-title">Software &amp; Computer Applications</h1>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Software gives computers instructions and helps people complete tasks. Explore system and application software, five apps I use often, cloud collaboration, and practical habits for using software safely.
+          </p>
+        </div>
+        <div class="hero-cta-group" style="justify-content: center;">
+          <a href="#software-types" class="btn btn-primary">Explore Software Types ↓</a>
+          <a href="#productivity" class="btn btn-secondary">My Frequently Used Apps</a>
+          <a href="#safety" class="btn btn-secondary">Safe Software Habits</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="software-types" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">The Basics</p>
+          <h2 class="section-title">What Is Software?</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Software is the set of programs and instructions that tell a computer how to perform tasks. It works with hardware: hardware provides the physical parts, while software gives those parts useful jobs to do.
+          </p>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card card">
+            <div class="project-banner gradient-banner-1"><span class="project-icon-badge">⚙️</span></div>
+            <div class="project-body">
+              <div class="project-tags"><span class="tag">Core Software</span></div>
+              <h3 class="project-title">System Software</h3>
+              <p class="project-desc">System software manages the computer and provides a foundation for other programs. Operating systems such as Windows, macOS, ChromeOS, Android, and iOS manage files, memory, devices, and running applications.</p>
+            </div>
+          </article>
+          <article class="project-card card">
+            <div class="project-banner gradient-banner-2"><span class="project-icon-badge">🧰</span></div>
+            <div class="project-body">
+              <div class="project-tags"><span class="tag">User Applications</span></div>
+              <h3 class="project-title">Application Software</h3>
+              <p class="project-desc">Applications help people accomplish specific tasks, such as writing a report, editing a photo, attending a video meeting, browsing the web, or organizing a schedule.</p>
+            </div>
+          </article>
+          <article class="project-card card">
+            <div class="project-banner gradient-banner-3"><span class="project-icon-badge">🛠️</span></div>
+            <div class="project-body">
+              <div class="project-tags"><span class="tag">Maintenance</span></div>
+              <h3 class="project-title">Utility Software</h3>
+              <p class="project-desc">Utilities help maintain, protect, or manage a computer. Examples include backup tools, storage management, accessibility settings, security software, and file-compression programs.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="productivity" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Everyday Student Tools</p>
+          <h2 class="section-title">Five Software Applications I Frequently Use</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            These applications serve different purposes, from browsing the web and listening to music to gaming and creating documents.
+          </p>
+        </div>
+        <div class="core-questions-grid software-app-grid">
+          <article class="qa-card qa-theme-blue">
+            <div class="qa-header"><span class="qa-badge">Web Browser</span><span class="qa-icon">🌐</span></div>
+            <h3 class="qa-question">Google Chrome</h3>
+            <p class="qa-answer-text">I use Chrome to browse websites, look up information, and access web-based tools.</p>
+          </article>
+          <article class="qa-card qa-theme-purple">
+            <div class="qa-header"><span class="qa-badge">Web Browser</span><span class="qa-icon">🦁</span></div>
+            <h3 class="qa-question">Brave Browser</h3>
+            <p class="qa-answer-text">I use Brave to browse the web, with its built-in tools for blocking many ads and trackers.</p>
+          </article>
+          <article class="qa-card qa-theme-amber">
+            <div class="qa-header"><span class="qa-badge">Music Streaming</span><span class="qa-icon">🎵</span></div>
+            <h3 class="qa-question">Spotify</h3>
+            <p class="qa-answer-text">I use Spotify to listen to music and podcasts.</p>
+          </article>
+          <article class="qa-card qa-theme-emerald">
+            <div class="qa-header"><span class="qa-badge">Gaming Platform</span><span class="qa-icon">🎮</span></div>
+            <h3 class="qa-question">Steam</h3>
+            <p class="qa-answer-text">I use Steam to find, download, organize, and play computer games.</p>
+          </article>
+          <article class="qa-card qa-theme-blue">
+            <div class="qa-header"><span class="qa-badge">Word Processor</span><span class="qa-icon">📝</span></div>
+            <h3 class="qa-question">Microsoft Word</h3>
+            <p class="qa-answer-text">I use Word to create, edit, and format documents such as school assignments and notes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="cloud" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Working Together</p>
+          <h2 class="section-title">Cloud Software &amp; Collaboration</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Cloud applications run partly or entirely on remote servers accessed through the Internet. They can make it easier to access work across devices and collaborate with other people.
+          </p>
+        </div>
+        <div class="qa-card qa-theme-blue">
+          <div class="qa-header"><span class="qa-badge">A Practical Workflow</span><span class="qa-icon">☁️</span></div>
+          <h3 class="qa-question">Share and edit work thoughtfully</h3>
+          <div class="qa-key-points">
+            <ol>
+              <li><strong>Create:</strong> Start a document or project in a trusted application.</li>
+              <li><strong>Save:</strong> Save locally or to a cloud account, and check that changes have finished syncing.</li>
+              <li><strong>Collaborate:</strong> Give teammates only the access they need, such as viewing or commenting instead of full editing.</li>
+              <li><strong>Review:</strong> Use comments or version history to understand edits and restore earlier work when needed.</li>
+              <li><strong>Submit:</strong> Confirm the file format, sharing permissions, and destination before submitting or sending the work.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="safety" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Responsible Use</p>
+          <h2 class="section-title">Safe Software Habits</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">A few careful choices help keep applications, accounts, and schoolwork more secure and dependable.</p>
+        </div>
+        <div class="core-questions-grid">
+          <article class="qa-card qa-theme-emerald">
+            <h3 class="qa-question">Install and update carefully</h3>
+            <p class="qa-answer-text">Get software from the official app store or publisher, review requested permissions, and install updates from trusted sources.</p>
+          </article>
+          <article class="qa-card qa-theme-blue">
+            <h3 class="qa-question">Protect accounts and files</h3>
+            <p class="qa-answer-text">Use unique passwords and multi-factor authentication when available. Keep backups of important work and avoid sharing sensitive information unnecessarily.</p>
+          </article>
+          <article class="qa-card qa-theme-purple">
+            <h3 class="qa-question">Check before you share</h3>
+            <p class="qa-answer-text">Review a file's audience and link permissions before sharing. Remove access when collaboration ends or when a link is no longer needed.</p>
+          </article>
+          <article class="qa-card qa-theme-amber">
+            <h3 class="qa-question">Use AI and automation thoughtfully</h3>
+            <p class="qa-answer-text">Verify generated information, follow course rules, protect private data, and make sure submitted work represents your understanding.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <span class="logo-symbol">&lt;/&gt;</span>
+        <span class="logo-text">Mekhi Digital Portfolio<span class="accent-dot">.</span></span>
+      </div>
+      <div class="footer-sitemap-links">
+        <a href="index.html">Portfolio Home</a> •
+        <a href="digital-citizenship.html">Digital Citizenship</a> •
+        <a href="internet.html">The Internet</a> •
+        <a href="hardware.html">Computer Hardware</a> •
+        <a href="storage.html">Storage Devices</a> •
+        <a href="security.html">Security Guide</a> •
+        <a href="io.html">Input &amp; Output Devices</a> •
+        <a href="#software-types">Software Types</a> •
+        <a href="#productivity">My Apps</a> •
+        <a href="#safety">Safe Software Habits</a>
+      </div>
+      <p class="copyright">© 2026 Mekhi Childs. Introduction to Technology, Caldwell University.</p>
+      <div class="footer-actions"><a href="#hero" class="back-to-top" title="Back to top">Back to top ↑</a></div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

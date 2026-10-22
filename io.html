@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Comprehensive academic guide to Computer Input and Output (I/O) Devices — Keyboard, Mouse, Scanner, Microphone, Monitor, Printer, Speakers, and Projector.">
+  <title>Input &amp; Output Devices | Mekhi Childs</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Scoped Enhancements for Input and Output Devices */
+    .device-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .device-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+      position: relative;
+    }
+
+    .device-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    .device-media-wrap {
+      position: relative;
+      width: 100%;
+      height: 230px;
+      overflow: hidden;
+      background: #0f172a;
+    }
+
+    .device-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .device-card:hover .device-img {
+      transform: scale(1.05);
+    }
+
+    .category-floating-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      z-index: 2;
+    }
+
+    .badge-input {
+      background: rgba(30, 58, 138, 0.85);
+      color: #93c5fd;
+      border: 1px solid rgba(147, 197, 253, 0.3);
+    }
+
+    .badge-output {
+      background: rgba(88, 28, 135, 0.85);
+      color: #e9d5ff;
+      border: 1px solid rgba(233, 213, 255, 0.3);
+    }
+
+    .device-body {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .device-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .device-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .device-icon-bubble {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      background: var(--primary-light);
+      font-size: 1.15rem;
+    }
+
+    .device-summary {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .device-specs-box {
+      background: rgba(11, 15, 25, 0.6);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.15rem;
+      margin-top: auto;
+    }
+
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .spec-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .spec-label {
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+    }
+
+    .spec-value {
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* Filter Controls */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.65rem 1.5rem;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.9rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .filter-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--text-primary);
+      border-color: var(--primary);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    /* Architecture Flowchart Diagram */
+    .workflow-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+      gap: 1.25rem;
+      position: relative;
+      margin-top: 2rem;
+    }
+
+    .workflow-step {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      transition: transform var(--transition-fast);
+    }
+
+    .workflow-step:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+    }
+
+    .workflow-step-num {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .workflow-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .workflow-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .workflow-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    /* Comparison Table */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      margin-top: 2rem;
+    }
+
+    .io-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .io-table th {
+      background: rgba(17, 24, 39, 0.9);
+      color: var(--text-primary);
+      padding: 1rem 1.25rem;
+      font-weight: 700;
+      border-bottom: 2px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    .io-table td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      vertical-align: middle;
+    }
+
+    .io-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .io-table tr:hover td {
+      background: rgba(59, 130, 246, 0.05);
+    }
+
+    .device-table-name {
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .table-pill {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .pill-input {
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+
+    .pill-output {
+      background: rgba(168, 85, 247, 0.2);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+  </style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🎓%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0b0e14">
+<style id="site-polish">
+/* Site polish: smoother, more accessible, tidier */
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-wrap:break-word}
+img,svg,video,iframe{max-width:100%;height:auto}
+pre,code{white-space:pre-wrap;word-break:break-word}
+table{max-width:100%}
+::selection{background:rgba(168,85,247,.45);color:#fff}
+:focus-visible{outline:2px solid #a78bfa;outline-offset:3px;border-radius:4px}
+a,button{-webkit-tap-highlight-color:transparent}
+button:not(:disabled),[role="button"]{cursor:pointer}
+.skip-link{position:absolute;left:-9999px;top:8px;z-index:100001;padding:10px 16px;background:#a855f7;color:#fff;border-radius:8px;font-weight:700;text-decoration:none}
+.skip-link:focus{left:8px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media print{.skip-link{display:none}}
+</style>
+<link rel="stylesheet" href="site-enhance.css">
+<script src="site-enhance.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#hero">Skip to main content</a>
+  <!-- Global Navigation Header -->
+  <header class="site-header" id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" title="Return to Main Portfolio">
+        <span class="logo-symbol">&lt;/&gt;</span>
+        <span class="logo-text">Mekhi Digital Portfolio<span class="accent-dot">.</span></span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="desktop-nav" aria-label="Input &amp; Output guide navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="back-nav-link">← Portfolio Home</a></li>
+          <li><a href="digital-citizenship.html" class="nav-link tab-highlight-dc">🌐 Digital Citizenship</a></li>
+          <li><a href="internet.html" class="nav-link tab-highlight-internet">⚡ The Internet</a></li>
+          <li><a href="software.html" class="nav-link">💻 Software</a></li>
+          <li><a href="hardware.html" class="nav-link tab-highlight-hardware">🔧 Hardware</a></li>
+          <li><a href="storage.html" class="nav-link">💾 Storage</a></li>
+          <li><a href="security.html" class="nav-link tab-highlight-security">🛡️ Security</a></li>
+          <li><a href="#input-devices" class="nav-link">Input Devices</a></li>
+          <li><a href="#output-devices" class="nav-link">Output Devices</a></li>
+          <li><a href="#how-io-works" class="nav-link">I/O Architecture</a></li>
+          <li><a href="#comparison" class="nav-link">Comparison Table</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="index.html#projects" class="btn btn-secondary nav-cta">All Coursework</a>
+        <button type="button" id="menu-toggle" class="icon-btn mobile-only" aria-label="Open navigation menu">
+          <svg class="hamburger-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-menu" class="mobile-drawer">
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="mobile-nav-link font-bold text-primary">← Return to Main Portfolio</a></li>
+        <li><a href="digital-citizenship.html" class="mobile-nav-link text-primary font-bold">🌐 Digital Citizenship Webpage</a></li>
+        <li><a href="internet.html" class="mobile-nav-link font-bold" style="color: #06b6d4;">⚡ The Internet &amp; Protocols</a></li>
+        <li><a href="software.html" class="mobile-nav-link">💻 Software Guide</a></li>
+        <li><a href="hardware.html" class="mobile-nav-link font-bold" style="color: #fb7185;">🔧 Computer Hardware</a></li>
+        <li><a href="storage.html" class="mobile-nav-link font-bold" style="color: #fbbf24;">💾 Storage Devices</a></li>
+        <li><a href="security.html" class="mobile-nav-link font-bold" style="color: #10b981;">🛡️ Security Guide</a></li>
+        <li><a href="#input-devices" class="mobile-nav-link">⌨️ Input Devices</a></li>
+        <li><a href="#output-devices" class="mobile-nav-link">🖥️ Output Devices</a></li>
+        <li><a href="#how-io-works" class="mobile-nav-link">🔄 I/O Architecture &amp; Flow</a></li>
+        <li><a href="#comparison" class="mobile-nav-link">📋 Comparison Table</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="index.html#contact" class="btn btn-primary w-full">Connect with Mekhi</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="section hero-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Computer Hardware Architecture • Introduction to Technology</p>
+          <h1 class="section-title">Input &amp; Output Devices</h1>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Input and output peripherals form the crucial bridge between humans and computing systems. Input devices translate our physical gestures, keystrokes, spoken words, and paper documents into digital binary signals for the processor. Output devices translate processed calculations back into human-perceptible visuals, sounds, and physical prints.
+          </p>
+        </div>
+        <div class="hero-cta-group" style="justify-content: center;">
+          <a href="#input-devices" class="btn btn-primary">Input Devices ↓</a>
+          <a href="#output-devices" class="btn btn-secondary">Output Devices ↓</a>
+          <a href="#how-io-works" class="btn btn-secondary">I/O Architecture</a>
+          <a href="#comparison" class="btn btn-secondary">Comparison Table</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Filter Navigation -->
+    <section class="section" style="padding-top: 1rem; padding-bottom: 2rem;">
+      <div class="container">
+        <div class="filter-bar" role="tablist" aria-label="Device category filter">
+          <button type="button" class="filter-btn active" data-filter="all" role="tab" aria-selected="true">
+            <span>✨</span> All 8 Peripherals
+          </button>
+          <button type="button" class="filter-btn" data-filter="input" role="tab" aria-selected="false">
+            <span>📥</span> Input Devices (4)
+          </button>
+          <button type="button" class="filter-btn" data-filter="output" role="tab" aria-selected="false">
+            <span>📤</span> Output Devices (4)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: INPUT DEVICES -->
+    <section id="input-devices" class="section" style="padding-top: 1rem;">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Human-to-Computer Interaction</p>
+          <h2 class="section-title">Input Devices</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            An <strong>input device</strong> is any peripheral equipment that feeds data, instructions, or control signals into a computer. They capture analog physical phenomena—such as physical keystrokes, spatial movements, optical light reflections, or acoustic pressure waves—and convert them into digital binary code (0s and 1s) that the CPU can execute.
+          </p>
+        </div>
+
+        <div class="device-grid">
+          <!-- Device 1: Keyboard -->
+          <article class="device-card" data-category="input">
+            <div class="device-media-wrap">
+              <span class="category-floating-badge badge-input">Input Device</span>
+              <img src="images/keyboard.jpg" alt="Photograph of a modern backlit mechanical keyboard on a clean workspace desk" class="device-img" loading="lazy">
+            </div>
+            <div class="device-body">
+              <div class="device-header">
+                <h3 class="device-title">
+                  <span class="device-icon-bubble">⌨️</span>
+                  Keyboard
+                </h3>
+              </div>
+              <p class="device-summary">
+                The primary alphanumeric data entry peripheral used to feed letters, numbers, punctuation, and shortcut execution commands into an operating system.
+              </p>
+              <div class="device-specs-box">
+                <div class="spec-item">
+                  <span class="spec-label">Primary Function</span>
+                  <span class="spec-value">Alphanumeric text typing, command line execution, system navigation shortcuts, and gaming inputs.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">How It Works</span>
+                  <span class="spec-value">Keys rest above an electrical matrix grid. Pressing a key closes a switch contact; an internal microcontroller detects the row/column coordinates, debounces the signal, and sends binary scan codes to the OS.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Common Form Factors</span>
+                  <span class="spec-value">Mechanical switch keyboards, membrane chiclet laptop keyboards, ergonomic split boards, wireless Bluetooth keyboards.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Key Specifications</span>
+                  <span class="spec-value">N-Key Rollover (NKRO), 1000Hz polling rate, switch actuation distance (1.2mm–2.0mm), USB-C / 2.4GHz wireless.</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Device 2: Mouse -->
+          <article class="device-card" data-category="input">
+            <div class="device-media-wrap">
+              <span class="category-floating-badge badge-input">Input Device</span>
+              <img src="images/mouse.jpg" alt="Photograph of an ergonomic modern optical computer mouse on a dark desk mat" class="device-img" loading="lazy">
+            </div>
+            <div class="device-body">
+              <div class="device-header">
+                <h3 class="device-title">
+                  <span class="device-icon-bubble">🖱️</span>
+                  Mouse
+                </h3>
+              </div>
+              <p class="device-summary">
+                A handheld spatial pointing peripheral that translates 2D hand motion into pointer coordinates across graphical user interfaces (GUIs).
+              </p>
+              <div class="device-specs-box">
+                <div class="spec-item">
+                  <span class="spec-label">Primary Function</span>
+                  <span class="spec-value">Cursor manipulation, object selection, drag-and-drop actions, window resizing, and contextual menu activation.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">How It Works</span>
+                  <span class="spec-value">An LED or infrared laser illuminates the desk surface. An onboard microscopic optoelectronic sensor takes thousands of surface images per second, while a DSP calculates delta X/Y coordinate shifts.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Common Form Factors</span>
+                  <span class="spec-value">Optical office mice, high-precision gaming mice, ergonomic vertical mice (reducing wrist pronation), trackballs.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Key Specifications</span>
+                  <span class="spec-value">DPI/CPI sensitivity (800–26,000+ DPI), optical microswitch lifespans (70M clicks), programmable macro buttons.</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Device 3: Scanner -->
+          <article class="device-card" data-category="input">
+            <div class="device-media-wrap">
+              <span class="category-floating-badge badge-input">Input Device</span>
+              <img src="images/scanner.jpg" alt="Photograph of a modern flatbed photo and document scanner with illuminated glass bed" class="device-img" loading="lazy">
+            </div>
+            <div class="device-body">
+              <div class="device-header">
+                <h3 class="device-title">
+                  <span class="device-icon-bubble">📠</span>
+                  Scanner
+                </h3>
+              </div>
+              <p class="device-summary">
+                An optical digitization peripheral that captures physical documents, archival records, analog photographs, or artworks and renders them into digital image formats.
+              </p>
+              <div class="device-specs-box">
+                <div class="spec-item">
+                  <span class="spec-label">Primary Function</span>
+                  <span class="spec-value">Paper-to-digital document archival, photo restoration, Optical Character Recognition (OCR), and barcode reading.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">How It Works</span>
+                  <span class="spec-value">A light source illuminates the document on a glass platen. A motor moves a sensor carriage with mirrors and lenses that focus reflections onto a CCD or CIS array, converting photon intensity into digital pixel grids.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Common Form Factors</span>
+                  <span class="spec-value">Flatbed glass scanners, automatic document feeder (ADF) multi-page scanners, overhead archival book scanners.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Key Specifications</span>
+                  <span class="spec-value">Optical resolution (1200 x 2400+ DPI), 24-bit to 48-bit color depth, scan speed (Pages Per Minute - PPM), searchable PDF output.</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Device 4: Microphone -->
+          <article class="device-card" data-category="input">
+            <div class="device-media-wrap">
+              <span class="category-floating-badge badge-input">Input Device</span>
+              <img src="images/microphone.jpg" alt="Photograph of a professional studio condenser USB microphone on an adjustable boom arm with pop filter" class="device-img" loading="lazy">
+            </div>
+            <div class="device-body">
+              <div class="device-header">
+                <h3 class="device-title">
+                  <span class="device-icon-bubble">🎙️</span>
+                  Microphone
+                </h3>
+              </div>
+              <p class="device-summary">
+                An acoustic transducer that captures sound waves—such as human voice, music, and ambient noise—and converts them into electrical audio signals for computing.
+              </p>
+              <div class="device-specs-box">
+                <div class="spec-item">
+                  <span class="spec-label">Primary Function</span>
+                  <span class="spec-value">Voice communications (Zoom/Teams), podcast/music recording, voice commands (Siri, Alexa), and speech-to-text transcription.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">How It Works</span>
+                  <span class="spec-value">Sound pressure waves vibrate an ultra-thin diaphragm inside a capsule. In condenser mics, movement modulates electrical capacitance, producing micro-voltages converted by an ADC into uncompressed PCM audio bytes.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Common Form Factors</span>
+                  <span class="spec-value">Studio USB condenser mics, dynamic broadcast microphones, lapel lavalier mics, laptop MEMS microphones.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Key Specifications</span>
+                  <span class="spec-value">Frequency response (20Hz–20kHz), polar pickup patterns (cardioid, omni), sample rate &amp; bit depth (24-bit / 96kHz).</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: OUTPUT DEVICES -->
+    <section id="output-devices" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Computer-to-Human Delivery</p>
+          <h2 class="section-title">Output Devices</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            An <strong>output device</strong> is any peripheral equipment that receives processed digital results from a computer system and converts them into a human-perceptible format—such as visual graphics on a screen, hard-copy printed paper, or acoustic sound waves.
+          </p>
+        </div>
+
+        <div class="device-grid">
+          <!-- Device 5: Monitor -->
+          <article class="device-card" data-category="output">
+            <div class="device-media-wrap">
+              <span class="category-floating-badge badge-output">Output Device</span>
+              <img src="images/monitor.jpg" alt="Photograph of an ultrawide curved desktop computer monitor displaying a digital workspace" class="device-img" loading="lazy">
+            </div>
+            <div class="device-body">
+              <div class="device-header">
+                <h3 class="device-title">
+                  <span class="device-icon-bubble">🖥️</span>
+                  Monitor
+                </h3>
+              </div>
+              <p class="device-summary">
+                The primary visual output device of personal computing, providing instantaneous real-time rendering of software interfaces, video media, text, and graphics.
+              </p>
+              <div class="device-specs-box">
+                <div class="spec-item">
+                  <span class="spec-label">Primary Function</span>
+                  <span class="spec-value">Real-time visual display of desktop environments, applications, video streaming, CAD models, and video gaming.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">How It Works</span>
+                  <span class="spec-value">Receives digital video data from the GPU over HDMI or DisplayPort. Liquid crystal panels (IPS) or self-emissive organic diodes (OLED) modulate red, green, and blue sub-pixels millions of times per second.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Common Form Factors</span>
+                  <span class="spec-value">Ultrawide curved monitors, high-DPI 4K creative displays, 144Hz–360Hz esports monitors, laptop IPS panels.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Key Specifications</span>
+                  <span class="spec-value">Resolution (1080p, 1440p, 4K UHD), refresh rate (60Hz–240Hz+), panel type (IPS, OLED, VA), HDR brightness (nits).</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Device 6: Printer -->
+          <article class="device-card" data-category="output">
+            <div class="device-media-wrap">
+              <span class="category-floating-badge badge-output">Output Device</span>
+              <img src="images/printer.jpg" alt="Photograph of a modern office color laser printer producing printed document" class="device-img" loading="lazy">
+            </div>
+            <div class="device-body">
+              <div class="device-header">
+                <h3 class="device-title">
+                  <span class="device-icon-bubble">🖨️</span>
+                  Printer
+                </h3>
+              </div>
+              <p class="device-summary">
+                A hard-copy output peripheral that transfers electronic text documents, digital photos, and technical diagrams onto permanent physical paper media.
+              </p>
+              <div class="device-specs-box">
+                <div class="spec-item">
+                  <span class="spec-label">Primary Function</span>
+                  <span class="spec-value">Producing physical paper copies of essays, business contracts, tickets, high-resolution photographs, and blueprints.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">How It Works</span>
+                  <span class="spec-value">Laser printers use a laser beam to create electrostatic charges on a photosensitive drum, attracting toner powder fused by heat. Inkjet printers fire microscopic liquid droplets of CMYK ink through micro-nozzles.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Common Form Factors</span>
+                  <span class="spec-value">All-in-one multifunction office color laser printers, high-volume ink tank printers, photo lab printers, 3D printers.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Key Specifications</span>
+                  <span class="spec-value">Print speed (Pages Per Minute - PPM), resolution (1200 x 1200 DPI to 4800 DPI), automatic duplexing, Wi-Fi / AirPrint.</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Device 7: Speakers -->
+          <article class="device-card" data-category="output">
+            <div class="device-media-wrap">
+              <span class="category-floating-badge badge-output">Output Device</span>
+              <img src="images/speakers.jpg" alt="Photograph of a pair of high-fidelity desktop stereo studio monitor speakers" class="device-img" loading="lazy">
+            </div>
+            <div class="device-body">
+              <div class="device-header">
+                <h3 class="device-title">
+                  <span class="device-icon-bubble">🔊</span>
+                  Speakers
+                </h3>
+              </div>
+              <p class="device-summary">
+                An electroacoustic output transducer that converts electrical audio signals into audible sound waves for music, multimedia, communication, and system alerts.
+              </p>
+              <div class="device-specs-box">
+                <div class="spec-item">
+                  <span class="spec-label">Primary Function</span>
+                  <span class="spec-value">Auditory reproduction of video soundtracks, music playlists, gaming audio cues, and voice teleconferencing.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">How It Works</span>
+                  <span class="spec-value">Digital sound data is converted to analog by a DAC and amplified. Fluctuating electrical current flows through a voice coil in a magnetic field, vibrating a conical diaphragm to produce acoustic sound pressure waves.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Common Form Factors</span>
+                  <span class="spec-value">2.0 stereo desktop reference monitors, 2.1 speaker sets with dedicated subwoofers, 5.1/7.1 surround sound arrays.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Key Specifications</span>
+                  <span class="spec-value">RMS power output (Watts), frequency response (45Hz–20kHz), Total Harmonic Distortion (THD &lt; 0.1%), Bluetooth 5.3 &amp; AUX.</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Device 8: Projector -->
+          <article class="device-card" data-category="output">
+            <div class="device-media-wrap">
+              <span class="category-floating-badge badge-output">Output Device</span>
+              <img src="images/projector.jpg" alt="Photograph of a modern digital multimedia projector projecting a bright beam" class="device-img" loading="lazy">
+            </div>
+            <div class="device-body">
+              <div class="device-header">
+                <h3 class="device-title">
+                  <span class="device-icon-bubble">📽️</span>
+                  Projector
+                </h3>
+              </div>
+              <p class="device-summary">
+                An optical output peripheral that projects computer video output onto large projection screens, walls, or interactive whiteboards for group viewings.
+              </p>
+              <div class="device-specs-box">
+                <div class="spec-item">
+                  <span class="spec-label">Primary Function</span>
+                  <span class="spec-value">Large-scale video projection for university classrooms, conference boardrooms, movie theaters, and public auditoriums.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">How It Works</span>
+                  <span class="spec-value">A high-intensity lamp, LED, or solid-state laser shines light through DLP micromirrors or 3LCD panels. The magnified optical light beam is focused through an optical zoom lens onto a distant projection surface.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Common Form Factors</span>
+                  <span class="spec-value">DLP conference room projectors, ultra-short throw (UST) laser projectors, portable pico mini-projectors.</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Key Specifications</span>
+                  <span class="spec-value">Luminous flux (3,000–6,000 ANSI Lumens), native resolution (1080p or 4K UHD), throw ratio, optical keystone correction.</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: HOW I/O WORKS (IPOS ARCHITECTURE) -->
+    <section id="how-io-works" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">The Von Neumann Architecture</p>
+          <h2 class="section-title">How Input &amp; Output Work Together</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Computers do not think like humans; they process millions of binary switches (1s and 0s). The <strong>Input-Process-Output-Storage (IPOS) cycle</strong> governs how hardware components collaborate seamlessly in every computing task.
+          </p>
+        </div>
+
+        <div class="workflow-container">
+          <div class="workflow-step">
+            <div class="workflow-step-num">1</div>
+            <div class="workflow-icon">👤</div>
+            <h3 class="workflow-title">Human Action</h3>
+            <p class="workflow-desc">A user strikes a keyboard key, moves a mouse, speaks into a mic, or places a document on a scanner glass.</p>
+          </div>
+
+          <div class="workflow-step">
+            <div class="workflow-step-num">2</div>
+            <div class="workflow-icon">📥</div>
+            <h3 class="workflow-title">Input Transduction</h3>
+            <p class="workflow-desc">The input device's sensors and ADC convert physical pressure, light, or sound into digital binary voltage codes.</p>
+          </div>
+
+          <div class="workflow-step">
+            <div class="workflow-step-num">3</div>
+            <div class="workflow-icon">🧠</div>
+            <h3 class="workflow-title">CPU &amp; RAM Processing</h3>
+            <p class="workflow-desc">The CPU fetches data from the system bus, arithmetic logic units calculate results, and memory stores active states.</p>
+          </div>
+
+          <div class="workflow-step">
+            <div class="workflow-step-num">4</div>
+            <div class="workflow-icon">📤</div>
+            <h3 class="workflow-title">Output Translation</h3>
+            <p class="workflow-desc">Processed binary is sent to GPUs, DACs, or raster engines to generate visible pixels, ink deposits, or acoustic waves.</p>
+          </div>
+
+          <div class="workflow-step">
+            <div class="workflow-step-num">5</div>
+            <div class="workflow-icon">👁️</div>
+            <h3 class="workflow-title">Human Feedback Loop</h3>
+            <p class="workflow-desc">The user sees the monitor or projector, hears the speakers, or reviews the printed paper, prompting the next action.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: COMPARISON TABLE -->
+    <section id="comparison" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Comprehensive Reference</p>
+          <h2 class="section-title">Side-by-Side Comparison</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            A quick-reference architectural breakdown of the 8 core input and output devices featured in this study.
+          </p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="io-table" aria-label="Input and Output Devices Comparison Table">
+            <thead>
+              <tr>
+                <th>Device Name</th>
+                <th>Category</th>
+                <th>Primary Function</th>
+                <th>Signal / Data Format</th>
+                <th>Connection Interfaces</th>
+                <th>Key Metric</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="device-table-name">⌨️ Keyboard</span></td>
+                <td><span class="table-pill pill-input">Input</span></td>
+                <td>Alphanumeric typing &amp; commands</td>
+                <td>Binary Scan Codes / ASCII / Unicode</td>
+                <td>USB-A, USB-C, Bluetooth</td>
+                <td>N-Key Rollover, Polling Rate</td>
+              </tr>
+              <tr>
+                <td><span class="device-table-name">🖱️ Mouse</span></td>
+                <td><span class="table-pill pill-input">Input</span></td>
+                <td>2D cursor pointing &amp; clicking</td>
+                <td>Delta X/Y displacement coordinates</td>
+                <td>USB, 2.4GHz RF, Bluetooth</td>
+                <td>DPI / CPI, Polling Rate (Hz)</td>
+              </tr>
+              <tr>
+                <td><span class="device-table-name">📠 Scanner</span></td>
+                <td><span class="table-pill pill-input">Input</span></td>
+                <td>Digitizes paper documents &amp; photos</td>
+                <td>Raster bitmap pixels (RGB), OCR text</td>
+                <td>USB 3.0, Wi-Fi Network</td>
+                <td>Optical Resolution (DPI), PPM</td>
+              </tr>
+              <tr>
+                <td><span class="device-table-name">🎙️ Microphone</span></td>
+                <td><span class="table-pill pill-input">Input</span></td>
+                <td>Captures human speech &amp; sounds</td>
+                <td>Digital PCM audio waveforms (ADC)</td>
+                <td>USB, 3.5mm TRS, XLR</td>
+                <td>Sample Rate (kHz), Polar Pattern</td>
+              </tr>
+              <tr>
+                <td><span class="device-table-name">🖥️ Monitor</span></td>
+                <td><span class="table-pill pill-output">Output</span></td>
+                <td>Real-time visual display</td>
+                <td>Digital video bitstreams (RGB frames)</td>
+                <td>DisplayPort, HDMI, USB-C</td>
+                <td>Resolution, Refresh Rate (Hz)</td>
+              </tr>
+              <tr>
+                <td><span class="device-table-name">🖨️ Printer</span></td>
+                <td><span class="table-pill pill-output">Output</span></td>
+                <td>Produces permanent physical hard copies</td>
+                <td>Raster page descriptions (PCL / PostScript)</td>
+                <td>Wi-Fi, Ethernet, USB</td>
+                <td>Pages Per Minute (PPM), DPI</td>
+              </tr>
+              <tr>
+                <td><span class="device-table-name">🔊 Speakers</span></td>
+                <td><span class="table-pill pill-output">Output</span></td>
+                <td>Reproduces audible acoustic sound waves</td>
+                <td>Analog audio voltage from DAC</td>
+                <td>3.5mm AUX, RCA, Bluetooth, USB</td>
+                <td>RMS Wattage, Frequency Range</td>
+              </tr>
+              <tr>
+                <td><span class="device-table-name">📽️ Projector</span></td>
+                <td><span class="table-pill pill-output">Output</span></td>
+                <td>Projects large-scale images onto screens</td>
+                <td>Magnified optical video beam (DLP/3LCD)</td>
+                <td>HDMI, DisplayPort, Wireless Cast</td>
+                <td>ANSI Lumens, Throw Ratio</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <span class="logo-symbol">&lt;/&gt;</span>
+        <span class="logo-text">Mekhi Digital Portfolio<span class="accent-dot">.</span></span>
+      </div>
+      <div class="footer-sitemap-links">
+        <a href="index.html">Portfolio Home</a> •
+        <a href="digital-citizenship.html">Digital Citizenship</a> •
+        <a href="internet.html">The Internet</a> •
+        <a href="software.html">Software Guide</a> •
+        <a href="hardware.html">Computer Hardware</a> •
+        <a href="storage.html">Storage Devices</a> •
+        <a href="security.html">Security Guide</a> •
+        <a href="io.html">Input &amp; Output Devices</a>
+      </div>
+      <p class="copyright">© 2026 Mekhi Childs. Introduction to Technology, Caldwell University.</p>
+      <div class="footer-actions"><a href="#hero" class="back-to-top" title="Back to top">Back to top ↑</a></div>
+    </div>
+  </footer>
+
+  <!-- Script Includes -->
+  <script src="script.js"></script>
+  <script>
+    // Category Filter Tabs Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const deviceCards = document.querySelectorAll('.device-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+
+          const filterVal = btn.getAttribute('data-filter');
+
+          deviceCards.forEach(card => {
+            const cardCat = card.getAttribute('data-category');
+            if (filterVal === 'all' || cardCat === filterVal) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

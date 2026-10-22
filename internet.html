@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Internet: Architecture, Protocols & Web Technologies. Academic guide and interactive resource by Mekhi Childs, Caldwell University. Exploring networking infrastructure, TCP/IP, DNS, packet switching, web evolution, and packet simulation.">
+  <title>The Internet: Architecture, Protocols & Web Technologies | Mekhi Childs</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🎓%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0b0e14">
+<style id="site-polish">
+/* Site polish: smoother, more accessible, tidier */
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-wrap:break-word}
+img,svg,video,iframe{max-width:100%;height:auto}
+pre,code{white-space:pre-wrap;word-break:break-word}
+table{max-width:100%}
+::selection{background:rgba(168,85,247,.45);color:#fff}
+:focus-visible{outline:2px solid #a78bfa;outline-offset:3px;border-radius:4px}
+a,button{-webkit-tap-highlight-color:transparent}
+button:not(:disabled),[role="button"]{cursor:pointer}
+.skip-link{position:absolute;left:-9999px;top:8px;z-index:100001;padding:10px 16px;background:#a855f7;color:#fff;border-radius:8px;font-weight:700;text-decoration:none}
+.skip-link:focus{left:8px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media print{.skip-link{display:none}}
+</style>
+<link rel="stylesheet" href="site-enhance.css">
+<script src="site-enhance.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#hero">Skip to main content</a>
+  <!-- Header / Subpage Navigation -->
+  <header class="site-header" id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" title="Return to Main Portfolio">
+        <span class="logo-symbol">&lt;/&gt;</span>
+        <span class="logo-text">Mekhi Digital Portfolio<span class="accent-dot">.</span></span>
+      </a>
+
+      <!-- Desktop Tab Bar Navigation -->
+      <nav class="desktop-nav" aria-label="Internet Architecture Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="back-nav-link">← Portfolio Home</a></li>
+          <li><a href="security.html" class="nav-link tab-highlight-security">🛡️ Security</a></li>
+          <li><a href="digital-citizenship.html" class="nav-link tab-highlight-dc">🌐 Digital Citizenship</a></li>
+          <li><a href="software.html" class="nav-link">💻 Software</a></li>
+          <li><a href="hardware.html" class="nav-link tab-highlight-hardware">🔧 Hardware</a></li>
+          <li><a href="storage.html" class="nav-link">💾 Storage</a></li>
+          <li><a href="io.html" class="nav-link tab-highlight-io">⌨️ I/O Devices</a></li>
+          <li><a href="#part1" class="nav-link tab-highlight-internet">⚡ Part 1: Tech</a></li>
+          <li><a href="#part2" class="nav-link" style="color: #a855f7; font-weight: 600;">🤖 Part 2: Chatbot</a></li>
+          <li><a href="#part3" class="nav-link" style="color: #10b981; font-weight: 600;">👤 Part 3: Digital Person</a></li>
+          <li><a href="#core-questions" class="nav-link">Key Questions</a></li>
+          <li><a href="#architecture" class="nav-link">Architecture</a></li>
+          <li><a href="#protocols" class="nav-link">Protocols</a></li>
+          <li><a href="#evolution" class="nav-link">Web Evolution</a></li>
+          <li><a href="#simulator" class="nav-link">Simulator</a></li>
+          <li><a href="#quiz" class="nav-link">Quiz</a></li>
+          <li><a href="#checklist" class="nav-link">Checklist</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Return Link CTA -->
+        <a href="index.html#projects" class="btn btn-secondary nav-cta">All Coursework</a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button type="button" id="menu-toggle" class="icon-btn mobile-only" aria-label="Open navigation menu">
+          <svg class="hamburger-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-menu" class="mobile-drawer">
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="mobile-nav-link font-bold text-primary">← Return to Main Portfolio</a></li>
+        <li><a href="security.html" class="mobile-nav-link font-bold" style="color: #10b981;">🛡️ Security Guide</a></li>
+        <li><a href="digital-citizenship.html" class="mobile-nav-link text-primary font-bold">🌐 Digital Citizenship Webpage</a></li>
+        <li><a href="software.html" class="mobile-nav-link">💻 Software Guide</a></li>
+        <li><a href="hardware.html" class="mobile-nav-link font-bold" style="color: #fb7185;">🔧 Computer Hardware</a></li>
+        <li><a href="storage.html" class="mobile-nav-link font-bold" style="color: #fbbf24;">💾 Storage Devices</a></li>
+        <li><a href="io.html" class="mobile-nav-link font-bold" style="color: #f59e0b;">⌨️ Input &amp; Output Devices</a></li>
+        <li><a href="#part1" class="mobile-nav-link font-bold" style="color: #06b6d4;">⚡ Part 1: Internet Technologies</a></li>
+        <li><a href="#part2" class="mobile-nav-link font-bold" style="color: #a855f7;">🤖 Part 2: AI Chatbot</a></li>
+        <li><a href="#part3" class="mobile-nav-link font-bold" style="color: #10b981;">👤 Part 3: AI Digital Person</a></li>
+        <li><a href="digital-citizenship.html" class="mobile-nav-link text-primary font-bold">🌐 Digital Citizenship Webpage</a></li>
+        <li><a href="#core-questions" class="mobile-nav-link">❓ Essential Questions & Answers</a></li>
+        <li><a href="#architecture" class="mobile-nav-link">Global Architecture & URL Anatomy</a></li>
+        <li><a href="#protocols" class="mobile-nav-link">TCP/IP Protocol Stack</a></li>
+        <li><a href="#evolution" class="mobile-nav-link">Web 1.0 to Web 3.0 & Deep Web</a></li>
+        <li><a href="#simulator" class="mobile-nav-link font-bold" style="color: #06b6d4;">⚡ Packet & DNS Simulator</a></li>
+        <li><a href="#quiz" class="mobile-nav-link">Interactive Quiz</a></li>
+        <li><a href="#checklist" class="mobile-nav-link">Network Hygiene Checklist</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="index.html#contact" class="btn btn-primary w-full">Connect with Mekhi</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="section hero-section">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="status-badge">
+            <span class="status-indicator"></span>
+            Introduction to Technology • Caldwell University
+          </div>
+          <h1 class="hero-title">
+            Connecting the Planet:<br>
+            <span class="gradient-text">The Internet</span>, Protocols & Web Technologies
+          </h1>
+          <p class="hero-subtitle">
+            The Internet connects billions of computers through shared protocols, physical infrastructure, and open standards. This guide explores how the web works, the TCP/IP protocol stack, and the technologies that help people communicate and find information online.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#part1" class="btn btn-primary" style="border-color: rgba(6, 182, 212, 0.4); color: #22d3ee;">
+              ⚡ Part 1: Tech ↓
+            </a>
+            <a href="#part2" class="btn btn-primary" style="border-color: rgba(168, 85, 247, 0.5); color: #c084fc; background: rgba(168, 85, 247, 0.12);">
+              🤖 Part 2: Chatbot ↓
+            </a>
+            <a href="#part3" class="btn btn-primary" style="border-color: rgba(16, 185, 129, 0.5); color: #34d399; background: rgba(16, 185, 129, 0.12);">
+              👤 Part 3: Digital Person ↓
+            </a>
+            <a href="#core-questions" class="btn btn-secondary">Key Questions</a>
+            <a href="#simulator" class="btn btn-secondary">Packet Simulator</a>
+          </div>
+
+          <!-- Hero Metrics Cards -->
+          <div class="net-hero-stats">
+            <div class="net-stat-card">
+              <div class="net-stat-icon">🌍</div>
+              <div>
+                <div class="net-stat-number">5.4+ Billion</div>
+                <div class="net-stat-label">Active Global Users</div>
+              </div>
+            </div>
+            <div class="net-stat-card">
+              <div class="net-stat-icon">🌊</div>
+              <div>
+                <div class="net-stat-number">99% of Traffic</div>
+                <div class="net-stat-label">Undersea Submarine Cables</div>
+              </div>
+            </div>
+            <div class="net-stat-card">
+              <div class="net-stat-icon">📦</div>
+              <div>
+                <div class="net-stat-number">4 Layers</div>
+                <div class="net-stat-label">TCP/IP Protocol Suite</div>
+              </div>
+            </div>
+            <div class="net-stat-card">
+              <div class="net-stat-icon">🔢</div>
+              <div>
+                <div class="net-stat-number">3.4 × 10³⁸</div>
+                <div class="net-stat-label">IPv6 Address Space</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Part 1: Internet Technologies (Coursework Assignment Core Section) -->
+    <section id="part1" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Academic Coursework • Introduction to Technology</p>
+          <h2 class="section-title">Part 1: Internet Technologies</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            An in-depth academic synthesis authored in my own words by Mekhi Childs (Caldwell University), exploring how data flows across the global network, the critical role of service providers, how client-side browsers render code, and how search engines index the modern web.
+          </p>
+        </div>
+
+        <!-- Topic 1: How the Internet works -->
+        <article class="topic-explanation-card" id="how-it-works">
+          <div class="topic-header-flex">
+            <div>
+              <span class="topic-badge-tag">Topic 01</span>
+              <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--text-primary); margin-top: 0.35rem;">
+                How the Internet Works
+              </h3>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Decentralized Networking & Packet Switching</span>
+          </div>
+
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
+            In my own words, the Internet is a vast, decentralized global network of billions of interconnected computers, smartphones, servers, and smart devices that communicate with one another using universal standardized communication rules known as the <strong>Internet Protocol Suite (TCP/IP)</strong>. Many people mistakenly visualize the Internet as a single massive central computer or a magical wireless cloud floating overhead. In reality, the Internet is a physical and logical cooperative mesh. No single government, corporation, or entity owns it; instead, it thrives on an open architecture coordinated by international standards organizations such as the <a href="https://www.ietf.org" target="_blank" rel="noopener noreferrer" class="content-link content-link-external">Internet Engineering Task Force (IETF)</a> and <a href="https://www.icann.org" target="_blank" rel="noopener noreferrer" class="content-link content-link-external">ICANN</a>.
+          </p>
+
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
+            The secret to how the Internet operates reliably is a concept called <strong>packet switching</strong>. When I sit at my computer at Caldwell University and send an email or request a webpage, my computer does not transmit the entire file as one unbroken stream of data. If it did, a single hiccup on the wire would ruin the entire transfer, and one user would monopolize the connection. Instead, my computer slices the message into thousands of tiny digital chunks called <strong>data packets</strong>. Each individual packet is stamped with a digital header containing the sender's Source IP address, the receiver's Destination IP address, and an exact sequence number.
+          </p>
+
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
+            These packets are handed off from my device through my local Wi-Fi router to my Internet Service Provider. From there, high-speed specialized computers called <strong>routers</strong> inspect the destination address on each packet and forward it along the fastest available path. Because routers adapt in real time to network congestion or broken cables, different packets from the exact same image or webpage can take completely different physical pathways—some traveling through regional terrestrial fiber lines and others darting through deep submarine cables resting on the ocean floor. Once every packet reaches the destination server, the receiving computer uses the sequence numbers to verify that none were lost and reassembles them back into the original complete file.
+          </p>
+
+          <!-- Image 1 with Figure and Figcaption -->
+          <figure class="content-figure">
+            <img src="images/how-the-internet-works.jpg" alt="Illustrated educational diagram of how the Internet works: packet routing from client laptop to Wi-Fi router, ISP network, DNS server, global backbone, undersea cables, and web server data center" class="responsive-img">
+            <figcaption>
+              <strong>Figure 1:</strong> Visualizing How the Internet Works — A step-by-step diagram showing data requests traveling from a client laptop through a local Wi-Fi router and modem, entering the ISP network gateway, resolving via DNS, traversing the global backbone and deep-sea submarine fiber-optic cables, and arriving at remote web server data centers.
+            </figcaption>
+          </figure>
+
+          <div style="background: rgba(6, 182, 212, 0.08); border-left: 4px solid #06b6d4; border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin-top: 1.25rem;">
+            <strong style="color: #22d3ee; font-size: 0.9rem;">Key Student Takeaway:</strong>
+            <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem; line-height: 1.55;">
+              The Internet works because of decentralized collaboration. By breaking data into packets and routing them dynamically across an interconnected web of fiber optics and routers, the system is naturally self-healing and resistant to single points of failure.
+            </p>
+          </div>
+        </article>
+
+        <!-- Topic 2: Internet Service Providers (ISPs) -->
+        <article class="topic-explanation-card" id="isps">
+          <div class="topic-header-flex">
+            <div>
+              <span class="topic-badge-tag">Topic 02</span>
+              <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--text-primary); margin-top: 0.35rem;">
+                Internet Service Providers (ISPs)
+              </h3>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Commercial Gateways & Network Hierarchy</span>
+          </div>
+
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
+            In my own words, an <strong>Internet Service Provider (ISP)</strong> is the company or organization that supplies the critical commercial bridge connecting our homes, schools, and offices to the rest of the worldwide Internet. Everyday individuals cannot personally lay thousands of miles of transatlantic fiber-optic cables or install multi-million dollar optical routers. Instead, we subscribe to an ISP—such as Comcast Xfinity, Verizon Fios, AT&T, or Spectrum—which owns or leases the telecommunications infrastructure that links our local devices to the global network.
+          </p>
+
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
+            The Internet is structured in a three-tier hierarchy of service providers:
+          </p>
+          <ul style="padding-left: 1.25rem; list-style-type: disc; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+            <li><strong>Tier 3 ISPs (Local/Consumer Providers):</strong> These are the local access providers that run cables directly to our houses, campus dorms, and mobile phones (fiber, coaxial cable, DSL, or cellular 5G). They purchase upstream internet connectivity from higher tiers.</li>
+            <li><strong>Tier 2 ISPs (Regional Providers):</strong> Larger regional networks that connect multiple Tier 3 providers together and peer with other networks to exchange regional traffic.</li>
+            <li><strong>Tier 1 ISPs (Global Backbone Carriers):</strong> The giants of cyberspace (such as Lumen, AT&T, and Telia Carrier). They own the transcontinental fiber backbones and undersea cables. Crucially, Tier 1 providers participate in "settlement-free peering," routing packets between each other without charging transit fees because their traffic exchanges are balanced.</li>
+          </ul>
+
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
+            When my router connects to my ISP, the provider dynamically assigns my household a public IP address through <strong>DHCP (Dynamic Host Configuration Protocol)</strong>. The ISP acts as a gatekeeper, managing download/upload bandwidth, directing DNS queries, and routing packets toward the nearest Internet Exchange Point (IXP). 
+          </p>
+
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem;">
+            The <a href="https://www.fcc.gov/general/broadband-internet-service" target="_blank" rel="noopener noreferrer" class="content-link content-link-external">Federal Communications Commission (FCC)</a> oversees communications policy in the United States. Public policy debates about <em>Net Neutrality</em> consider whether ISPs should be allowed to throttle specific websites or should treat packet traffic equally without paid fast lanes.
+          </p>
+
+          <div style="background: rgba(168, 85, 247, 0.08); border-left: 4px solid #a855f7; border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin-top: 1.25rem;">
+            <strong style="color: #c084fc; font-size: 0.9rem;">Key Student Takeaway:</strong>
+            <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem; line-height: 1.55;">
+              ISPs are the on-ramps to the digital world. They provide physical connectivity, assign IP addresses, manage bandwidth, and route data between local devices and the wider Internet.
+            </p>
+          </div>
+        </article>
+
+        <!-- Topic 3: Web Browsers -->
+        <article class="topic-explanation-card" id="web-browsers">
+          <div class="topic-header-flex">
+            <div>
+              <span class="topic-badge-tag">Topic 03</span>
+              <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--text-primary); margin-top: 0.35rem;">
+                Web Browsers
+              </h3>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Client-Side Translators & Rendering Engines</span>
+          </div>
+
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
+            In my own words, a <strong>web browser</strong> is a client application software program installed on our computers, tablets, or phones that allows humans to locate, retrieve, interpret, and visually interact with content on the World Wide Web. Many everyday computer users confuse the browser with the Internet itself or mistake it for Google, but the browser is actually the viewing tool or interpreter. Without a web browser, a webpage is just an unreadable jumble of raw code and text files sitting on a distant server.
+          </p>
+
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
+            When I enter an address into a browser like Google Chrome, Apple Safari, Mozilla Firefox, or Microsoft Edge, the browser executes a complex multi-step pipeline documented by the <a href="https://developer.mozilla.org" target="_blank" rel="noopener noreferrer" class="content-link content-link-external">Mozilla Developer Network (MDN) Web Docs</a>:
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+            <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 1rem;">
+              <h5 style="color: #38bdf8; font-size: 0.95rem; margin-bottom: 0.35rem;">1. Fetching (HTTP/HTTPS)</h5>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                The browser contacts the remote server using HTTP or encrypted HTTPS protocols, negotiates TLS encryption, and downloads HTML, CSS stylesheets, images, and JavaScript script files.
+              </p>
+            </div>
+            <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 1rem;">
+              <h5 style="color: #a855f7; font-size: 0.95rem; margin-bottom: 0.35rem;">2. Parsing & The DOM Tree</h5>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                The browser's layout engine parses the raw HTML tags into an internal hierarchical object tree called the Document Object Model (DOM) and blends it with CSS rules to determine styling.
+              </p>
+            </div>
+            <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 1rem;">
+              <h5 style="color: #10b981; font-size: 0.95rem; margin-bottom: 0.35rem;">3. Layout, Scripting & Painting</h5>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                A JavaScript engine (such as Google V8 or Apple JavaScriptCore) executes dynamic page logic, calculates exact pixel coordinates on the display, and paints buttons, text, and graphics onto the screen.
+              </p>
+            </div>
+          </div>
+
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem;">
+            Web browsers also perform critical cybersecurity functions. Modern browsers enforce <strong>sandboxing</strong>, isolating each open tab into an independent operating system process so malicious code on one compromised site cannot read banking passwords or inject malware into other tabs. Browsers also inspect digital SSL certificates, warn users about phishing and malicious domains, manage secure browser cookies, store local cache files to speed up repeat visits, and offer private browsing modes (such as Chrome Incognito) that prevent local browsing history and temporary cookies from saving to the machine.
+          </p>
+
+          <div style="background: rgba(16, 185, 129, 0.08); border-left: 4px solid #10b981; border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin-top: 1.25rem;">
+            <strong style="color: #34d399; font-size: 0.9rem;">Key Student Takeaway:</strong>
+            <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem; line-height: 1.55;">
+              A browser is not the Internet; it is the software vehicle you drive to navigate the web. Its rendering engine transforms raw text files into interactive visual experiences while enforcing vital security sandboxes.
+            </p>
+          </div>
+        </article>
+
+        <!-- Topic 4: Search Engines -->
+        <article class="topic-explanation-card" id="search-engines">
+          <div class="topic-header-flex">
+            <div>
+              <span class="topic-badge-tag">Topic 04</span>
+              <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--text-primary); margin-top: 0.35rem;">
+                Search Engines
+              </h3>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Information Retrieval & Algorithmic Indexing</span>
+          </div>
+
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
+            In my own words, a <strong>search engine</strong> is a massive, automated web-based information retrieval system designed to help users discover, filter, and access relevant content across billions of public webpages on the World Wide Web. While a web browser is the software program you launch on your computer, a search engine (such as Google, Microsoft Bing, or privacy-oriented DuckDuckGo) is a specialized cloud platform you visit whenever you need to find information, but do not already know the exact URL.
+          </p>
+
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">
+            A common misconception is that a search engine searches the live, active Internet at the exact second you type your query. If it tried to query every server across the planet live, a single search would take hours. Instead, as explained in the <a href="https://developers.google.com/search/docs/fundamentals/how-search-works" target="_blank" rel="noopener noreferrer" class="content-link content-link-external">Google Search Central Guide on How Search Works</a>, search engines search their own colossal, pre-built database index using three primary stages:
+          </p>
+
+          <ul style="padding-left: 1.25rem; list-style-type: disc; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem;">
+            <li><strong>1. Web Crawling (Spiders & Bots):</strong> Search engines deploy automated programs called crawlers or spiders (like Googlebot) that explore the web 24/7. They start with a known list of trusted websites and continuously follow every hyperlink on those pages to discover newly published pages, updated articles, or deleted links.</li>
+            <li><strong>2. Indexing:</strong> When a crawler discovers a page, the search engine analyzes its contents—extracting headlines, body text, image descriptions, page titles, and structured metadata. It catalogs this data into a gigantic distributed database known as the <em>Search Index</em>, functioning like an index at the back of a trillion-page textbook.</li>
+            <li><strong>3. Ranking & Serving Results:</strong> When a user enters a query, complex mathematical algorithms evaluate hundreds of ranking signals in milliseconds. These include keyword relevance, domain trustworthiness, high-quality backlinks from other respected sites, mobile responsiveness, page loading speed, and user intent. The algorithm then ranks the best matches and serves them on the Search Engine Results Page (SERP).</li>
+          </ul>
+
+          <!-- Image 2 with Figure and Figcaption -->
+          <figure class="content-figure">
+            <img src="images/web-browsers-vs-search-engines.jpg" alt="Educational infographic comparing Search Engines (crawling, database indexing, and ranking algorithms) versus Web Browsers (HTTP requests, parsing DOM tree, and screen rendering engine)" class="responsive-img">
+            <figcaption>
+              <strong>Figure 2:</strong> Understanding the Web — Search Engines (How They Discover Content via Web Crawlers, Build Database Indexes & Calculate Ranking Algorithms) vs. Web Browsers (How They Request Web Files, Parse the DOM & Paint Interactive User Interfaces).
+            </figcaption>
+          </figure>
+
+          <div style="background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin-top: 1.25rem;">
+            <strong style="color: #fbbf24; font-size: 0.9rem;">Key Student Takeaway:</strong>
+            <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem; line-height: 1.55;">
+              Search engines are the navigational compass of the World Wide Web. By crawling hyperlinks, indexing billions of documents into searchable databases, and applying relevance algorithms, they make the overwhelming sea of digital information orderly and accessible.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Part 2: AI Chatbot (Interactive Student Assistant) -->
+    <section id="part2" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Interactive AI Assistant • Course Project Part 2</p>
+          <h2 class="section-title">Part 2: AI Chatbot</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Type any question below to have a live conversation with <strong>NetBot AI</strong>. Ask about how the Internet works, ISPs, web browsers, search engines, cybersecurity, or network protocols and receive instant AI-generated answers.
+          </p>
+        </div>
+
+        <div class="chatbot-wrapper">
+          <!-- Chatbot Header -->
+          <div class="chat-header-bar">
+            <div class="chat-bot-identity">
+              <div class="chat-bot-avatar">
+                🤖
+                <span class="chat-online-badge" title="Status: Online"></span>
+              </div>
+              <div class="chat-bot-details">
+                <h3>NetBot AI <span class="tag" style="background: rgba(16, 185, 129, 0.2); color: #34d399; font-size: 0.7rem;">Active</span></h3>
+                <p>Internet & Technology Assistant • Caldwell University</p>
+              </div>
+            </div>
+            <div class="chat-header-actions">
+              <button type="button" id="chat-clear-btn" class="chat-action-btn" title="Clear chat conversation">
+                🗑️ Clear Conversation
+              </button>
+            </div>
+          </div>
+
+          <!-- Suggested Questions Tray -->
+          <div class="chat-suggestions-tray">
+            <div class="chat-suggestions-title">
+              💡 Suggested Questions (Click any prompt to ask):
+            </div>
+            <div class="chat-chips-scroll">
+              <button type="button" class="chat-prompt-chip" data-prompt="How does packet switching work?">📦 How does packet switching work?</button>
+              <button type="button" class="chat-prompt-chip" data-prompt="What is the difference between an ISP and a web browser?">🌐 ISP vs. Web Browser?</button>
+              <button type="button" class="chat-prompt-chip" data-prompt="How do search engines crawl and rank websites?">🔍 How do search engines rank pages?</button>
+              <button type="button" class="chat-prompt-chip" data-prompt="Do undersea submarine cables really carry 99% of Internet traffic?">🌊 Tell me about undersea cables</button>
+              <button type="button" class="chat-prompt-chip" data-prompt="What is the difference between TCP and UDP?">⚡ TCP vs. UDP?</button>
+            </div>
+          </div>
+
+          <!-- Chat Message Thread Body -->
+          <div id="chat-thread" class="chat-thread-container" aria-live="polite">
+            <!-- Initial Greeting from Bot -->
+            <div class="chat-msg-row bot-row">
+              <div class="chat-avatar-small">🤖</div>
+              <div class="chat-bubble">
+                <p>
+                  <strong>Hello and welcome!</strong> I am <strong>NetBot AI</strong>, your interactive Internet Technologies tutor created for Mekhi Childs' Digital Portfolio at <strong>Caldwell University</strong>.
+                </p>
+                <p>
+                  I'm here to answer your questions about:
+                </p>
+                <ul>
+                  <li><strong>How the Internet Works</strong> (Packets, routing, undersea cables)</li>
+                  <li><strong>Internet Service Providers (ISPs)</strong> (Tiers, DHCP, bandwidth)</li>
+                  <li><strong>Web Browsers</strong> (Rendering engines, DOM tree, security)</li>
+                  <li><strong>Search Engines</strong> (Crawlers, database indexing, PageRank)</li>
+                  <li><strong>Network Protocols</strong> (TCP/IP, DNS, and packet routing)</li>
+                </ul>
+                <p>
+                  Feel free to type your own question below or click any suggestion chip above to begin our conversation!
+                </p>
+                <span class="chat-timestamp">Just now</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chat Input Bar -->
+          <div class="chat-input-bar">
+            <form id="chat-form" class="chat-input-form">
+              <input type="text" id="chat-input" class="chat-input-field" placeholder="Type your question here... (e.g. How do ISPs assign IP addresses?)" autocomplete="off" required>
+              <button type="submit" id="chat-send-btn" class="chat-send-btn" aria-label="Send message">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+                <span class="btn-text">Send</span>
+              </button>
+            </form>
+            <div class="chat-input-hint">
+              <span>Press <strong>Enter</strong> to send • AI generates real-time answers</span>
+              <span id="chat-status-text" style="color: #10b981;">● Ready</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Part 3: AI Digital Person -->
+    <section id="part3" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Interactive AI Assistant • Course Project Part 3</p>
+          <h2 class="section-title">Part 3: AI Digital Person</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Upload a photo to create a personalized AI avatar, then chat with your digital person and ask questions just like Part 2. Avatar creation sends your photo to OpenAI for image editing; your digital person uses the Part 2 networking Q&amp;A assistant to answer questions.
+          </p>
+        </div>
+
+        <div class="chatbot-wrapper">
+          <div class="person-setup-panel">
+            <div class="person-setup-heading">
+              <div>
+                <h3>Create Your Digital Person</h3>
+                <p>Choose a photo and a visual style. Your photo is sent securely to OpenAI through this site's server function to create the avatar.</p>
+              </div>
+            </div>
+            <div class="person-setup-grid">
+              <div class="person-setup-controls">
+                <label class="person-field-label" for="digital-person-photo">Upload a photo</label>
+                <input class="person-file-input" type="file" id="digital-person-photo" accept="image/jpeg,image/png,image/webp">
+                <p class="person-field-note">JPG, PNG, or WEBP • Up to 10 MB. Use a photo you have permission to share.</p>
+
+                <label class="person-field-label" for="digital-person-style">Avatar style</label>
+                <textarea id="digital-person-style" class="chat-input-field person-style-input" maxlength="240">A polished, friendly digital-person portrait with a clean, softly lit background.</textarea>
+
+                <button type="button" id="digital-person-generate" class="chat-send-btn person-generate-btn" disabled>
+                  <span>✨ Generate My Digital Person</span>
+                </button>
+                <p id="digital-person-generation-status" class="person-generation-status" role="status" aria-live="polite">Choose a photo to get started.</p>
+              </div>
+
+              <div class="person-preview-card">
+                <img id="digital-person-preview" class="person-generated-image" alt="Uploaded photo preview for your digital person" hidden>
+                <div id="digital-person-placeholder" class="person-preview-placeholder">
+                  <span aria-hidden="true">👤</span>
+                  <p>Your generated digital person will appear here.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-header-bar">
+            <div class="chat-bot-identity">
+              <div class="chat-bot-avatar person-chat-avatar" aria-hidden="true">
+                <span id="digital-person-chat-placeholder">👤</span>
+                <img id="digital-person-chat-image" alt="" hidden>
+                <span class="chat-online-badge" title="Status: Online"></span>
+              </div>
+              <div class="chat-bot-details">
+                <h3>Your Digital Person <span class="tag" style="background: rgba(16, 185, 129, 0.2); color: #34d399; font-size: 0.7rem;">Ready</span></h3>
+                <p>Personalized AI Avatar • Tech Q&amp;A Assistant</p>
+              </div>
+            </div>
+            <div class="chat-header-actions">
+              <button type="button" id="digital-person-clear-btn" class="chat-action-btn" title="Clear digital person conversation">🗑️ Clear Conversation</button>
+            </div>
+          </div>
+
+          <div class="chat-suggestions-tray">
+            <div class="chat-suggestions-title">💡 Ask your digital person:</div>
+            <div class="chat-chips-scroll">
+              <button type="button" class="digital-person-prompt-chip chat-prompt-chip" data-prompt="What is cloud computing?">☁️ What is cloud computing?</button>
+              <button type="button" class="digital-person-prompt-chip chat-prompt-chip" data-prompt="How do I make a strong password?">🔐 Make a strong password?</button>
+              <button type="button" class="digital-person-prompt-chip chat-prompt-chip" data-prompt="What is artificial intelligence?">🤖 What is AI?</button>
+              <button type="button" class="digital-person-prompt-chip chat-prompt-chip" data-prompt="Tell me a joke">😄 Tell me a joke</button>
+            </div>
+          </div>
+
+          <div id="digital-person-thread" class="chat-thread-container" aria-live="polite">
+            <div class="chat-msg-row bot-row">
+              <div class="chat-avatar-small digital-person-message-avatar">👤</div>
+              <div class="chat-bubble">
+                <p><strong>Hello!</strong> Upload a photo and generate your digital person above, then <strong>talk to me about any tech topic</strong>: AI, security, the cloud, gadgets, coding, networks, or just chat.</p>
+                <span class="chat-timestamp">Just now</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-input-bar">
+            <form id="digital-person-chat-form" class="chat-input-form">
+              <input type="text" id="digital-person-chat-input" class="chat-input-field" placeholder="Ask your digital person a question..." autocomplete="off" required>
+              <button type="submit" id="digital-person-chat-send" class="chat-send-btn" aria-label="Send message to your digital person">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+                <span class="btn-text">Send</span>
+              </button>
+            </form>
+            <div class="chat-input-hint">
+              <span>Press <strong>Enter</strong> to chat • Your photo is only sent when you generate an avatar</span>
+              <span id="digital-person-chat-status" style="color: #10b981;">● Ready</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="core-questions" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Core Foundations</p>
+          <h2 class="section-title">Essential Questions of The Internet</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Explore the foundational definitions, structural mechanisms, governance realities, and architectural principles that keep billions of devices connected across the globe.
+          </p>
+        </div>
+
+        <div class="core-questions-grid">
+          <!-- Question 1: What is the Internet and who governs it? -->
+          <div class="qa-card qa-theme-blue">
+            <div class="qa-header">
+              <span class="qa-badge">Core Question 01</span>
+              <span class="qa-icon">🌐</span>
+            </div>
+            <h3 class="qa-question">What is the Internet and who owns it?</h3>
+            <div class="qa-takeaway">
+              <strong>Key Definition:</strong> The Internet is a globally decentralized network of interconnected computer networks that communicate using the standardized Internet Protocol Suite (TCP/IP). No single government, corporation, or entity owns the Internet.
+            </div>
+            <p class="qa-answer-text">
+              The Internet originated in 1969 as ARPANET, funded by the U.S. Department of Defense's Advanced Research Projects Agency (DARPA). Its core architectural philosophy was decentralized resilience: if any individual transmission line or computer node were disabled in an attack, traffic would automatically reroute around the outage.
+            </p>
+            <div class="qa-key-points">
+              <h5>Essential Dimensions of Internet Ownership & Governance:</h5>
+              <ul>
+                <li><strong>No Centralized Sovereign:</strong> Ownership is distributed among thousands of independent entities: universities, telecommunications carriers, cloud providers, and governments that operate their own Autonomous Systems (ASNs).</li>
+                <li><strong>ICANN (Internet Corporation for Assigned Names & Numbers):</strong> Coordinates the global Domain Name System (DNS), root server operations, and IP address allocation to ensure every address is unique.</li>
+                <li><strong>IETF (Internet Engineering Task Force):</strong> Open volunteer engineering community that authors Requests for Comments (RFCs)—the technical standards that define protocols like HTTP, TCP, and TLS.</li>
+                <li><strong>W3C (World Wide Web Consortium):</strong> Standards body founded by Tim Berners-Lee that standardizes HTML, CSS, and web accessibility standards.</li>
+              </ul>
+            </div>
+            <div class="qa-tags">
+              <span class="tag">Decentralized Mesh</span>
+              <span class="tag">ARPANET</span>
+              <span class="tag">ICANN</span>
+              <span class="tag">IETF RFCs</span>
+            </div>
+          </div>
+
+          <!-- Question 2: Internet vs World Wide Web -->
+          <div class="qa-card qa-theme-purple">
+            <div class="qa-header">
+              <span class="qa-badge">Core Question 02</span>
+              <span class="qa-icon">🕸️</span>
+            </div>
+            <h3 class="qa-question">What is the difference between the Internet and the Web?</h3>
+            <div class="qa-takeaway">
+              <strong>Key Definition:</strong> The Internet is the physical and logical networking <em>infrastructure</em> (cables, routers, servers, and IP protocols); the World Wide Web (WWW) is an <em>application service</em> that operates on top of the Internet using HTTP and hyperlinks.
+            </div>
+            <p class="qa-answer-text">
+              While commonly used interchangeably in colloquial conversation, the Internet and the World Wide Web represent two completely distinct technological layers:
+            </p>
+            <div class="qa-key-points">
+              <h5>The Highway vs. Vehicle Analogy:</h5>
+              <ul>
+                <li><strong>The Internet (The Highway System):</strong> Think of the Internet as the global highway system—the physical concrete roads, bridges, fiber-optic lines, undersea cables, and traffic routing signs (IP addresses).</li>
+                <li><strong>The Web (One Type of Vehicle):</strong> The World Wide Web is like delivery trucks driving along that highway carrying websites, HTML documents, and browser media via HTTP/HTTPS.</li>
+                <li><strong>Other Services Sharing the Highway:</strong> Many massive Internet services do <em>not</em> run on the Web: direct email protocols (SMTP/IMAP), file transfers (SFTP/SSH), online gaming packets (UDP), voice calling (VoIP/SIP), and streaming protocols.</li>
+                <li><strong>Different Inventors:</strong> The Internet's foundational protocols were engineered by Vint Cerf and Bob Kahn in the 1970s; the World Wide Web was invented later in 1989 by Sir Tim Berners-Lee at CERN.</li>
+              </ul>
+            </div>
+            <div class="qa-tags">
+              <span class="tag">Internet vs. Web</span>
+              <span class="tag">Tim Berners-Lee</span>
+              <span class="tag">Vint Cerf & Bob Kahn</span>
+              <span class="tag">Application Layer</span>
+            </div>
+          </div>
+
+          <!-- Question 3: Packet Switching -->
+          <div class="qa-card qa-theme-emerald">
+            <div class="qa-header">
+              <span class="qa-badge">Core Question 03</span>
+              <span class="qa-icon">📦</span>
+            </div>
+            <h3 class="qa-question">How does packet switching make the Internet resilient?</h3>
+            <div class="qa-takeaway">
+              <strong>Key Definition:</strong> Packet switching breaks digital files, video streams, and messages into discrete chunks called packets (datagrams), labels each with source/destination addresses and sequence numbers, and routes them dynamically across different physical paths.
+            </div>
+            <p class="qa-answer-text">
+              Prior to packet switching, communications used <em>circuit switching</em> (such as traditional landline telephone networks), where a continuous, dedicated physical wire circuit had to stay open for the entire duration of a call. If that single line broke, the call instantly dropped.
+            </p>
+            <div class="qa-key-points">
+              <h5>Why Packet Switching Revolutionized Global Networking:</h5>
+              <ul>
+                <li><strong>Dynamic Multi-Path Routing:</strong> When you send a 5 MB photo, it is sliced into thousands of packets. Packet 1 might cross an undersea cable via New York, while Packet 2 crosses via London, based on real-time router congestion.</li>
+                <li><strong>Fault Tolerance & Self-Healing:</strong> If a transatlantic fiber cable is accidentally severed by an anchor, Border Gateway Protocol (BGP) routers automatically divert remaining packets along alternate continental fibers without user intervention.</li>
+                <li><strong>Maximized Bandwidth Efficiency:</strong> Lines are not tied up idling during pauses in conversation. Packets from millions of users interleave across the same shared high-capacity backbone lines simultaneously.</li>
+                <li><strong>Assembly at Destination:</strong> The Transport Layer (TCP) on the recipient's computer checks sequence numbers, requests retransmission for any dropped packets, and reassembles the complete file seamlessly.</li>
+              </ul>
+            </div>
+            <div class="qa-tags">
+              <span class="tag">Packet Switching</span>
+              <span class="tag">Circuit Switching</span>
+              <span class="tag">Fault Tolerance</span>
+              <span class="tag">BGP Dynamic Routing</span>
+            </div>
+          </div>
+
+          <!-- Question 4: IP Addresses & DNS -->
+          <div class="qa-card qa-theme-amber">
+            <div class="qa-header">
+              <span class="qa-badge">Core Question 04</span>
+              <span class="qa-icon">🔍</span>
+            </div>
+            <h3 class="qa-question">How do IP addresses and the Domain Name System (DNS) work?</h3>
+            <div class="qa-takeaway">
+              <strong>Key Definition:</strong> An IP address is a unique numerical address assigned to every device on a network; the Domain Name System (DNS) is the "phonebook of the Internet" that translates human-readable names (e.g., caldwell.edu) into machine-routable IP addresses.
+            </div>
+            <p class="qa-answer-text">
+              Computers communicate using numbers, not English words. Whenever you enter a website name, your computer cannot send a single packet until DNS resolves that domain name to an exact IP address.
+            </p>
+            <div class="qa-key-points">
+              <h5>IPv4 vs. IPv6 and Hierarchical DNS Resolution:</h5>
+              <ul>
+                <li><strong>IPv4 (32-bit):</strong> Uses four sets of 8-bit numbers (e.g., <code>198.51.100.24</code>). Yields approximately 4.3 billion addresses—which the modern world exhausted in the 2010s due to smartphones, tablets, and IoT devices.</li>
+                <li><strong>IPv6 (128-bit):</strong> Uses eight hexadecimal blocks (e.g., <code>2001:0db8:85a3::8a2e:0370:7334</code>), providing \(3.4 \times 10^{38}\) unique addresses—enough to assign trillions of addresses to every atom on Earth.</li>
+                <li><strong>DNS Hierarchy:</strong> Lookups travel from Local Resolver → 13 Named Root Server Clusters (<code>.</code>) → Top-Level Domain (TLD) Nameservers (<code>.edu</code>) → Authoritative Nameservers for the specific domain.</li>
+                <li><strong>TTL & Caching:</strong> To avoid querying root servers for every single webpage click, DNS records are cached locally with a Time-To-Live (TTL) expiration value.</li>
+              </ul>
+            </div>
+            <div class="qa-tags">
+              <span class="tag">DNS Resolution</span>
+              <span class="tag">IPv4 Exhaustion</span>
+              <span class="tag">IPv6 128-bit</span>
+              <span class="tag">Root Servers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Global Physical & Logical Architecture Section -->
+    <section id="architecture" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Physical & Logical Blueprint</p>
+          <h2 class="section-title">The Physical Infrastructure of Cyberspace</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            The "Cloud" is not an ethereal mist in the sky—it consists of hundreds of thousands of miles of deep-sea cables, massive Tier 1 carrier exchange centers, and hyper-scale data centers.
+          </p>
+        </div>
+
+        <div class="arch-grid">
+          <!-- Card 1: Submarine Fiber Optic Cables -->
+          <div class="arch-card">
+            <div class="arch-card-header">
+              <div class="arch-icon-box">🌊</div>
+              <div>
+                <h3 class="arch-card-title">Submarine Undersea Cables</h3>
+                <span class="tag">Physical Backbone</span>
+              </div>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 1rem;">
+              Over <strong>99% of all transcontinental Internet traffic</strong> travels through fiber-optic cables resting on the ocean floor—not satellites. More than 550 active submarine cables span over 1.4 million kilometers across the globe.
+            </p>
+            <ul style="font-size: 0.85rem; color: var(--text-secondary); list-style-type: disc; padding-left: 1.2rem; line-height: 1.5; margin-bottom: 1rem;">
+              <li><strong>Speed of Light in Glass:</strong> Data travels as laser light pulses reflected inside glass hair-thin strands, crossing the Atlantic Ocean in approximately 60 milliseconds.</li>
+              <li><strong>Armored Protection:</strong> Near coastlines, cables are armored with heavy steel wire wraps and buried under seabed trenches to protect against commercial fishing trawlers and ship anchors.</li>
+              <li><strong>Geopolitical Risk:</strong> Subsea cable choke points (like the Red Sea, Strait of Malacca, and English Channel) present critical national security vulnerabilities subject to sabotage and undersea repair missions.</li>
+            </ul>
+          </div>
+
+          <!-- Card 2: Tier 1 Carriers & IXPs -->
+          <div class="arch-card">
+            <div class="arch-card-header">
+              <div class="arch-icon-box">🏢</div>
+              <div>
+                <h3 class="arch-card-title">Tier 1 Backbones & IXPs</h3>
+                <span class="tag">Routing Hierarchy</span>
+              </div>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 1rem;">
+              Internet Service Providers are organized hierarchically. At the very top are <strong>Tier 1 Carriers</strong> (e.g., Lumen, AT&T, Verizon, Telia Carrier) that own global transit backbones and route traffic to one another without paying fees.
+            </p>
+            <ul style="font-size: 0.85rem; color: var(--text-secondary); list-style-type: disc; padding-left: 1.2rem; line-height: 1.5; margin-bottom: 1rem;">
+              <li><strong>Internet Exchange Points (IXPs):</strong> Physical data center hubs (e.g., Equinix in Ashburn, VA; DE-CIX in Frankfurt) where major ISPs and content providers (Google, Netflix) directly exchange traffic ("peering").</li>
+              <li><strong>Autonomous Systems (ASNs):</strong> The Internet consists of over 100,000 Autonomous Systems—independent routing domains that announce available IP address blocks to peers via Border Gateway Protocol (BGP).</li>
+              <li><strong>Tier 2 & Tier 3 ISPs:</strong> Regional and consumer providers (Comcast, Charter) pay Tier 1 carriers for upstream "transit" to reach the rest of the world.</li>
+            </ul>
+          </div>
+
+          <!-- Card 3: Client-Server & Cloud Models -->
+          <div class="arch-card">
+            <div class="arch-card-header">
+              <div class="arch-icon-box">☁️</div>
+              <div>
+                <h3 class="arch-card-title">Client-Server & Cloud Compute</h3>
+                <span class="tag">Logical Topologies</span>
+              </div>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 1rem;">
+              The Internet supports two primary logical communication models: the centralized <strong>Client-Server model</strong> and the decentralized <strong>Peer-to-Peer (P2P) model</strong>.
+            </p>
+            <ul style="font-size: 0.85rem; color: var(--text-secondary); list-style-type: disc; padding-left: 1.2rem; line-height: 1.5; margin-bottom: 1rem;">
+              <li><strong>Client-Server:</strong> End-user client devices (laptops, phones) initiate requests; dedicated centralized servers (or cloud clusters) respond with data and authentication.</li>
+              <li><strong>Peer-to-Peer (P2P):</strong> Every connected node acts as both a client and a server (e.g., BitTorrent, blockchain networks), sharing files directly without a central single point of failure.</li>
+              <li><strong>Content Delivery Networks (CDNs):</strong> Distributed server caches (Cloudflare, Akamai) placed at the edge of ISP networks so media loads locally in milliseconds rather than querying an origin server across the world.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Interactive URL Anatomy Inspector Card -->
+        <div class="url-inspector-card">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <span class="status-badge" style="margin-bottom: 0.5rem;">Interactive Learning Tool</span>
+              <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-primary);">
+                Anatomy of a Uniform Resource Locator (URL)
+              </h3>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">👉 Click any colored segment below to inspect its role</span>
+          </div>
+
+          <!-- Clickable Interactive URL Display -->
+          <div class="url-interactive-display">
+            <span class="url-segment url-part-protocol active" data-part="protocol" title="Click to inspect Scheme/Protocol">https://</span>
+            <span class="url-segment url-part-subdomain" data-part="subdomain" title="Click to inspect Subdomain">my.</span>
+            <span class="url-segment url-part-domain" data-part="domain" title="Click to inspect Domain">caldwell</span>
+            <span class="url-segment url-part-tld" data-part="tld" title="Click to inspect Top-Level Domain">.edu</span>
+            <span class="url-segment url-part-port" data-part="port" title="Click to inspect Port">:443</span>
+            <span class="url-segment url-part-path" data-part="path" title="Click to inspect Path">/student/portal</span>
+            <span class="url-segment url-part-query" data-part="query" title="Click to inspect Query String">?id=2026</span>
+            <span class="url-segment url-part-hash" data-part="hash" title="Click to inspect Anchor/Hash">#grades</span>
+          </div>
+
+          <!-- Dynamic Detail Box -->
+          <div class="url-detail-box">
+            <div id="url-detail-title" class="url-detail-title">
+              🔒 Scheme / Protocol: https://
+            </div>
+            <p id="url-detail-text" class="url-detail-text">
+              Specifies Hypertext Transfer Protocol Secure. Indicates that communication between the browser and server is encrypted end-to-end via Transport Layer Security (TLS 1.3), guarding credentials, cookies, and traffic against interception by third parties on public Wi-Fi or compromised routers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Protocol Stack Section -->
+    <section id="protocols" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Standardized Communications</p>
+          <h2 class="section-title">The Protocol Stack: TCP/IP Suite</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Network communications are organized into modular architectural layers. Each layer handles a distinct responsibility, encapsulating data with headers before passing it down to the physical medium.
+          </p>
+        </div>
+
+        <div class="protocol-stack-container">
+          <!-- Layer 4: Application Layer -->
+          <div class="layer-card layer-app">
+            <div class="layer-header">
+              <div class="layer-title-wrap">
+                <span class="layer-badge">Layer 4 (TCP/IP)</span>
+                <h3 class="layer-title">Application Layer</h3>
+              </div>
+              <span class="layer-osi-ref">OSI Model: Layers 5, 6 & 7 (Session, Presentation, Application)</span>
+            </div>
+            <p class="layer-desc">
+              Directly interfaces with software applications and human users. Formats data, handles authentication, and defines how browsers, email clients, and file transfer programs request and display resources.
+            </p>
+            <div class="layer-protocols">
+              <span class="protocol-chip"><strong>HTTP / HTTPS</strong> <span class="port">:80 / :443</span></span>
+              <span class="protocol-chip"><strong>DNS</strong> <span class="port">:53</span></span>
+              <span class="protocol-chip"><strong>SSH</strong> <span class="port">:22</span></span>
+              <span class="protocol-chip"><strong>FTP / SFTP</strong> <span class="port">:21 / :22</span></span>
+              <span class="protocol-chip"><strong>SMTP / IMAP</strong> <span class="port">:587 / :993</span></span>
+              <span class="protocol-chip"><strong>DHCP</strong> <span class="port">:67/68</span></span>
+            </div>
+          </div>
+
+          <!-- Layer 3: Transport Layer -->
+          <div class="layer-card layer-transport">
+            <div class="layer-header">
+              <div class="layer-title-wrap">
+                <span class="layer-badge">Layer 3 (TCP/IP)</span>
+                <h3 class="layer-title">Transport Layer (TCP vs. UDP)</h3>
+              </div>
+              <span class="layer-osi-ref">OSI Model: Layer 4 (Transport)</span>
+            </div>
+            <p class="layer-desc">
+              Manages host-to-host end-to-end communication, segmentation, flow control, and port multiplexing. Crucially dictates whether communication prioritizes <strong>guaranteed reliability</strong> or <strong>minimum latency</strong>:
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+              <div style="background: rgba(168, 85, 247, 0.08); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: var(--radius-sm); padding: 0.85rem;">
+                <strong style="color: #c084fc;">TCP (Transmission Control Protocol):</strong>
+                <p style="font-size: 0.825rem; color: var(--text-secondary); margin-top: 0.25rem;">
+                  Connection-oriented. Uses a <strong>3-Way Handshake (SYN → SYN-ACK → ACK)</strong>. Guarantees every packet arrives in order with zero loss via ACKs and automated retransmission. Essential for web browsing (HTTP), banking, email, and files.
+                </p>
+              </div>
+              <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: var(--radius-sm); padding: 0.85rem;">
+                <strong style="color: #38bdf8;">UDP (User Datagram Protocol):</strong>
+                <p style="font-size: 0.825rem; color: var(--text-secondary); margin-top: 0.25rem;">
+                  Connectionless and lightweight. "Fire and forget" with no handshakes or retransmission overhead. Dropped packets are ignored. Essential for live video streaming (Zoom, Twitch), online multiplayer gaming, and fast DNS queries.
+                </p>
+              </div>
+            </div>
+            <div class="layer-protocols">
+              <span class="protocol-chip"><strong>TCP</strong> (Connection-Oriented, Reliable)</span>
+              <span class="protocol-chip"><strong>UDP</strong> (Connectionless, Low-Latency)</span>
+              <span class="protocol-chip"><strong>QUIC / HTTP/3</strong> (UDP-based encrypted transport)</span>
+            </div>
+          </div>
+
+          <!-- Layer 2: Internet Layer -->
+          <div class="layer-card layer-internet">
+            <div class="layer-header">
+              <div class="layer-title-wrap">
+                <span class="layer-badge">Layer 2 (TCP/IP)</span>
+                <h3 class="layer-title">Internet / Network Layer</h3>
+              </div>
+              <span class="layer-osi-ref">OSI Model: Layer 3 (Network)</span>
+            </div>
+            <p class="layer-desc">
+              Packages transport segments into network datagrams (packets), assigns logical source and destination IP addresses, and routes packets across heterogeneous intermediate routers to their ultimate destination across the globe.
+            </p>
+            <div class="layer-protocols">
+              <span class="protocol-chip"><strong>IPv4</strong> (32-bit dotted decimal: 198.51.100.1)</span>
+              <span class="protocol-chip"><strong>IPv6</strong> (128-bit hexadecimal: 2001:db8::1)</span>
+              <span class="protocol-chip"><strong>ICMP</strong> (Ping, Traceroute diagnostic reports)</span>
+              <span class="protocol-chip"><strong>BGP</strong> (Border Gateway Protocol for AS routing)</span>
+              <span class="protocol-chip"><strong>IPSec</strong> (Network layer encryption tunnels)</span>
+            </div>
+          </div>
+
+          <!-- Layer 1: Network Access Layer -->
+          <div class="layer-card layer-link">
+            <div class="layer-header">
+              <div class="layer-title-wrap">
+                <span class="layer-badge">Layer 1 (TCP/IP)</span>
+                <h3 class="layer-title">Network Access / Link & Physical Layer</h3>
+              </div>
+              <span class="layer-osi-ref">OSI Model: Layers 1 & 2 (Physical & Data Link)</span>
+            </div>
+            <p class="layer-desc">
+              Translates logical binary packets into physical electrical signals, light pulses, or radio waves. Coordinates local physical media access between adjacent network nodes on the same local area network (LAN) using permanent 48-bit Media Access Control (MAC) addresses.
+            </p>
+            <div class="layer-protocols">
+              <span class="protocol-chip"><strong>Ethernet (IEEE 802.3)</strong> Twisted-pair copper</span>
+              <span class="protocol-chip"><strong>Wi-Fi (IEEE 802.11 ax/be)</strong> Radio spectrum</span>
+              <span class="protocol-chip"><strong>Fiber Optics</strong> Infrared laser pulses</span>
+              <span class="protocol-chip"><strong>Cellular (4G LTE / 5G NR)</strong></span>
+              <span class="protocol-chip"><strong>ARP</strong> (Address Resolution: IP → MAC mapping)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Web Evolution & Deep/Dark Web Section -->
+    <section id="evolution" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Generational Shifts</p>
+          <h2 class="section-title">The Evolution of the Web & Digital Ecosystem</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            From static read-only hypertext pages in the early 1990s to participatory social platforms, decentralized protocols, and the hidden layers of cyberspace.
+          </p>
+        </div>
+
+        <!-- 3 Generational Eras Grid -->
+        <div class="evolution-grid">
+          <!-- Era 1: Web 1.0 -->
+          <div class="era-card era-1">
+            <span class="era-period">1991 – 2004</span>
+            <h3 class="era-name">Web 1.0: Read-Only</h3>
+            <span class="era-theme-tag">The Informational Web</span>
+            <ul class="era-list">
+              <li><strong>Static Content:</strong> Websites were flat HTML files hosted on web servers with minimal interactivity or dynamic styling.</li>
+              <li><strong>One-Way Consumption:</strong> Users were passive readers consuming content created by webmasters. No comments, likes, or user profiles.</li>
+              <li><strong>Early Technology:</strong> Dial-up modems (56k), GeoCities, Yahoo! directory portal, Netscape Navigator, Internet Explorer 5.</li>
+              <li><strong>Infrastructure:</strong> On-premises physical servers with static IP addresses and slow download speeds.</li>
+            </ul>
+          </div>
+
+          <!-- Era 2: Web 2.0 -->
+          <div class="era-card era-2">
+            <span class="era-period">2004 – Present</span>
+            <h3 class="era-name">Web 2.0: Read-Write</h3>
+            <span class="era-theme-tag">The Social & Mobile Web</span>
+            <ul class="era-list">
+              <li><strong>User-Generated Content:</strong> Anyone can publish instantly—social networks, blogs, video streaming, collaborative wikis.</li>
+              <li><strong>Rich Dynamic Applications:</strong> JavaScript, AJAX, APIs, and Single-Page Applications (SPAs) deliver desktop-grade web software.</li>
+              <li><strong>Cloud & Mobile Revolution:</strong> Smartphones, 4G/5G, and hyper-scale clouds (AWS, Google Cloud, Azure) power always-on services.</li>
+              <li><strong>Data Monopolization:</strong> Centralized platforms monetize user attention, engagement algorithms, and targeted behavioral ads.</li>
+            </ul>
+          </div>
+
+          <!-- Era 3: Web 3.0 & AI Era -->
+          <div class="era-card era-3">
+            <span class="era-period">2020s & Beyond</span>
+            <h3 class="era-name">Web 3.0: Read-Write-Execute</h3>
+            <span class="era-theme-tag">The Semantic & AI Web</span>
+            <ul class="era-list">
+              <li><strong>Decentralization & Self-Sovereignty:</strong> Cryptographic protocols, peer-to-peer storage (IPFS), and decentralized identity reduce platform lock-in.</li>
+              <li><strong>Semantic Machine Understanding:</strong> Linked open data formats and ontologies allow machines to comprehend meaning, not just text strings.</li>
+              <li><strong>Autonomous AI Agents:</strong> Intelligent LLM agents navigate networks, negotiate APIs, synthesize data, and execute complex workflows.</li>
+              <li><strong>Edge Computing:</strong> Computational intelligence shifts from central mega-servers to local smart devices, decreasing latency and preserving privacy.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- The 3 Layers of Cyberspace: Surface, Deep, and Dark Web -->
+        <div style="margin-top: 3.5rem;">
+          <div class="section-header" style="margin-bottom: 1.5rem;">
+            <p class="section-eyebrow">Digital Visibility</p>
+            <h3 class="section-title" style="font-size: 1.75rem;">Surface Web, Deep Web & Dark Web</h3>
+            <div class="section-divider"></div>
+            <p class="section-desc">
+              Search engines index only the visible tip of the digital ocean. The vast majority of online data is intentionally unindexed or cryptographically concealed.
+            </p>
+          </div>
+
+          <div class="web-layers-grid">
+            <!-- Level 1: Surface Web -->
+            <div class="web-level-card surface-level">
+              <span class="level-badge">Visible Layer</span>
+              <h4 class="web-level-title">The Surface Web</h4>
+              <span class="web-level-pct">Estimated ~4% to 10% of total web</span>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 1rem;">
+                Public webpages crawled and indexed by standard search engines like Google, Bing, and DuckDuckGo. Accessible to anyone with a standard browser without authentication credentials.
+              </p>
+              <ul style="font-size: 0.825rem; color: var(--text-secondary); list-style-type: disc; padding-left: 1.1rem; line-height: 1.45;">
+                <li>Public university homepages (e.g., <code>caldwell.edu</code>)</li>
+                <li>News outlets (BBC, NYTimes, Wikipedia articles)</li>
+                <li>Open e-commerce product catalogs and public blogs</li>
+              </ul>
+            </div>
+
+            <!-- Level 2: Deep Web -->
+            <div class="web-level-card deep-level">
+              <span class="level-badge">Unindexed Private Layer</span>
+              <h4 class="web-level-title">The Deep Web</h4>
+              <span class="web-level-pct">Estimated ~90% to 95% of total web</span>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 1rem;">
+                Entirely legitimate, private content shielded behind authentication paywalls, logins, form queries, or database protections that automated search engine bots cannot index.
+              </p>
+              <ul style="font-size: 0.825rem; color: var(--text-secondary); list-style-type: disc; padding-left: 1.1rem; line-height: 1.45;">
+                <li>Student portals (Canvas LMS, Caldwell student accounts)</li>
+                <li>Online banking, financial ledgers, and billing portals</li>
+                <li>Private medical records (HIPAA-protected electronic health records)</li>
+                <li>Corporate intranets, private Google Drives, internal emails</li>
+              </ul>
+            </div>
+
+            <!-- Level 3: Dark Web -->
+            <div class="web-level-card dark-level">
+              <span class="level-badge">Encrypted Overlay</span>
+              <h4 class="web-level-title">The Dark Web</h4>
+              <span class="web-level-pct">Estimated &lt;1% of total web</span>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 1rem;">
+                Encrypted overlay networks requiring specialized routing software (such as Tor or I2P) using onion routing. Conceals users' and host servers' physical IP addresses through layered encryption relays.
+              </p>
+              <ul style="font-size: 0.825rem; color: var(--text-secondary); list-style-type: disc; padding-left: 1.1rem; line-height: 1.45;">
+                <li><strong>Legitimate Uses:</strong> Whistleblowers (SecureDrop), journalists evading censorship, human rights advocates in totalitarian regimes.</li>
+                <li><strong>Illicit Uses:</strong> Black markets, cybercrime forums, leaked credential databases, ransomware extortion sites.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Packet & DNS Request Simulator Section -->
+    <section id="simulator" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Hands-On Simulation</p>
+          <h2 class="section-title">Interactive Packet & DNS Flight Simulator</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Experience what happens in milliseconds when you request a webpage. Select a domain or type a custom address to watch the packet pipeline execute in real time.
+          </p>
+        </div>
+
+        <div class="simulator-container">
+          <!-- Control Bar -->
+          <div class="sim-control-bar">
+            <div class="sim-input-row">
+              <input type="text" id="sim-url-input" class="sim-url-input" value="caldwell.edu" placeholder="Enter domain (e.g. caldwell.edu, fbi.gov)...">
+              <div class="sim-btn-group">
+                <button type="button" id="btn-run-sim" class="sim-btn-primary">
+                  <span>▶</span> Simulate Web Request
+                </button>
+                <button type="button" id="btn-step-sim" class="sim-btn-secondary">
+                  <span>⏭</span> Step Forward
+                </button>
+                <button type="button" id="btn-reset-sim" class="sim-btn-secondary">
+                  Reset
+                </button>
+              </div>
+            </div>
+
+            <!-- Quick Preset Chips -->
+            <div class="sim-preset-chips">
+              <span class="sim-preset-label">Preset Targets:</span>
+              <button type="button" class="sim-preset-btn active" data-domain="caldwell.edu">🎓 caldwell.edu</button>
+              <button type="button" class="sim-preset-btn" data-domain="fbi.gov">⚖️ fbi.gov</button>
+              <button type="button" class="sim-preset-btn" data-domain="google.com">🔍 google.com</button>
+              <button type="button" class="sim-preset-btn" data-domain="wikipedia.org">📚 wikipedia.org</button>
+            </div>
+          </div>
+
+          <!-- 7-Stage Pipeline Visualizer -->
+          <div class="sim-pipeline-track">
+            <div class="pipeline-step-node" id="step-node-1">
+              <div class="step-node-num">STEP 1</div>
+              <div class="step-node-icon">💻</div>
+              <div class="step-node-title">Browser Cache</div>
+            </div>
+            <div class="pipeline-step-node" id="step-node-2">
+              <div class="step-node-num">STEP 2</div>
+              <div class="step-node-icon">📡</div>
+              <div class="step-node-title">Resolver (1.1.1.1)</div>
+            </div>
+            <div class="pipeline-step-node" id="step-node-3">
+              <div class="step-node-num">STEP 3</div>
+              <div class="step-node-icon">🌐</div>
+              <div class="step-node-title">Root & TLD Server</div>
+            </div>
+            <div class="pipeline-step-node" id="step-node-4">
+              <div class="step-node-num">STEP 4</div>
+              <div class="step-node-icon">🏷️</div>
+              <div class="step-node-title">Authoritative DNS</div>
+            </div>
+            <div class="pipeline-step-node" id="step-node-5">
+              <div class="step-node-num">STEP 5</div>
+              <div class="step-node-icon">🤝</div>
+              <div class="step-node-title">TCP Handshake</div>
+            </div>
+            <div class="pipeline-step-node" id="step-node-6">
+              <div class="step-node-num">STEP 6</div>
+              <div class="step-node-icon">🔒</div>
+              <div class="step-node-title">TLS 1.3 Handshake</div>
+            </div>
+            <div class="pipeline-step-node" id="step-node-7">
+              <div class="step-node-num">STEP 7</div>
+              <div class="step-node-icon">🚀</div>
+              <div class="step-node-title">HTTP/2 200 OK</div>
+            </div>
+          </div>
+
+          <!-- Live Network Terminal -->
+          <div class="sim-terminal">
+            <div class="terminal-header-bar">
+              <div class="terminal-controls">
+                <span class="term-dot term-red"></span>
+                <span class="term-dot term-yellow"></span>
+                <span class="term-dot term-green"></span>
+              </div>
+              <div class="terminal-title">network_socket_tracer — packet_capture.log</div>
+              <div style="font-size: 0.7rem; color: #22c55e;">STATUS: READY</div>
+            </div>
+            <div id="terminal-log-body" class="terminal-log-body">
+              <div class="log-entry" style="color: #64748b;">
+                Simulator initialized. Choose a domain and click "Simulate Web Request" or "Step Forward" to watch packet resolution.
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-Time Metrics Bar -->
+          <div class="sim-metrics-bar">
+            <div class="sim-metric-card">
+              <div class="sim-metric-label">Resolved IPv4</div>
+              <div id="metric-ip" class="sim-metric-val">--.--.--.--</div>
+            </div>
+            <div class="sim-metric-card">
+              <div class="sim-metric-label">Round-Trip Latency</div>
+              <div id="metric-rtt" class="sim-metric-val">-- ms</div>
+            </div>
+            <div class="sim-metric-card">
+              <div class="sim-metric-label">Transport Protocol</div>
+              <div id="metric-proto" class="sim-metric-val">None</div>
+            </div>
+            <div class="sim-metric-card">
+              <div class="sim-metric-label">Negotiated Cipher</div>
+              <div id="metric-cipher" class="sim-metric-val">None</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Self-Assessment Quiz Section -->
+    <section id="quiz" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Interactive Assessment</p>
+          <h2 class="section-title">Test Your Networking & Cyber Knowledge</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Answer the 5 scenario questions below to evaluate your understanding of Internet architecture and network protocols.
+          </p>
+        </div>
+
+        <div class="quiz-wrapper">
+          <form id="internet-quiz-form">
+            <!-- Question 1 -->
+            <div class="quiz-question-block">
+              <h4 class="quiz-question-title">
+                <span class="quiz-q-num">1</span>
+                An undersea fiber-optic cable between New York and London is unexpectedly severed by an anchor. Why doesn't internet traffic across the Atlantic instantly collapse?
+              </h4>
+              <div class="quiz-options">
+                <label class="quiz-option-label">
+                  <input type="radio" name="q1" value="2" required>
+                  <span>Packet switching and Border Gateway Protocol (BGP) automatically reroute independent packets across alternative active cables in real time.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q1" value="1">
+                  <span>The entire internet pauses for a few minutes while central ICANN operators manually toggle a backup circuit.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q1" value="0">
+                  <span>All traffic is immediately diverted exclusively to low-bandwidth commercial satellite television dishes.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="quiz-question-block">
+              <h4 class="quiz-question-title">
+                <span class="quiz-q-num">2</span>
+                An engineer is building a real-time multiplayer video game and live voice chat app. Which Transport Layer protocol should they prioritize?
+              </h4>
+              <div class="quiz-options">
+                <label class="quiz-option-label">
+                  <input type="radio" name="q2" value="2" required>
+                  <span>UDP (User Datagram Protocol) because low latency is paramount; dropped voice packets can be skipped rather than delaying the real-time stream.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q2" value="1">
+                  <span>TCP (Transmission Control Protocol) because audio packets must be resent even if it causes a 5-second lag spike.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q2" value="0">
+                  <span>FTP (File Transfer Protocol) because it is specifically designed for high-definition microphone hardware.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="quiz-question-block">
+              <h4 class="quiz-question-title">
+                <span class="quiz-q-num">3</span>
+                What is an Internet Service Provider (ISP) responsible for?
+              </h4>
+              <div class="quiz-options">
+                <label class="quiz-option-label">
+                  <input type="radio" name="q3" value="2" required>
+                  <span>Connecting customers to the Internet and routing data between their devices and other networks.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q3" value="1">
+                  <span>Designing web pages and displaying them in a browser window.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q3" value="0">
+                  <span>Indexing websites so users can search for pages and information.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="quiz-question-block">
+              <h4 class="quiz-question-title">
+                <span class="quiz-q-num">4</span>
+                What is the operational difference between the Deep Web and the Dark Web?
+              </h4>
+              <div class="quiz-options">
+                <label class="quiz-option-label">
+                  <input type="radio" name="q4" value="2" required>
+                  <span>The Deep Web is unindexed private data (like student portals or bank accounts); the Dark Web is an encrypted overlay network requiring specialized routing tools like Tor.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q4" value="1">
+                  <span>The Deep Web is entirely criminal marketplaces, while the Dark Web refers to routine search engine web pages.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q4" value="0">
+                  <span>There is no difference; both terms refer to websites that use CSS dark mode color themes.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="quiz-question-block">
+              <h4 class="quiz-question-title">
+                <span class="quiz-q-num">5</span>
+                Why is browsing an HTTP website (without the 'S') dangerous on an unencrypted public airport Wi-Fi hotspot?
+              </h4>
+              <div class="quiz-options">
+                <label class="quiz-option-label">
+                  <input type="radio" name="q5" value="2" required>
+                  <span>HTTP transmits packets in plaintext, allowing attackers on the same network to sniff passwords, session cookies, and personal data via Man-in-the-Middle attacks.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q5" value="1">
+                  <span>HTTP automatically deletes the local operating system files if another device is connected to the router.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q5" value="0">
+                  <span>HTTP is completely safe on public Wi-Fi because modern routers automatically encrypt all web packets at the hardware level.</span>
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary quiz-submit-btn">Calculate My Networking Score</button>
+          </form>
+
+          <!-- Result Card -->
+          <div id="quiz-result" class="quiz-result-box">
+            <div id="score-badge" class="quiz-score-badge">-- / 10</div>
+            <div id="score-title" class="quiz-score-title">Assessment Result</div>
+            <p id="score-advice" class="quiz-score-advice">Your evaluation and recommendations will appear here.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Network Hygiene & Security Best Practices Checklist -->
+    <section id="checklist" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Practical Hardening</p>
+          <h2 class="section-title">Network Hygiene & Protocol Hardening Checklist</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Click any checklist item below to mark it completed as you audit your network connections, DNS resolution privacy, and Wi-Fi security.
+          </p>
+        </div>
+
+        <div class="action-grid">
+          <!-- Daily Hygiene Checklist -->
+          <div class="checklist-card">
+            <h4>✅ Essential Network Security Checklist</h4>
+            <div class="check-item">
+              <span class="check-item-icon">✓</span>
+              <span><strong>Enforce HTTPS Everywhere:</strong> Ensure all web connections use TLS 1.3 encryption with verified SSL certificates before entering credentials.</span>
+            </div>
+            <div class="check-item">
+              <span class="check-item-icon">✓</span>
+              <span><strong>Enable DNS-over-HTTPS (DoH):</strong> Configure your browser to use encrypted DNS resolvers (Cloudflare 1.1.1.1 or Quad9) to prevent ISP browsing snooping.</span>
+            </div>
+            <div class="check-item">
+              <span class="check-item-icon">✓</span>
+              <span><strong>Secure Home Wi-Fi:</strong> Use WPA3 or WPA2-AES encryption, disable WPS pin pairing, and change default router administrative passwords.</span>
+            </div>
+            <div class="check-item">
+              <span class="check-item-icon">✓</span>
+              <span><strong>Use Trusted VPN on Public Hotspots:</strong> Encrypt your connection through a secure tunnel when connecting to unverified cafe, hotel, or airport Wi-Fi.</span>
+            </div>
+            <div class="check-item">
+              <span class="check-item-icon">✓</span>
+              <span><strong>Inspect URLs for Homograph Spoofing:</strong> Carefully verify domain spellings against typosquatting phishing clones before logging into university portals.</span>
+            </div>
+            <div class="check-item">
+              <span class="check-item-icon">✓</span>
+              <span><strong>Audit Router Firmware:</strong> Regularly install router security patches to shield personal IoT devices from Mirai botnet exploits.</span>
+            </div>
+          </div>
+
+          <!-- Academic Synthesis Card -->
+          <div class="pledge-card">
+            <h4 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1.25rem;">
+              ⚡ Coursework Synthesis: The Connected World
+            </h4>
+            <p class="pledge-statement">
+              "Understanding the Internet goes far beyond using apps—it requires comprehending the decentralized physics of light traveling through deep-sea fiber cables, the mathematical elegance of packet switching, the delicate balance between security and open communication, and the constitutional principles that protect privacy in the digital age. Technical literacy is the foundation of modern justice and civic empowerment."
+            </p>
+            <div class="pledge-author">
+              <strong>Mekhi Childs</strong> — Undergraduate Student<br>
+              <em>Introduction to Technology • Caldwell University</em>
+            </div>
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <a href="index.html" class="btn btn-primary" style="font-size: 0.9rem;">← Return to Main Portfolio</a>
+              <a href="digital-citizenship.html" class="btn btn-secondary" style="font-size: 0.9rem;">Explore Digital Citizenship →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <span class="logo-symbol">&lt;/&gt;</span>
+        <span class="logo-text">Mekhi Digital Portfolio<span class="accent-dot">.</span></span>
+      </div>
+      <div class="footer-sitemap-links">
+        <a href="index.html">Portfolio Home</a> •
+        <a href="digital-citizenship.html">Digital Citizenship</a> •
+        <a href="software.html">Software</a> •
+        <a href="hardware.html">Hardware</a> •
+        <a href="storage.html">Storage Devices</a> •
+        <a href="io.html">Input &amp; Output Devices</a> •
+        <a href="security.html">Security Guide</a> •
+        <a href="#part1">Part 1: Internet Tech</a> •
+        <a href="#part2">Part 2: AI Chatbot</a> •
+        <a href="#part3">Part 3: Digital Person</a> •
+        <a href="#architecture">Architecture</a> •
+        <a href="#protocols">Protocols</a> •
+        <a href="#simulator">Packet Simulator</a> •
+        <a href="#quiz">Quiz</a> •
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <p class="copyright">© 2026 Mekhi Childs. Introduction to Technology, Caldwell University.</p>
+      <div class="footer-actions">
+        <a href="#hero" class="back-to-top" title="Back to top">
+          Back to top ↑
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="internet.js"></script>
+<script>
+/* NetBot AI v2 – conversational engine (self-contained; overrides internet.js chat handlers) */
+(function(){
+var thread=document.getElementById('chat-thread'),input=document.getElementById('chat-input'),status=document.getElementById('chat-status-text');
+if(!thread||!input)return;
+var wrap=thread.closest('.chatbot-wrapper')||document;
+var mem={name:null,last:null,lastQ:'',n:0,hist:[]};
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function nm(){return mem.name?', '+esc(mem.name):''}
+function add(role,html,isText){
+  var r=document.createElement('div');r.className='chat-msg-row '+(role=='bot'?'bot-row':'user-row');
+  if(role=='user')r.style.cssText='display:flex;flex-direction:row-reverse;gap:10px';
+  var av=document.createElement('div');av.className='chat-avatar-small';av.textContent=role=='bot'?'🤖':'🧑';
+  var b=document.createElement('div');b.className='chat-bubble';
+  if(role=='user')b.style.cssText='background:rgba(168,85,247,.25);border:1px solid rgba(168,85,247,.5)';
+  if(isText){var p=document.createElement('p');p.textContent=html;b.appendChild(p)}else b.innerHTML=html;
+  r.appendChild(av);r.appendChild(b);thread.appendChild(r);thread.scrollTop=thread.scrollHeight;return r}
+function P(t){return '<p>'+t+'</p>'}
+var T={
+packet:["<strong>Packet switching</strong> chops data into small packets. Each has a header (source, destination, sequence number) and travels on its own route through routers, then gets reassembled at the other end. It’s why one broken link doesn’t kill the whole connection.","Routers read each packet’s destination IP and forward it to the next best hop. Packets can arrive out of order, and TCP puts them back in sequence and re-requests any that got lost."],
+isp:["An <strong>ISP</strong> (Internet Service Provider) sells you access to the Internet. It gives you an IP address (usually via DHCP), carries your traffic onto the wider network, and connects to bigger ISPs. Examples: Verizon, Comcast, Spectrum.","ISPs are tiered. Tier 1 networks form the backbone, Tier 2 buy transit from them, and Tier 3 sell to homes. They swap traffic at Internet Exchange Points (IXPs)."],
+ispbrowser:["Great question. An <strong>ISP</strong> is the company that connects you to the Internet. A <strong>web browser</strong> is the app (Chrome, Safari, Firefox) that requests and displays web pages. The ISP is the road, the browser is the car.","You can swap browsers any time and still use the same ISP, and the reverse is also true."],
+browser:["A <strong>web browser</strong> requests pages over HTTP/HTTPS, then its rendering engine parses the HTML into a <strong>DOM tree</strong>, applies CSS, runs JavaScript, and paints the page. Chrome uses Blink, Safari uses WebKit, and Firefox uses Gecko.","Modern browsers also sandbox each tab, check HTTPS certificates, and block known malicious sites to protect you."],
+search:["Search engines work in three steps: <strong>crawl</strong> (bots follow links and fetch pages), <strong>index</strong> (store the content in a giant database), and <strong>rank</strong> (score results for relevance and quality, originally with PageRank, which counts links as votes).","Ranking uses hundreds of signals, such as keywords, link quality, page speed, mobile-friendliness and freshness."],
+tcpudp:["<strong>TCP</strong> is reliable: it sets up a connection, checks delivery, and re-sends lost packets (web, email, file downloads). <strong>UDP</strong> is fast and loose: no handshake and no guarantees (video calls, live gaming, DNS lookups).","A good rule: if every bit must arrive, use TCP. If speed matters more than perfection, like a live game, use UDP."],
+tcpip:["The <strong>TCP/IP stack</strong> has 4 layers: <strong>Application</strong> (HTTP, DNS), <strong>Transport</strong> (TCP/UDP), <strong>Internet</strong> (IP addressing and routing), and <strong>Link</strong> (Wi-Fi, Ethernet). Data gets wrapped in each layer on the way down and unwrapped on the way up.","The older OSI model splits the same job into 7 layers, which is useful for teaching and troubleshooting."],
+dns:["<strong>DNS</strong> is the Internet’s phonebook: it turns names like <em>example.com</em> into IP addresses. Your device asks a resolver, which asks root, TLD (.com) and authoritative servers until it finds the answer, then caches it.","If DNS breaks, sites still exist but you can’t find them by name, which is why a “DNS error” can happen when your Wi-Fi seems fine."],
+ip:["An <strong>IP address</strong> identifies a device on a network. IPv4 looks like 192.168.1.5 (about 4.3 billion addresses, now running out) and IPv6 uses a much longer format with a nearly endless supply. <strong>DHCP</strong> hands your device an address automatically when it joins.","Home devices usually have private addresses (like 192.168.x.x), and your router uses NAT to share one public address."],
+https:["<strong>HTTPS</strong> is HTTP wrapped in <strong>TLS</strong> encryption. Your browser checks the site’s certificate, then both sides agree on keys so nobody in the middle (like public Wi-Fi) can read or change your data. The padlock means the connection is encrypted, not that the site is trustworthy.","TLS uses public-key cryptography to agree on a shared secret, then fast symmetric encryption for the actual data."],
+cables:["Yes, it’s true: roughly <strong>99% of intercontinental data</strong> travels through fiber-optic <strong>undersea cables</strong>, not satellites. They’re about as thick as a garden hose, and ships lay them across ocean floors. Light pulses carry the data.","Cables are occasionally cut by anchors or earthquakes, so networks route around the damage and repair ships fix them."],
+router:["A <strong>modem</strong> connects your home to your ISP. A <strong>router</strong> directs traffic between your devices and the Internet, and often includes Wi-Fi. Wi-Fi is just radio waves carrying the same packets that Ethernet carries over a cable.","Wired Ethernet is usually faster and more stable than Wi-Fi because there’s less interference."],
+latency:["<strong>Bandwidth</strong> is how much data you can move per second (the width of the pipe). <strong>Latency</strong> is how long one packet takes to make a round trip, measured in ms (the length of the pipe). Gaming cares about latency, and downloads care about bandwidth.","Pinging a server measures latency. Under 50 ms feels great, and over 150 ms feels laggy."],
+vpn:["A <strong>VPN</strong> creates an encrypted tunnel from your device to a VPN server, hiding your traffic from your local network and masking your IP from sites. It doesn’t make you anonymous, though, because the VPN provider can still see your traffic.","VPNs are handy on public Wi-Fi, and they’re also how many companies let employees reach internal systems."],
+firewall:["A <strong>firewall</strong> filters network traffic using rules, allowing or blocking connections by address, port or protocol. It acts like a security guard for your network. They can be built into your router, your OS, or be dedicated devices.","Firewalls are one layer of defense. You still need updates, strong passwords and good habits."],
+cloud:["<strong>Cloud computing</strong> means renting computing power and storage from huge data centers over the Internet (AWS, Azure, Google Cloud) instead of owning servers. A <strong>CDN</strong> caches copies of sites in many cities so pages load from somewhere near you.","Streaming, email, and most apps you use daily run in the cloud."],
+cookies:["<strong>Cookies</strong> are small files a site stores in your browser so it can remember you (logins, carts). Third-party cookies let advertisers track you across sites, which is why browsers are limiting them. You can clear them or block trackers in settings.","Cookies aren’t viruses, but they do affect privacy."],
+phish:["<strong>Phishing</strong> tricks you into giving up passwords or money with fake emails or sites. Warning signs: urgency, odd sender addresses, links that don’t match, and requests for sensitive info. When in doubt, don’t click. Go to the site directly. <strong>Malware</strong> is software built to harm, such as viruses, ransomware and spyware.","Keep your device updated, use a password manager, turn on 2FA, and never open unexpected attachments."],
+password:["Strong passwords are <strong>long</strong> (12+ characters, ideally a passphrase), <strong>unique</strong> for every account, and stored in a <strong>password manager</strong>. Add <strong>two-factor authentication (2FA)</strong> so a stolen password alone isn’t enough.","Length beats complexity. “purple-bicycle-sunset-coffee” is stronger than “P@ssw0rd1!”."],
+ai:["<strong>AI</strong> is software that learns patterns from data. Chatbots like ChatGPT or Claude use <strong>large language models</strong> trained on huge amounts of text to predict helpful replies. They’re powerful but can be wrong, so always verify important facts. I’m a simpler chatbot built for this portfolio.","Good habits with AI: check its facts, protect your private info, and use it to learn, not just to copy answers."],
+web:["The <strong>Internet</strong> is the global network of connected computers and cables. The <strong>World Wide Web</strong> is one service running on it: pages and links you view in a browser. Email, gaming and video calls also use the Internet without being the Web.","Tim Berners-Lee invented the Web in 1989, while the Internet itself is older (ARPANET, 1969)."],
+internet:["The Internet is a worldwide network of networks. Your device sends data as packets to your ISP, which routes them through routers and cables (including undersea ones) to the destination server, and the answer comes back the same way, all in milliseconds.","Want to go deeper? Ask me about packets, DNS, IP addresses, TCP vs UDP or undersea cables."],
+code:["Web pages use three core languages: <strong>HTML</strong> (structure), <strong>CSS</strong> (style) and <strong>JavaScript</strong> (behavior). Python is a great first language for beginners. What are you trying to build?","Free ways to learn: freeCodeCamp, Codecademy’s free tier, and MDN Web Docs."],
+study:["Study tips that work: use short focused sessions (try 25 min on, 5 min off), test yourself instead of rereading, and explain concepts out loud in your own words. I’m happy to quiz you on Internet topics if you’d like.","Sleep and breaks matter more than cramming."],
+me:["This portfolio belongs to <strong>Mekhi Childs</strong> at Caldwell University. It covers digital citizenship, the Internet, software, hardware, security, I/O devices and an AI Movie Agent that made the 3-minute horror short “ECHO.” Check the other tabs to explore!",null]
+};
+var RULES=[
+['ispbrowser',/isp.*browser|browser.*isp/],['tcpudp',/tcp.*udp|udp.*tcp|\budp\b/],['tcpip',/tcp\/?ip|protocol stack|network layers|\bosi\b/],
+['packet',/packet/],['dns',/\bdns\b|domain name/],['ip',/ip address|ipv[46]|\bdhcp\b/],['cables',/undersea|submarine|cable/],
+['https',/https?\b|\bssl\b|\btls\b|encrypt/],['search',/search engine|crawl|pagerank|rank/],['browser',/browser|chrome|firefox|safari|\bdom\b/],
+['isp',/\bisp\b|internet service provider|comcast|verizon|spectrum/],['router',/router|modem|wi-?fi|ethernet/],['latency',/latency|bandwidth|\bping\b|internet speed|lag/],
+['vpn',/\bvpn\b|proxy|\btor\b/],['firewall',/firewall/],['cloud',/\bcloud\b|\baws\b|data ?cent|\bcdn\b|\bserver/],['cookies',/cookie|tracking|privacy/],
+['phish',/phish|scam|malware|virus|ransomware|hack/],['password',/password|\b2fa\b|\bmfa\b|two[- ]factor/],['ai',/\bai\b|artificial intelligence|chatgpt|\bllm\b|machine learning|neural/],
+['web',/(web|www).*(internet)|(internet).*(web|www)|difference between the (internet|web)/],['internet',/(how|what).*(internet)|^internet\b/],
+['code',/\bhtml\b|\bcss\b|javascript|coding|programming|python/],['study',/study|homework|essay|exam|grade|college|caldwell/],['me',/portfolio|mekhi|\becho\b|movie/]];
+var JOKES=["Why did the computer go to the doctor? It caught a virus. 🦠","There are 10 kinds of people: those who understand binary and those who don’t.","Why was the router so calm? It always knew where to forward things.","I would tell you a UDP joke, but you might not get it.","Why did the web developer leave the restaurant? Bad table layout."];
+function small(q){
+ var m;
+ if(m=q.match(/(?:my name is|call me|i am called|i'?m called)\s+([a-z]+)/i)){mem.name=m[1][0].toUpperCase()+m[1].slice(1);return pick(["Nice to meet you, "+esc(mem.name)+"! 😊 What would you like to talk about?","Got it, "+esc(mem.name)+"! I’ll remember that for this chat."])}
+ if(/(what'?s|what is|do you (know|remember)) my name/.test(q))return mem.name?"Your name is "+esc(mem.name)+". 🙂":"You haven’t told me yet. What should I call you?";
+ if(/^(hi|hello|hey|yo|sup|hola|howdy|good (morning|afternoon|evening))\b/.test(q))return pick(["Hey"+nm()+"! 👋 What’s on your mind?","Hello"+nm()+"! Want to talk networks, tech, school, or just chat?"]);
+ if(/how (are|r) (you|u)|how'?s it going|what'?s up|how do you feel/.test(q))return pick(["I’m doing great"+nm()+", thanks for asking! 😄 How about you?","Running at full speed with zero packet loss! How are you doing?"]);
+ if(/\b(thanks|thank you|thx|ty)\b/.test(q))return pick(["You’re welcome"+nm()+"! 😊 Anything else?","Anytime! Ask me whatever you like."]);
+ if(/\b(bye|goodbye|see ya|later|gotta go)\b/.test(q))return "Bye"+nm()+"! 👋 Come back any time.";
+ if(/who (made|created|built|programmed)|your (creator|developer|maker)/.test(q))return "I was created for <strong>Mekhi Childs’</strong> Digital Portfolio at Caldwell University as a class project.";
+ if(/who (are|r) you|your name|what are you|are you (real|human|ai|a bot|a robot)/.test(q))return "I’m <strong>NetBot AI</strong>, a chatbot tutor on Mekhi’s portfolio. I’m not human, but I can chat about Internet tech, tech in general, school, and look up lots of other topics too.";
+ if(/what can you (do|help)|^help$|what do you know|what should i ask/.test(q))return "I can <strong>chat</strong> and remember what we talked about, explain <strong>Internet and tech topics</strong> (packets, DNS, TCP/UDP, security, AI), help with <strong>study tips</strong>, do <strong>quick math</strong>, tell <strong>jokes</strong>, and <strong>look up almost any topic</strong> (try “who is Ada Lovelace?”). Just type naturally!";
+ if(/joke|make me laugh|something funny/.test(q))return pick(JOKES);
+ if(/(i'?m|i am|feeling|feel)\s+(so |really |kinda )?(sad|tired|stressed|anxious|overwhelmed|bored|down)/.test(q))return "That sounds rough"+nm()+". I’m sorry. 💙 Want to talk about it, or would a distraction help? If it’s heavy, talking to someone you trust or your school’s counseling center can really help.";
+ if(/(i'?m|i am|feeling|feel)\s+(so |really )?(happy|good|great|excited|awesome|fine)/.test(q))return "Love that"+nm()+"! 🎉 What’s making your day good?";
+ if(/you('?re| are) (smart|great|awesome|cool|good|amazing|helpful)|love you|good bot/.test(q))return "Aw, thank you! 😊 You’re pretty great yourself.";
+ if(/you('?re| are) (dumb|stupid|bad|wrong|useless)/.test(q))return "Sorry about that. I’m a simple bot and I do get things wrong. Tell me what I missed and I’ll try again.";
+ if(/what time|what'?s the time|what day|what'?s the date|today'?s date|what date/.test(q)){var d=new Date();return "It’s "+d.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})+" on "+d.toLocaleDateString([], {weekday:'long',month:'long',day:'numeric',year:'numeric'})+" on your device."}
+ if(/weather|forecast|temperature outside/.test(q))return "I can’t check live weather, but weather.gov or your phone’s weather app can. Want to chat about how weather data travels over the Internet instead? 😄";
+ if(/favou?rite (color|colour|food|movie|song|animal)/.test(q))return pick(["I’d say blue, like the color of a good network diagram. 💙 What’s yours?","Pizza, but I’ve never tasted it. 🍕 What’s your favorite?"]);
+ var ex=q.replace(/what('?s| is)|calculate|compute|equals?|\?/g,'').replace(/×|\bx\b/g,'*').replace(/÷/g,'/').replace(/\^/g,'**').replace(/\btimes\b/g,'*').replace(/\bplus\b/g,'+').replace(/\bminus\b/g,'-').replace(/\bdivided by\b/g,'/').trim();
+ if(/^[\d\s+\-*\/().%]+$/.test(ex)&&/\d\s*[+\-*\/%]\s*\d/.test(ex)){try{var v=Function('"use strict";return ('+ex+')')();if(isFinite(v))return "That’s <strong>"+(+v.toFixed(6))+"</strong>. 🧮"}catch(e){}}
+ return null}
+function follow(q){
+ if(/^(tell me more|more|go on|continue|and|elaborate|explain( more| further| it)?|why|how so|really|example|give( me)? an example|simpler|eli5|what else|okay|ok|cool|interesting|nice|wow)\??$/.test(q)||/(more (detail|about (that|it))|explain (that|it)|say more)/.test(q)){
+  if(mem.last&&T[mem.last]&&T[mem.last][1]){var m=T[mem.last][1];T[mem.last][1]=null;return P(m)+"<p>Want to go deeper or switch topics?</p>"}
+  if(mem.last)return "I’ve covered the main points on that. Ask me a more specific question, or pick a new topic! 🙂";
+  return "Sure! What would you like more on? Ask me about any topic.";}
+ return null}
+function wiki(q){
+ var s=q.replace(/^(what('?s| is| are| was| were)|who('?s| is| was| were)|where('?s| is| was)|tell me about|explain|define|describe|can you (tell|explain)( me)?( about)?|do you know( about)?)\s+/i,'').replace(/^(a |an |the )/,'').replace(/[?.!]+$/,'').trim();
+ if(s.length<2||s.split(' ').length>7)return Promise.resolve(null);
+ return fetch('https://en.wikipedia.org/w/api.php?action=opensearch&format=json&limit=1&origin=*&search='+encodeURIComponent(s)).then(function(r){return r.json()}).then(function(j){
+  if(!j[1]||!j[1][0])return null;return fetch('https://en.wikipedia.org/api/rest_v1/page/summary/'+encodeURIComponent(j[1][0])).then(function(r){return r.json()}).then(function(d){
+   if(!d.extract||d.type==='disambiguation')return null;var sen=d.extract.match(/[^.!?]+[.!?]+(\s|$)/g)||[d.extract];var t=sen.slice(0,2).join('').trim();
+   mem.last=null;return P("<strong>"+esc(d.title)+"</strong>: "+esc(t))+'<p style="font-size:.85em;opacity:.7">Source: <a href="'+esc(d.content_urls&&d.content_urls.desktop?d.content_urls.desktop.page:'https://en.wikipedia.org')+'" target="_blank" rel="noopener">Wikipedia</a>. Always double-check important facts.</p>'})}).catch(function(){return null})}
+function fallback(raw,isQ){
+ var w=raw.replace(/[^a-z0-9 ]/gi,'').split(/\s+/).filter(function(x){return x.length>4}).slice(0,2).join(' ');
+ if(isQ)return P(pick(["Hmm, I couldn’t find a solid answer on that"+nm()+".","That one’s outside what I know right now."])+" Try rephrasing, or ask about a specific thing (like “who is Alan Turing?”). I’m best at Internet and tech topics, but I’ll try anything. 🙂");
+ return P(pick(["Interesting"+nm()+"! ","I hear you. ","Got it. "])+(w?"Tell me more about “"+esc(w)+"”":"Tell me more")+", or ask me a question and I’ll do my best.")}
+function reply(raw){
+ var q=raw.toLowerCase().trim().replace(/\s+/g,' ');
+ var s=small(q);if(s)return Promise.resolve(P(s));
+ var f=follow(q);if(f)return Promise.resolve(f);
+ for(var i=0;i<RULES.length;i++)if(RULES[i][1].test(q)){mem.last=RULES[i][0];var a=T[mem.last][0];return Promise.resolve(P(a)+(mem.n++%3==0?"<p>💬 Ask “tell me more” to go deeper.</p>":""))}
+ var isQ=/\?$|^(what|who|where|when|why|how|which|is|are|can|do|does|tell|explain|define)\b/.test(q);
+ return wiki(q).then(function(r){return r||fallback(raw,isQ)})}
+var busy=false;
+function send(raw){
+ raw=(raw||'').trim();if(!raw||busy)return;busy=true;input.value='';
+ add('user',raw,true);mem.hist.push(raw);
+ var ty=add('bot','<p>● ● ●</p>');if(status){status.textContent='● Typing…'}
+ var t0=Date.now();
+ reply(raw).then(function(h){var w=Math.max(0,550-(Date.now()-t0));setTimeout(function(){ty.remove();add('bot',h+'<span class="chat-timestamp">Just now</span>');busy=false;if(status)status.textContent='● Ready';input.focus()},w)})}
+function greet(){thread.innerHTML='';add('bot','<p><strong>Hi'+nm()+'! I’m NetBot AI.</strong> 👋 You can <strong>talk to me about anything</strong>. I can chat, remember what we’ve said, explain Internet and tech topics, tell jokes, do quick math, and look up almost any subject.</p><p>Try: <em>“how does DNS work?”</em>, <em>“tell me a joke”</em>, <em>“who is Ada Lovelace?”</em> or just say hi!</p><span class="chat-timestamp">Just now</span>')}
+document.addEventListener('submit',function(e){if(e.target&&e.target.id==='chat-form'){e.preventDefault();e.stopImmediatePropagation();send(input.value)}},true);
+document.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;
+ var sb=t.closest('#chat-send-btn');if(sb){e.preventDefault();e.stopImmediatePropagation();send(input.value);return}
+ var c=t.closest('.chat-prompt-chip');if(c&&!c.classList.contains('digital-person-prompt-chip')&&wrap.contains(c)){e.preventDefault();e.stopImmediatePropagation();send(c.getAttribute('data-prompt'));return}
+ var cl=t.closest('#chat-clear-btn');if(cl){e.preventDefault();e.stopImmediatePropagation();mem={name:mem.name,last:null,n:0,hist:[]};greet()}},true);
+var tray=wrap.querySelector('.chat-chips-scroll');
+if(tray)[['😄 Tell me a joke','Tell me a joke'],['💬 What can you do?','What can you do?'],['🤖 What is AI?','What is AI?']].forEach(function(p){var b=document.createElement('button');b.type='button';b.className='chat-prompt-chip';b.setAttribute('data-prompt',p[1]);b.textContent=p[0];tray.appendChild(b)});
+input.setAttribute('placeholder','Talk to me about anything… (e.g. “how does DNS work?” or “tell me a joke”)');
+greet();
+/* ---- Digital Person chat (Part 3): same open-ended engine, general tech topics ---- */
+var pThread=document.getElementById('digital-person-thread'),pInput=document.getElementById('digital-person-chat-input'),pStatus=document.getElementById('digital-person-chat-status'),pImg=document.getElementById('digital-person-chat-image');
+if(pThread&&pInput){
+ var pMem={name:null,last:null,lastQ:'',n:0,hist:[]},pBusy=false;
+ function pAvatar(){var a=document.createElement('div');a.className='chat-avatar-small digital-person-message-avatar';if(pImg&&!pImg.hidden&&pImg.src){var i=document.createElement('img');i.src=pImg.src;i.alt='';a.appendChild(i)}else a.textContent='👤';return a}
+ function pAdd(role,html,isText){
+  var r=document.createElement('div');r.className='chat-msg-row '+(role=='bot'?'bot-row':'user-row');
+  var av;if(role=='bot')av=pAvatar();else{av=document.createElement('div');av.className='chat-avatar-small';av.textContent='👤'}
+  var b=document.createElement('div');b.className='chat-bubble';
+  if(isText){var p=document.createElement('p');p.textContent=html;b.appendChild(p)}else b.innerHTML=html;
+  r.appendChild(av);r.appendChild(b);pThread.appendChild(r);pThread.scrollTop=pThread.scrollHeight;return r}
+ function pReply(raw){var saved=mem;mem=pMem;var p=reply(raw);mem=saved;return p.then(function(h){return h.replace(/NetBot AI/g,'your digital person')})}
+ function pSend(raw){
+  raw=(raw||'').trim();if(!raw||pBusy)return;pBusy=true;pInput.value='';pAdd('user',raw,true);
+  var ty=document.createElement('div');ty.className='chat-msg-row bot-row';ty.appendChild(pAvatar());
+  var tb=document.createElement('div');tb.className='chat-bubble typing-bubble';tb.innerHTML='<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';ty.appendChild(tb);pThread.appendChild(ty);pThread.scrollTop=pThread.scrollHeight;
+  if(pStatus){pStatus.textContent='● Your digital person is thinking...';pStatus.style.color='#06b6d4'}
+  var t0=Date.now();
+  pReply(raw).then(function(h){setTimeout(function(){ty.remove();pAdd('bot',h+'<span class="chat-timestamp">Just now</span>');pBusy=false;if(pStatus){pStatus.textContent='● Ready';pStatus.style.color='#10b981'}pInput.focus()},Math.max(0,550-(Date.now()-t0)))})}
+ document.addEventListener('submit',function(e){if(e.target&&e.target.id==='digital-person-chat-form'){e.preventDefault();e.stopImmediatePropagation();pSend(pInput.value)}},true);
+ document.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;
+  var sb=t.closest('#digital-person-chat-send');if(sb){e.preventDefault();e.stopImmediatePropagation();pSend(pInput.value);return}
+  var c=t.closest('.digital-person-prompt-chip');if(c){e.preventDefault();e.stopImmediatePropagation();pSend(c.getAttribute('data-prompt'));return}
+  var cl=t.closest('#digital-person-clear-btn');if(cl){e.preventDefault();e.stopImmediatePropagation();pMem={name:pMem.name,last:null,n:0,hist:[]};pThread.innerHTML='';pAdd('bot','<p><strong>Conversation reset!</strong> I’m your digital person. Ask me about any tech topic or just chat.</p><span class="chat-timestamp">Just now</span>')}},true);
+ pInput.setAttribute('placeholder','Ask your digital person about any tech topic…');
+}
+})();
+</script>
+</body>
+</html>

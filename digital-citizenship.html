@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Digital Citizenship Guide & Academic Project by Mekhi Childs, Caldwell University. Exploring the 9 Elements of Digital Citizenship, the REP Framework, Cyber Law, AI Ethics, and Digital Security.">
+  <title>Digital Citizenship: Ethics, Law & Responsibility | Mekhi Childs</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🎓%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0b0e14">
+<style id="site-polish">
+/* Site polish: smoother, more accessible, tidier */
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-wrap:break-word}
+img,svg,video,iframe{max-width:100%;height:auto}
+pre,code{white-space:pre-wrap;word-break:break-word}
+table{max-width:100%}
+::selection{background:rgba(168,85,247,.45);color:#fff}
+:focus-visible{outline:2px solid #a78bfa;outline-offset:3px;border-radius:4px}
+a,button{-webkit-tap-highlight-color:transparent}
+button:not(:disabled),[role="button"]{cursor:pointer}
+.skip-link{position:absolute;left:-9999px;top:8px;z-index:100001;padding:10px 16px;background:#a855f7;color:#fff;border-radius:8px;font-weight:700;text-decoration:none}
+.skip-link:focus{left:8px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media print{.skip-link{display:none}}
+</style>
+<link rel="stylesheet" href="site-enhance.css">
+<script src="site-enhance.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#hero">Skip to main content</a>
+  <!-- Header / Subpage Navigation -->
+  <header class="site-header" id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" title="Return to Main Portfolio">
+        <span class="logo-symbol">&lt;/&gt;</span>
+        <span class="logo-text">Mekhi Digital Portfolio<span class="accent-dot">.</span></span>
+      </a>
+
+      <!-- Desktop Tab Bar Navigation -->
+      <nav class="desktop-nav" aria-label="Digital Citizenship Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="back-nav-link">← Portfolio Home</a></li>
+          <li><a href="security.html" class="nav-link tab-highlight-security">🛡️ Security</a></li>
+          <li><a href="internet.html" class="nav-link tab-highlight-internet">⚡ The Internet</a></li>
+          <li><a href="software.html" class="nav-link">💻 Software</a></li>
+          <li><a href="hardware.html" class="nav-link tab-highlight-hardware">🔧 Hardware</a></li>
+          <li><a href="storage.html" class="nav-link">💾 Storage</a></li>
+          <li><a href="io.html" class="nav-link tab-highlight-io">⌨️ I/O Devices</a></li>
+          <li><a href="#core-questions" class="nav-link">Key Questions</a></li>
+          <li><a href="#framework" class="nav-link">REP Model</a></li>
+          <li><a href="#elements" class="nav-link">9 Elements</a></li>
+          <li><a href="#legal" class="nav-link">Digital Law & Privacy</a></li>
+          <li><a href="#ai-ethics" class="nav-link tab-highlight-ai">AI & Ethics</a></li>
+          <li><a href="#quiz" class="nav-link">Self-Assessment</a></li>
+          <li><a href="#action" class="nav-link">Pledge & Checklist</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Return Link CTA -->
+        <a href="index.html#projects" class="btn btn-secondary nav-cta">All Coursework</a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button type="button" id="menu-toggle" class="icon-btn mobile-only" aria-label="Open navigation menu">
+          <svg class="hamburger-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-menu" class="mobile-drawer">
+      <ul class="mobile-nav-links">
+        <li><a href="index.html" class="mobile-nav-link font-bold text-primary">← Return to Main Portfolio</a></li>
+        <li><a href="security.html" class="mobile-nav-link font-bold" style="color: #10b981;">🛡️ Security Guide</a></li>
+        <li><a href="internet.html" class="mobile-nav-link font-bold" style="color: #06b6d4;">⚡ The Internet & Protocols</a></li>
+        <li><a href="software.html" class="mobile-nav-link">💻 Software Guide</a></li>
+        <li><a href="hardware.html" class="mobile-nav-link font-bold" style="color: #fb7185;">🔧 Computer Hardware</a></li>
+        <li><a href="storage.html" class="mobile-nav-link font-bold" style="color: #fbbf24;">💾 Storage Devices</a></li>
+        <li><a href="io.html" class="mobile-nav-link font-bold" style="color: #f59e0b;">⌨️ Input &amp; Output Devices</a></li>
+        <li><a href="#core-questions" class="mobile-nav-link font-bold text-primary">❓ Essential Questions & Answers</a></li>
+        <li><a href="#framework" class="mobile-nav-link">The REP Model</a></li>
+        <li><a href="#elements" class="mobile-nav-link">The 9 Core Elements</a></li>
+        <li><a href="#legal" class="mobile-nav-link">Digital Law & Privacy</a></li>
+        <li><a href="#ai-ethics" class="mobile-nav-link">AI Ethics & Media Literacy</a></li>
+        <li><a href="#quiz" class="mobile-nav-link">Interactive Quiz</a></li>
+        <li><a href="#action" class="mobile-nav-link">Best Practices Checklist</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <a href="index.html#contact" class="btn btn-primary w-full">Connect with Mekhi</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="section hero-section">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="status-badge">
+            <span class="status-indicator"></span>
+            Introduction to Technology • Caldwell University
+          </div>
+          <h1 class="hero-title">
+            Navigating the Connected World:<br>
+            <span class="gradient-text">Digital Citizenship</span> & Cyber Ethics
+          </h1>
+          <p class="hero-subtitle">
+            Digital citizenship is the set of standards, norms, and ethical responsibilities that govern how individuals interact, communicate, protect data, and collaborate in digital spaces. This guide examines technology literacy, privacy, cybersecurity, and modern AI ethics.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#core-questions" class="btn btn-primary">
+              Core Questions & Answers ↓
+            </a>
+            <a href="#elements" class="btn btn-secondary">9 Core Elements</a>
+            <a href="#quiz" class="btn btn-secondary">Take Self-Assessment</a>
+            <a href="#legal" class="btn btn-secondary">Legal & CJ Spotlight</a>
+          </div>
+
+          <!-- Hero Metrics Cards -->
+          <div class="dc-hero-stats">
+            <div class="dc-stat-card">
+              <div class="dc-stat-icon">🏛️</div>
+              <div>
+                <div class="dc-stat-number">3 Pillars</div>
+                <div class="dc-stat-label">Respect, Educate, Protect</div>
+              </div>
+            </div>
+            <div class="dc-stat-card">
+              <div class="dc-stat-icon">🌐</div>
+              <div>
+                <div class="dc-stat-number">9 Elements</div>
+                <div class="dc-stat-label">ISTE Global Standards</div>
+              </div>
+            </div>
+            <div class="dc-stat-card">
+              <div class="dc-stat-icon">⚖️</div>
+              <div>
+                <div class="dc-stat-number">Cyber Law</div>
+                <div class="dc-stat-label">Ethics, Rights & Accountability</div>
+              </div>
+            </div>
+            <div class="dc-stat-card">
+              <div class="dc-stat-icon">🤖</div>
+              <div>
+                <div class="dc-stat-number">AI Era</div>
+                <div class="dc-stat-label">Truth, Verification & Integrity</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Essential Questions of Digital Citizenship Section -->
+    <section id="core-questions" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Core Foundations</p>
+          <h2 class="section-title">Essential Questions of Digital Citizenship</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Explore the foundational definitions, behavioral expectations, electronic realities, and societal significance that define modern digital citizenship.
+          </p>
+        </div>
+
+        <div class="core-questions-grid">
+          <!-- Question 1: What is a digital citizen? -->
+          <div class="qa-card qa-theme-blue">
+            <div class="qa-header">
+              <span class="qa-badge">Core Question 01</span>
+              <span class="qa-icon">🌐</span>
+            </div>
+            <h3 class="qa-question">What is a digital citizen?</h3>
+            <div class="qa-takeaway">
+              <strong>Key Definition:</strong> A digital citizen is anyone who uses the internet, digital devices, and online platforms to communicate, learn, work, and participate in society—operating with ethical awareness, critical reasoning, civility, and cybersecurity vigilance.
+            </div>
+            <p class="qa-answer-text">
+              Just as citizenship in a physical nation entails community rights, civic obligations, and respect for laws, digital citizenship defines how an individual conducts themselves across online environments. Being a digital citizen is far more than possessing technical skill or owning an internet device—it is the practice of navigating cyberspace responsibly, upholding human dignity, and fostering a constructive digital culture.
+            </p>
+            <div class="qa-key-points">
+              <h5>Essential Dimensions of a Digital Citizen:</h5>
+              <ul>
+                <li><strong>Ethical & Moral Awareness:</strong> Engaging respectfully with others, resisting toxic behaviors (trolling, harassment, cyberbullying), and honoring diverse viewpoints.</li>
+                <li><strong>Information & Media Literacy:</strong> Critically questioning sources, verifying online claims before sharing, and recognizing algorithmic bias and AI deepfakes.</li>
+                <li><strong>Active Cyber Hygiene:</strong> Protecting personal identity, using robust multi-factor security, and safeguarding private records from unauthorized access.</li>
+                <li><strong>Positive Civic Participation:</strong> Leveraging digital communication channels to collaborate, share academic research, solve real-world problems, and advocate for ethical causes.</li>
+              </ul>
+            </div>
+            <div class="qa-tags">
+              <span class="tag">Digital Citizen</span>
+              <span class="tag">Ethical Technology</span>
+              <span class="tag">Civic Responsibility</span>
+              <span class="tag">Online Community</span>
+            </div>
+          </div>
+
+          <!-- Question 2: How should students behave online? -->
+          <div class="qa-card qa-theme-purple">
+            <div class="qa-header">
+              <span class="qa-badge">Core Question 02</span>
+              <span class="qa-icon">🎓</span>
+            </div>
+            <h3 class="qa-question">How should students behave online?</h3>
+            <div class="qa-takeaway">
+              <strong>Key Definition:</strong> Students should conduct themselves online with empathy, integrity, and deliberate intentionality—practicing courteous netiquette, upholding academic honesty, guarding confidential data, and standing up against cyber harassment.
+            </div>
+            <p class="qa-answer-text">
+              In college and everyday student life, digital behavior directly impacts academic relationships, team coursework, institutional safety, and future professional opportunities. Exercising mature, responsible digital citizenship requires students to adhere to clear ethical guidelines across all electronic touchpoints:
+            </p>
+            <div class="qa-key-points">
+              <h5>Core Online Student Conduct Guidelines:</h5>
+              <ul>
+                <li><strong>Practice Respectful Netiquette:</strong> Communicate professionally in emails, classroom discussion boards, and team chats. Offer constructive feedback, respect others' time, and avoid hostile language or aggressive typing in all-caps.</li>
+                <li><strong>Uphold Academic Integrity:</strong> Author original submissions, provide transparent citations for external sources, and use generative AI tools strictly within course guidelines without uncredited copying.</li>
+                <li><strong>Protect Personal & Peer Privacy:</strong> Never publish or distribute private student identifiers, home addresses, phone numbers, or classmates' private messages and photos without explicit authorization.</li>
+                <li><strong>Pause Before Posting (The SIFT Rule):</strong> Evaluate whether content is truthful, respectful, and necessary before publishing. Remember that once a post, comment, or message is sent, you lose unilateral control over where it spreads.</li>
+                <li><strong>Act as a Courageous Upstander:</strong> Refuse to participate in group cyberbullying, doxxing, or malicious gossip. Report abusive conduct or threats of violence to campus administrators or platform moderators.</li>
+              </ul>
+            </div>
+            <div class="qa-tags">
+              <span class="tag">Student Netiquette</span>
+              <span class="tag">Academic Integrity</span>
+              <span class="tag">Civil Discourse</span>
+              <span class="tag">Upstander Behavior</span>
+            </div>
+          </div>
+
+          <!-- Question 3: What is a digital footprint? -->
+          <div class="qa-card qa-theme-emerald">
+            <div class="qa-header">
+              <span class="qa-badge">Core Question 03</span>
+              <span class="qa-icon">👣</span>
+            </div>
+            <h3 class="qa-question">What is a digital footprint?</h3>
+            <div class="qa-takeaway">
+              <strong>Key Definition:</strong> A digital footprint is the persistent, indelible trail of personal data, electronic records, and behavioural traces created whenever an individual browses the web, publishes on social media, or uses digital devices.
+            </div>
+            <p class="qa-answer-text">
+              Every digital action leaves an electronic audit record. Because cloud platforms, servers, and search engine crawlers index data continuously, digital footprints are searchable, shareable, and effectively permanent. Digital footprints comprise two fundamental categories:
+            </p>
+            <div class="qa-key-points">
+              <h5>Components & Practical Impact of Digital Footprints:</h5>
+              <ul>
+                <li><strong>Active Digital Footprint:</strong> Data intentionally created and published by the user—including social media photos, public comments, forum threads, blog posts, video uploads, and sent emails.</li>
+                <li><strong>Passive Digital Footprint:</strong> Data gathered invisibly without the user's active submission—such as IP address access logs, geolocation coordinates, browsing cookies, shopping cart histories, and hardware device fingerprints.</li>
+                <li><strong>The Reality of Permanence:</strong> "Deleting" a post or photo rarely erases it entirely. Screenshots, cached copies, archival crawlers (such as the Wayback Machine), and server databases preserve electronic evidence indefinitely.</li>
+              </ul>
+            </div>
+            <div class="qa-tags">
+              <span class="tag">Digital Footprint</span>
+              <span class="tag">Active & Passive Data</span>
+              <span class="tag">Data Permanence</span>
+              <span class="tag">Online Reputation</span>
+            </div>
+          </div>
+
+          <!-- Question 4: Why is digital citizenship important? -->
+          <div class="qa-card qa-theme-amber">
+            <div class="qa-header">
+              <span class="qa-badge">Core Question 04</span>
+              <span class="qa-icon">🛡️</span>
+            </div>
+            <h3 class="qa-question">Why is digital citizenship important?</h3>
+            <div class="qa-takeaway">
+              <strong>Key Definition:</strong> Digital citizenship is essential because it protects individual safety, defends privacy, prevents cybercrime, combats viral disinformation, safeguards professional futures, and sustains a civil, equitable information society.
+            </div>
+            <p class="qa-answer-text">
+              As modern commerce, legal justice, education, and democratic discourse migrate into digital infrastructure, ethical principles are vital to keep cyberspace constructive rather than destructive. Digital citizenship matters deeply for critical reasons:
+            </p>
+            <div class="qa-key-points">
+              <h5>Why Digital Citizenship Matters in Modern Society:</h5>
+              <ul>
+                <li><strong>Defending Personal Privacy & Financial Security:</strong> Equipping students with cyber hygiene skills (such as multi-factor authentication, phishing recognition, and credential protection) prevents devastating identity theft, ransomware, and financial loss.</li>
+                <li><strong>Protecting Personal & Academic Opportunities:</strong> Understanding digital footprints helps students make thoughtful choices and protect their privacy, relationships, and academic opportunities.</li>
+                <li><strong>Combating Disinformation & Preserving Democracy:</strong> Strengthening critical evaluation and media verification empowers citizens to identify fake news, deepfakes, and automated propaganda, sustaining an informed public.</li>
+                <li><strong>Protecting Mental Health & Preventing Toxicity:</strong> Cultivating netiquette, screen-time balance, and empathy helps curb cyberbullying, online anxiety, depression, and digital burnout.</li>
+                <li><strong>Ensuring Legal Accountability & Civil Rights:</strong> Understanding computer crime laws (e.g., CFAA, DMCA, anti-harassment statutes) prevents unintentional criminal liability while ensuring constitutional privacy rights are defended.</li>
+              </ul>
+            </div>
+            <div class="qa-tags">
+              <span class="tag">Cyber Defense</span>
+              <span class="tag">Disinformation Defense</span>
+              <span class="tag">Mental Well-Being</span>
+              <span class="tag">Legal Awareness</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Foundational Framework (REP Model) -->
+    <section id="framework" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Guiding Philosophy</p>
+          <h2 class="section-title">The REP Framework</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Created by educational technologist Dr. Mike Ribble, the <strong>REP Model</strong> categorizes the nine elements of digital citizenship into three actionable, human-centered responsibilities.
+          </p>
+        </div>
+
+        <div class="rep-grid">
+          <!-- Pillar 1: Respect -->
+          <div class="rep-card pillar-respect">
+            <div class="rep-header">
+              <span class="rep-badge">Pillar 01</span>
+              <span class="rep-icon">🤝</span>
+            </div>
+            <h3 class="rep-title">Respect</h3>
+            <p class="rep-sub">
+              Respect Yourself & Respect Others. Upholding human dignity, courteous communication, and equal opportunities in every digital community.
+            </p>
+            <div class="rep-elements-list">
+              <div class="rep-element-item">
+                <span class="bullet">•</span>
+                <strong>Digital Etiquette:</strong> Thoughtful, constructive netiquette
+              </div>
+              <div class="rep-element-item">
+                <span class="bullet">•</span>
+                <strong>Digital Access:</strong> Advocating for universal tech equity
+              </div>
+              <div class="rep-element-item">
+                <span class="bullet">•</span>
+                <strong>Digital Law:</strong> Complying with statutes & copyright
+              </div>
+            </div>
+          </div>
+
+          <!-- Pillar 2: Educate -->
+          <div class="rep-card pillar-educate">
+            <div class="rep-header">
+              <span class="rep-badge">Pillar 02</span>
+              <span class="rep-icon">💡</span>
+            </div>
+            <h3 class="rep-title">Educate</h3>
+            <p class="rep-sub">
+              Educate Yourself & Educate Others. Developing critical evaluation abilities, digital literacy, and collaborative communication skills.
+            </p>
+            <div class="rep-elements-list">
+              <div class="rep-element-item">
+                <span class="bullet">•</span>
+                <strong>Digital Literacy:</strong> Evaluating authentic sources & AI
+              </div>
+              <div class="rep-element-item">
+                <span class="bullet">•</span>
+                <strong>Digital Communication:</strong> Purposeful, professional dialogue
+              </div>
+              <div class="rep-element-item">
+                <span class="bullet">•</span>
+                <strong>Digital Commerce:</strong> Savvy online purchasing & fraud defense
+              </div>
+            </div>
+          </div>
+
+          <!-- Pillar 3: Protect -->
+          <div class="rep-card pillar-protect">
+            <div class="rep-header">
+              <span class="rep-badge">Pillar 03</span>
+              <span class="rep-icon">🛡️</span>
+            </div>
+            <h3 class="rep-title">Protect</h3>
+            <p class="rep-sub">
+              Protect Yourself & Protect Others. Defending personal privacy, sustaining mental and physical wellness, and upholding digital civil rights.
+            </p>
+            <div class="rep-elements-list">
+              <div class="rep-element-item">
+                <span class="bullet">•</span>
+                <strong>Digital Security:</strong> Cyber hygiene, MFA & password safety
+              </div>
+              <div class="rep-element-item">
+                <span class="bullet">•</span>
+                <strong>Rights & Responsibilities:</strong> Privacy & reporting harm
+              </div>
+              <div class="rep-element-item">
+                <span class="bullet">•</span>
+                <strong>Health & Wellness:</strong> Ergonomics, mental balance & screen limits
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The 9 Elements of Digital Citizenship (Interactive Grid) -->
+    <section id="elements" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Comprehensive Breakdown</p>
+          <h2 class="section-title">The 9 Core Elements of Digital Citizenship</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Use the category filters below to examine each dimension of digital citizenship, complete with practical college and workplace examples.
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="elements-filter-bar">
+          <button type="button" class="filter-btn active" data-filter="all">All 9 Elements</button>
+          <button type="button" class="filter-btn" data-filter="respect">Respect (Pillar 1)</button>
+          <button type="button" class="filter-btn" data-filter="educate">Educate (Pillar 2)</button>
+          <button type="button" class="filter-btn" data-filter="protect">Protect (Pillar 3)</button>
+        </div>
+
+        <!-- 9 Cards Grid -->
+        <div class="elements-grid" id="elements-grid">
+          <!-- 1. Digital Access -->
+          <div class="element-card" data-category="respect">
+            <div class="element-top">
+              <span class="element-number">ELEMENT 01</span>
+              <div class="element-icon-box">📶</div>
+            </div>
+            <h3 class="element-title">Digital Access</h3>
+            <p class="element-desc">
+              Ensuring equitable, unrestricted access to technology tools, high-speed broadband, and digital resources for individuals regardless of socioeconomic status or geographical location.
+            </p>
+            <div class="element-details">
+              <h5>Best Practices for Students & Citizens:</h5>
+              <ul>
+                <li>Advocate for accessible digital materials (captions, screen-reader compatibility).</li>
+                <li>Support campus and community computer labs and open Wi-Fi initiatives.</li>
+                <li>Avoid assuming all group project partners have identical device access or bandwidth.</li>
+              </ul>
+              <span class="element-tag-category tag-respect">Pillar: Respect</span>
+            </div>
+          </div>
+
+          <!-- 2. Digital Commerce -->
+          <div class="element-card" data-category="educate">
+            <div class="element-top">
+              <span class="element-number">ELEMENT 02</span>
+              <div class="element-icon-box">💳</div>
+            </div>
+            <h3 class="element-title">Digital Commerce</h3>
+            <p class="element-desc">
+              Understanding the economic and commercial activities occurring online, including electronic banking, e-commerce transactions, consumer consumer protection rights, and fraud risk awareness.
+            </p>
+            <div class="element-details">
+              <h5>Best Practices for Students & Citizens:</h5>
+              <ul>
+                <li>Verify SSL certificates (HTTPS) and seller legitimacy before entering card numbers.</li>
+                <li>Use tokenized mobile payment systems (Apple Pay, Google Pay) to conceal real card numbers.</li>
+                <li>Be cautious of unsolicited deals, counterfeit shops, and suspicious marketplace listings.</li>
+              </ul>
+              <span class="element-tag-category tag-educate">Pillar: Educate</span>
+            </div>
+          </div>
+
+          <!-- 3. Digital Communication -->
+          <div class="element-card" data-category="educate">
+            <div class="element-top">
+              <span class="element-number">ELEMENT 03</span>
+              <div class="element-icon-box">💬</div>
+            </div>
+            <h3 class="element-title">Digital Communication</h3>
+            <p class="element-desc">
+              The thoughtful exchange of information across multiple digital channels—email, messaging, discussion boards, video conferences, and collaborative documents.
+            </p>
+            <div class="element-details">
+              <h5>Best Practices for Students & Citizens:</h5>
+              <ul>
+                <li>Maintain professional tone in academic and workplace emails with clear subject lines.</li>
+                <li>Select the appropriate channel (slack vs. formal email vs. phone) for the urgency level.</li>
+                <li>Acknowledge messages promptly and respect boundaries regarding off-hours communication.</li>
+              </ul>
+              <span class="element-tag-category tag-educate">Pillar: Educate</span>
+            </div>
+          </div>
+
+          <!-- 4. Digital Etiquette (Netiquette) -->
+          <div class="element-card" data-category="respect">
+            <div class="element-top">
+              <span class="element-number">ELEMENT 04</span>
+              <div class="element-icon-box">🕊️</div>
+            </div>
+            <h3 class="element-title">Digital Etiquette (Netiquette)</h3>
+            <p class="element-desc">
+              The behavioral standards and civility expected when interacting in virtual communities, avoiding cyberbullying, hostility, trolling, or exclusionary speech.
+            </p>
+            <div class="element-details">
+              <h5>Best Practices for Students & Citizens:</h5>
+              <ul>
+                <li>Remember the human behind the screen; disagree constructively without ad hominem attacks.</li>
+                <li>Never participate in dogpiling, doxxing, or spreading hurtful gossip.</li>
+                <li>Avoid typing in ALL CAPS, which reads as aggressive shouting.</li>
+              </ul>
+              <span class="element-tag-category tag-respect">Pillar: Respect</span>
+            </div>
+          </div>
+
+          <!-- 5. Digital Literacy & Fluency -->
+          <div class="element-card" data-category="educate">
+            <div class="element-top">
+              <span class="element-number">ELEMENT 05</span>
+              <div class="element-icon-box">📚</div>
+            </div>
+            <h3 class="element-title">Digital Literacy & Fluency</h3>
+            <p class="element-desc">
+              The ability to discover, critically evaluate, synthesize, and create content using digital tools, while differentiating reliable empirical evidence from misinformation.
+            </p>
+            <div class="element-details">
+              <h5>Best Practices for Students & Citizens:</h5>
+              <ul>
+                <li>Cross-verify controversial news stories across reputable, primary academic sources.</li>
+                <li>Recognize algorithmic echo chambers and confirmation bias in social media feeds.</li>
+                <li>Understand how search engine rankings and sponsored links influence displayed results.</li>
+              </ul>
+              <span class="element-tag-category tag-educate">Pillar: Educate</span>
+            </div>
+          </div>
+
+          <!-- 6. Digital Health & Wellness -->
+          <div class="element-card" data-category="protect">
+            <div class="element-top">
+              <span class="element-number">ELEMENT 06</span>
+              <div class="element-icon-box">🧘</div>
+            </div>
+            <h3 class="element-title">Digital Health & Wellness</h3>
+            <p class="element-desc">
+              Balancing physical and psychological well-being in an era dominated by screens, avoiding digital addiction, visual fatigue, repetitive strain, and social comparison anxiety.
+            </p>
+            <div class="element-details">
+              <h5>Best Practices for Students & Citizens:</h5>
+              <ul>
+                <li>Practice the 20-20-20 rule: Every 20 minutes, look at an object 20 feet away for 20 seconds.</li>
+                <li>Configure ergonomic workspace ergonomics (proper monitor height, wrist alignment).</li>
+                <li>Establish screen-free periods prior to sleep to promote natural circadian rhythms.</li>
+              </ul>
+              <span class="element-tag-category tag-protect">Pillar: Protect</span>
+            </div>
+          </div>
+
+          <!-- 7. Digital Law -->
+          <div class="element-card" data-category="respect">
+            <div class="element-top">
+              <span class="element-number">ELEMENT 07</span>
+              <div class="element-icon-box">⚖️</div>
+            </div>
+            <h3 class="element-title">Digital Law</h3>
+            <p class="element-desc">
+              The legal framework governing electronic actions, software licensing, copyright, trademark rights, intellectual property, cybercrime, and digital evidence.
+            </p>
+            <div class="element-details">
+              <h5>Best Practices for Students & Citizens:</h5>
+              <ul>
+                <li>Uphold copyright laws by properly citing source creators, photographers, and scholars.</li>
+                <li>Never download, distribute, or execute cracked software or unauthorized malware tools.</li>
+                <li>Understand that digital harassment and unauthorized system access carry criminal penalties.</li>
+              </ul>
+              <span class="element-tag-category tag-respect">Pillar: Respect</span>
+            </div>
+          </div>
+
+          <!-- 8. Digital Rights & Responsibilities -->
+          <div class="element-card" data-category="protect">
+            <div class="element-top">
+              <span class="element-number">ELEMENT 08</span>
+              <div class="element-icon-box">🗽</div>
+            </div>
+            <h3 class="element-title">Digital Rights & Responsibilities</h3>
+            <p class="element-desc">
+              Recognizing that constitutional protections (free speech, privacy) extend into cyberspace, alongside the personal duty to protect the safety of the collective community.
+            </p>
+            <div class="element-details">
+              <h5>Best Practices for Students & Citizens:</h5>
+              <ul>
+                <li>Exercise free expression responsibly without infringing on others' civil liberties.</li>
+                <li>Report serious threats of violence, self-harm, or security compromises to administrators.</li>
+                <li>Defend others from online mistreatment as an active, supportive digital bystander.</li>
+              </ul>
+              <span class="element-tag-category tag-protect">Pillar: Protect</span>
+            </div>
+          </div>
+
+          <!-- 9. Digital Security & Privacy -->
+          <div class="element-card" data-category="protect">
+            <div class="element-top">
+              <span class="element-number">ELEMENT 09</span>
+              <div class="element-icon-box">🔒</div>
+            </div>
+            <h3 class="element-title">Digital Security & Privacy</h3>
+            <p class="element-desc">
+              Proactive technical and behavioral precautions to defend personal identity, prevent data breaches, withstand social engineering, and control your permanent digital footprint.
+            </p>
+            <div class="element-details">
+              <h5>Best Practices for Students & Citizens:</h5>
+              <ul>
+                <li>Enable Multi-Factor Authentication (MFA/2FA) on all university and financial accounts.</li>
+                <li>Use strong, unique passphrases stored in an encrypted password manager.</li>
+                <li>Audit social media privacy settings and minimize sharing of sensitive personal identifiers.</li>
+              </ul>
+              <span class="element-tag-category tag-protect">Pillar: Protect</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Digital Law & Privacy -->
+    <section id="legal" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Digital Citizenship & Online Safety</p>
+          <h2 class="section-title">Digital Law, Privacy & Online Safety</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Digital citizenship includes understanding basic online rules, respecting privacy, and making responsible choices when using technology.
+          </p>
+        </div>
+
+        <div class="legal-spotlight-container">
+          <!-- Card 1: Statutory Framework & Computer Crimes -->
+          <div class="legal-feature-card">
+            <div>
+              <span class="legal-badge">⚖️ Legal Frameworks</span>
+              <h3 class="legal-card-title">Computer Crimes & Statutory Awareness</h3>
+              <p class="legal-card-text">
+                Actions in cyberspace produce real-world legal liabilities. The law recognizes unauthorized data access, cyber harassment, and electronic fraud as serious statutory offenses:
+              </p>
+              <div class="legal-subgrid">
+                <div class="legal-subbox">
+                  <h6>💻 CFAA (18 U.S.C. § 1030)</h6>
+                  <p>The Computer Fraud & Abuse Act penalizes unauthorized access to protected computers, data theft, and intentional system disruption.</p>
+                </div>
+                <div class="legal-subbox">
+                  <h6>🚫 Cyberbullying & Stalking</h6>
+                  <p>State and federal statutes hold online harassers criminally accountable for intimidation, repeated cyberstalking, and nonconsensual imagery.</p>
+                </div>
+                <div class="legal-subbox">
+                  <h6>🆔 Identity Theft Statutes</h6>
+                  <p>Stealing social security numbers, banking credentials, or online personas is prosecuted under felony fraud provisions.</p>
+                </div>
+                <div class="legal-subbox">
+                  <h6>©️ Digital Millennium Copyright (DMCA)</h6>
+                  <p>Criminalizes circumvention of digital rights management and commercial distribution of pirated intellectual property.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Privacy & Personal Information -->
+          <div class="legal-feature-card">
+            <div>
+              <span class="legal-badge">🔐 Everyday Privacy</span>
+              <h3 class="legal-card-title">Protecting Your Information Online</h3>
+              <p class="legal-card-text">
+                Everyday online activity can create data trails. Thoughtful privacy settings and careful sharing habits help people protect their personal information:
+              </p>
+              <div class="legal-subgrid">
+                <div class="legal-subbox">
+                  <h6>👣 Digital Footprint</h6>
+                  <p>Posts, comments, searches, and account activity can remain accessible after they are shared.</p>
+                </div>
+                <div class="legal-subbox">
+                  <h6>🛡️ Privacy Settings</h6>
+                  <p>Review account visibility, app permissions, and location-sharing controls regularly.</p>
+                </div>
+                <div class="legal-subbox">
+                  <h6>🔑 Account Security</h6>
+                  <p>Use unique passwords and multi-factor authentication to reduce the risk of account access by others.</p>
+                </div>
+                <div class="legal-subbox">
+                  <h6>📨 Careful Sharing</h6>
+                  <p>Share personal details only with people and services you trust, and check before posting someone else's information.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Ethics & Media Literacy -->
+    <section id="ai-ethics" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Emerging Technology</p>
+          <h2 class="section-title">Digital Citizenship in the Era of Generative AI</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            With the rapid proliferation of Large Language Models and synthetic media, modern digital citizens must practice heightened ethical responsibility and verification rigor.
+          </p>
+        </div>
+
+        <div class="ai-ethics-grid">
+          <!-- Card 1: Academic Integrity & Transparency -->
+          <div class="ai-ethics-card">
+            <div class="ai-card-icon">🎓</div>
+            <h4>Academic Honesty & Attribution</h4>
+            <p>
+              AI assistants like ChatGPT are powerful brainstorming and synthesis companions, but presenting AI output as original human work violates academic integrity. Transparent disclosure and proper citation preserve scholastic honesty.
+            </p>
+            <div class="sift-box">
+              <strong>Citizen Rule:</strong> Use AI to illuminate concepts and organize thoughts, never to circumvent genuine critical thinking or bypass course submission guidelines.
+            </div>
+          </div>
+
+          <!-- Card 2: Synthetic Media & Deepfakes -->
+          <div class="ai-ethics-card">
+            <div class="ai-card-icon">🎭</div>
+            <h4>Deepfakes & Disinformation</h4>
+            <p>
+              AI audio cloning and video generation tools make it effortless to fabricate deceptive content. Responsible digital citizens refuse to weaponize or recirculate unverified viral footage designed to mislead or defame.
+            </p>
+            <div class="sift-box">
+              <strong>Citizen Rule:</strong> Inspect videos for anomalous lighting, distorted hands, or mismatched audio before accepting or sharing high-stakes claims.
+            </div>
+          </div>
+
+          <!-- Card 3: The SIFT Fact-Checking Method -->
+          <div class="ai-ethics-card">
+            <div class="ai-card-icon">🔎</div>
+            <h4>The SIFT Verification Framework</h4>
+            <p>
+              Developed by digital literacy researcher Mike Caulfield, the four-step SIFT process empowers users to combat viral misinformation in seconds:
+            </p>
+            <div class="sift-box">
+              <strong>S</strong> — <em>Stop</em> before reacting or sharing.<br>
+              <strong>I</strong> — <em>Investigate</em> the original source.<br>
+              <strong>F</strong> — <em>Find</em> trusted, independent coverage.<br>
+              <strong>T</strong> — <em>Trace</em> claims, quotes & media back to origin.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Self-Assessment Quiz / Scorecard -->
+    <section id="quiz" class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Interactive Assessment</p>
+          <h2 class="section-title">Test Your Digital Citizenship Score</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Evaluate how you navigate everyday digital challenges. Answer the 5 scenario questions below to receive an instant evaluation and tailored recommendations.
+          </p>
+        </div>
+
+        <div class="quiz-wrapper">
+          <form id="citizenship-quiz-form">
+            <!-- Question 1 -->
+            <div class="quiz-question-block">
+              <h4 class="quiz-question-title">
+                <span class="quiz-q-num">1</span>
+                You encounter an explosive, emotionally charged news claim on social media that supports your personal viewpoint. What is your immediate action?
+              </h4>
+              <div class="quiz-options">
+                <label class="quiz-option-label">
+                  <input type="radio" name="q1" value="2" required>
+                  <span>Pause, apply the SIFT method, and cross-reference with primary news sources before reposting.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q1" value="1">
+                  <span>Skim the comments to see if others agree, then repost if it sounds plausible.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q1" value="0">
+                  <span>Immediately share to your feed to alert peers without checking origin or date.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="quiz-question-block">
+              <h4 class="quiz-question-title">
+                <span class="quiz-q-num">2</span>
+                How do you manage passwords across your university email, social profiles, and financial portals?
+              </h4>
+              <div class="quiz-options">
+                <label class="quiz-option-label">
+                  <input type="radio" name="q2" value="2" required>
+                  <span>Unique passphrases for each account backed by an encrypted password manager and 2FA.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q2" value="1">
+                  <span>A couple of slight variations of the same core password with 2FA enabled on bank accounts only.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q2" value="0">
+                  <span>One single password reused everywhere so I don't risk forgetting it.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="quiz-question-block">
+              <h4 class="quiz-question-title">
+                <span class="quiz-q-num">3</span>
+                When writing a college research paper or completing a project, how do you handle generative AI tools?
+              </h4>
+              <div class="quiz-options">
+                <label class="quiz-option-label">
+                  <input type="radio" name="q3" value="2" required>
+                  <span>Use it as a tutor to brainstorm or organize ideas, write original prose, and cite any tool assistance per course policy.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q3" value="1">
+                  <span>Copy paragraphs directly but rewrite a few words to avoid detection tools.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q3" value="0">
+                  <span>Prompt an AI to complete the entire assignment and submit it under my name without review.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="quiz-question-block">
+              <h4 class="quiz-question-title">
+                <span class="quiz-q-num">4</span>
+                You notice an acquaintance being aggressively targeted, harassed, and doxxed in a group chat or public comment thread. What do you do?
+              </h4>
+              <div class="quiz-options">
+                <label class="quiz-option-label">
+                  <input type="radio" name="q4" value="2" required>
+                  <span>Document evidence with screenshots, report the harassment to platform/campus moderators, and offer direct support to the victim.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q4" value="1">
+                  <span>Stay completely silent to avoid drawing negative attention toward yourself.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q4" value="0">
+                  <span>Join in the jokes or repost the memes because everyone else is doing it.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="quiz-question-block">
+              <h4 class="quiz-question-title">
+                <span class="quiz-q-num">5</span>
+                How mindful are you of screen fatigue, ergonomic posture, and healthy digital boundaries?
+              </h4>
+              <div class="quiz-options">
+                <label class="quiz-option-label">
+                  <input type="radio" name="q5" value="2" required>
+                  <span>Regularly practice the 20-20-20 rule, set app limits, and preserve screen-free wind-down time before sleeping.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q5" value="1">
+                  <span>Occasionally take breaks when my eyes hurt, but often find myself doom-scrolling late into the night.</span>
+                </label>
+                <label class="quiz-option-label">
+                  <input type="radio" name="q5" value="0">
+                  <span>Glued to screens uninterrupted for 8+ hours without regard for posture, lighting, or physical wellness.</span>
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary quiz-submit-btn">Calculate My Digital Citizenship Score</button>
+          </form>
+
+          <!-- Result Card -->
+          <div id="quiz-result" class="quiz-result-box">
+            <div id="score-badge" class="quiz-score-badge">-- / 10</div>
+            <div id="score-title" class="quiz-score-title">Assessment Result</div>
+            <p id="score-advice" class="quiz-score-advice">Detailed recommendations will appear here.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Action Checklist & Digital Citizen's Pledge -->
+    <section id="action" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Practical Commitments</p>
+          <h2 class="section-title">Actionable Checklist & Student Pledge</h2>
+          <div class="section-divider"></div>
+          <p class="section-desc">
+            Click any checklist item below to mark it completed as you review your digital hygiene, privacy settings, and online presence.
+          </p>
+        </div>
+
+        <div class="action-grid">
+          <!-- Daily Cyber Hygiene Checklist -->
+          <div class="checklist-card">
+            <h4>✅ Digital Citizen's Hygiene Checklist</h4>
+            <div class="check-item">
+              <span class="check-item-icon">✓</span>
+              <span><strong>Audit Privacy Settings:</strong> Restrict public visibility on personal social accounts and review third-party app permissions.</span>
+            </div>
+            <div class="check-item">
+              <span class="check-item-icon">✓</span>
+              <span><strong>Activate Multi-Factor Authentication:</strong> Secure student portals, banking apps, and primary email accounts.</span>
+            </div>
+            <div class="check-item">
+              <span class="check-item-icon">✓</span>
+              <span><strong>Review Digital Footprint:</strong> Search your name in an incognito window; remove outdated public posts that contradict your professional reputation.</span>
+            </div>
+            <div class="check-item">
+              <span class="check-item-icon">✓</span>
+              <span><strong>Practice Source Verification:</strong> Never share breaking news without cross-checking with at least two reputable news organizations.</span>
+            </div>
+            <div class="check-item">
+              <span class="check-item-icon">✓</span>
+              <span><strong>Protect Physical Wellness:</strong> Adjust monitor height to eye level, keep wrists flat, and take 5-minute movement breaks every hour.</span>
+            </div>
+            <div class="check-item">
+              <span class="check-item-icon">✓</span>
+              <span><strong>Credit Creators:</strong> Always attribute authors, artists, and software libraries used in academic submissions or online projects.</span>
+            </div>
+          </div>
+
+          <!-- Student Pledge -->
+          <div class="pledge-card">
+            <h4 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1.25rem;">
+              📜 The Digital Citizen's Pledge
+            </h4>
+            <p class="pledge-statement">
+              "As an active member of the global digital community and a student learning about technology, I pledge to use it with integrity, purpose, and empathy. I will respect the privacy and dignity of every person I encounter online, protect others from harassment and exploitation, educate myself against deception and bias, and make thoughtful choices about my digital footprint."
+            </p>
+            <div class="pledge-author">
+              <strong>Mekhi Childs</strong> — Undergraduate Student<br>
+              <em>Introduction to Technology • Caldwell University</em>
+            </div>
+            <div style="margin-top: 1.5rem;">
+              <a href="index.html" class="btn btn-primary" style="font-size: 0.9rem;">Return to Main Portfolio →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <span class="logo-symbol">&lt;/&gt;</span>
+        <span class="logo-text">Mekhi Digital Portfolio<span class="accent-dot">.</span></span>
+      </div>
+      <div class="footer-sitemap-links">
+        <a href="index.html">Portfolio Home</a> •
+        <a href="internet.html">The Internet</a> •
+        <a href="software.html">Software</a> •
+        <a href="hardware.html">Hardware</a> •
+        <a href="storage.html">Storage Devices</a> •
+        <a href="io.html">Input &amp; Output Devices</a> •
+        <a href="security.html">Security Guide</a> •
+        <a href="#core-questions">Key Questions</a> •
+        <a href="#framework">REP Framework</a> •
+        <a href="#elements">9 Elements</a> •
+        <a href="#legal">Cyber Law</a> •
+        <a href="#ai-ethics">AI Ethics</a> •
+        <a href="#quiz">Self-Assessment</a> •
+        <a href="#action">Student Pledge</a> •
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <p class="copyright">© 2026 Mekhi Childs. Introduction to Technology, Caldwell University.</p>
+      <div class="footer-actions">
+        <a href="#hero" class="back-to-top" title="Back to top">
+          Back to top ↑
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="citizenship.js"></script>
+</body>
+</html>
